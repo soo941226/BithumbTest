@@ -1,5 +1,5 @@
 //
-//  TransactionRequester.swift
+//  TickerRequester.swift
 //  BithumbTest
 //
 //  Created by kjs on 2022/01/17.
@@ -7,30 +7,26 @@
 
 import Foundation
 
-struct TransactionRequester: Requestable {
-    typealias CompletionHandler = (Result<[TransactionHistory], Error>) -> Void
+struct TickerRequester: Requestable {
+    typealias CompletionHandler = (Result<Coin, Error>) -> Void
 
-    let type = SocketMessageType.transaction
+    let type = SocketMessageType.ticker
     let symbols: [Symbol]
-    
-    init(symbols: [Symbol]) {
-        self.symbols = symbols
-    }
-    
-    func excute(
-        with completionHandler: @escaping CompletionHandler
-    ) {
+    let tickTypes: [TickType]
+
+    func excute(with completionHandler: @escaping CompletionHandler) {
         guard let message = message else { return }
-        
         WebsocketManager.shared.open(with: message) { result in
             switch result {
             case .success(let message):
+
                 switch message {
                 case .string(let string):
                     handle(string, with: completionHandler)
                 default:
                     completionHandler(.failure(APIError.invalidData))
                 }
+
             case .failure(let error):
                 completionHandler(.failure(error))
             }
@@ -39,25 +35,24 @@ struct TransactionRequester: Requestable {
 
     func handle(
         _ data: Data,
-        with completionHandler: @escaping CompletionHandler
+        with completionHandler: @escaping (Result<Coin, Error>) -> Void
     ) {
         do {
             let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
 
             if let type = json?["type"] as? String,
-               type == SocketMessageType.transaction.rawValue {
+               type == SocketMessageType.ticker.rawValue {
                 guard let content = json?["content"] as? [String: Any],
-                      let list = content["list"] as? [[String: Any]] else {
-                          completionHandler(.failure(APIError.invalidData))
-                          return
-                      }
-                let histories = list.compactMap { (dictionary: [String: Any]) in
-                    return TransactionHistory(origin: dictionary)
+                      let coin = Coin(origin: content) else {
+                    completionHandler(.failure(APIError.invalidData))
+                    return
                 }
-                print(histories)
+                
+                completionHandler(.success(coin))
             } else {
                 completionHandler(.failure(APIError.unwantedResponse))
             }
+
         } catch {
             completionHandler(.failure(error))
         }

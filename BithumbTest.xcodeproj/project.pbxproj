@@ -31,6 +31,7 @@
 		63088FBB27957E5600606AAE /* TransactionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63088FBA27957E5600606AAE /* TransactionHistory.swift */; };
 		63BD9B3E279596C80029CD96 /* TickerRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BD9B3D279596C80029CD96 /* TickerRequester.swift */; };
 		63BD9B412795974D0029CD96 /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BD9B402795974D0029CD96 /* Requestable.swift */; };
+		63BD9B452795A2250029CD96 /* TickType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BD9B442795A2250029CD96 /* TickType.swift */; };
 		C1CE8FEF125CC09DEECCCCF8 /* libPods-BithumbTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5142213A45946B19147E1D /* libPods-BithumbTest.a */; };
 		DB9A6A78D61473014AFE791F /* libPods-BithumbTestTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 644B14142385BBC5CC55B4FA /* libPods-BithumbTestTests.a */; };
 /* End PBXBuildFile section */
@@ -83,6 +84,7 @@
 		63088FBA27957E5600606AAE /* TransactionHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistory.swift; sourceTree = "<group>"; };
 		63BD9B3D279596C80029CD96 /* TickerRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerRequester.swift; sourceTree = "<group>"; };
 		63BD9B402795974D0029CD96 /* Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
+		63BD9B442795A2250029CD96 /* TickType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickType.swift; sourceTree = "<group>"; };
 		644B14142385BBC5CC55B4FA /* libPods-BithumbTestTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BithumbTestTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F9BB1F87FAD512818EF1666 /* Pods-BithumbTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BithumbTest.debug.xcconfig"; path = "Target Support Files/Pods-BithumbTest/Pods-BithumbTest.debug.xcconfig"; sourceTree = "<group>"; };
 		C2244A7EAB99D390A2264565 /* Pods-BithumbTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BithumbTest.release.xcconfig"; path = "Target Support Files/Pods-BithumbTest/Pods-BithumbTest.release.xcconfig"; sourceTree = "<group>"; };
@@ -224,12 +226,12 @@
 		63088FA627953AE400606AAE /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				63088FA727953AE900606AAE /* Coin.swift */,
-				63088FBA27957E5600606AAE /* TransactionHistory.swift */,
 				63088FA927953F4700606AAE /* OrderCurrency.swift */,
 				63088FAB2795400200606AAE /* PaymentCurrency.swift */,
 				63088FB1279544FE00606AAE /* Symbol.swift */,
 				63088FAF279541B600606AAE /* SocketMessageType.swift */,
+				63BD9B442795A2250029CD96 /* TickType.swift */,
+				63BD9B462795A2290029CD96 /* Core */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -248,6 +250,15 @@
 				63BD9B402795974D0029CD96 /* Requestable.swift */,
 			);
 			path = Protoocls;
+			sourceTree = "<group>";
+		};
+		63BD9B462795A2290029CD96 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				63088FA727953AE900606AAE /* Coin.swift */,
+				63088FBA27957E5600606AAE /* TransactionHistory.swift */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 		98783EA1B25C966B685E677B /* Frameworks */ = {
@@ -501,6 +512,7 @@
 				63088FA227952CDF00606AAE /* APIConfig.swift in Sources */,
 				63088FB2279544FE00606AAE /* Symbol.swift in Sources */,
 				63088FB0279541B600606AAE /* SocketMessageType.swift in Sources */,
+				63BD9B452795A2250029CD96 /* TickType.swift in Sources */,
 				63BD9B3E279596C80029CD96 /* TickerRequester.swift in Sources */,
 				63088FBB27957E5600606AAE /* TransactionHistory.swift in Sources */,
 				63BD9B412795974D0029CD96 /* Requestable.swift in Sources */,
