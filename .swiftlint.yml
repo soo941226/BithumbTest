@@ -1,0 +1,11 @@
+excluded:
+    - Pods
+    - BithumbTestTests
+    - BithumbTestUITests
+    - BithumbTest/App/AppDelegate.swift
+    - BithumbTest/App/SceneDelegate.swift
+disabled_rules:
+    - identifier_name
+line_length:
+ ignores_comments: true
+
