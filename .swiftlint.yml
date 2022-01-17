@@ -6,6 +6,7 @@ excluded:
     - BithumbTest/App/SceneDelegate.swift
 disabled_rules:
     - identifier_name
+    - trailing_whitespace
 line_length:
  ignores_comments: true
 
