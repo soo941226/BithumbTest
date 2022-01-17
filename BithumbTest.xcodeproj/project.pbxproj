@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A243072741DD83C846C43AD /* libPods-BithumbTest-BithumbTestUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F95867E0A1E95100D077F28E /* libPods-BithumbTest-BithumbTestUITests.a */; };
 		6307D2DC27952533005EC2EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307D2DB27952533005EC2EF /* AppDelegate.swift */; };
 		6307D2DE27952533005EC2EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307D2DD27952533005EC2EF /* SceneDelegate.swift */; };
 		6307D2E027952533005EC2EF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307D2DF27952533005EC2EF /* ViewController.swift */; };
@@ -16,6 +17,8 @@
 		6307D2F627952534005EC2EF /* BithumbTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307D2F527952534005EC2EF /* BithumbTestTests.swift */; };
 		6307D30027952534005EC2EF /* BithumbTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307D2FF27952534005EC2EF /* BithumbTestUITests.swift */; };
 		6307D30227952534005EC2EF /* BithumbTestUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307D30127952534005EC2EF /* BithumbTestUITestsLaunchTests.swift */; };
+		C1CE8FEF125CC09DEECCCCF8 /* libPods-BithumbTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5142213A45946B19147E1D /* libPods-BithumbTest.a */; };
+		DB9A6A78D61473014AFE791F /* libPods-BithumbTestTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 644B14142385BBC5CC55B4FA /* libPods-BithumbTestTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19CA9A1658C1066B85860260 /* Pods-BithumbTest-BithumbTestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BithumbTest-BithumbTestUITests.release.xcconfig"; path = "Target Support Files/Pods-BithumbTest-BithumbTestUITests/Pods-BithumbTest-BithumbTestUITests.release.xcconfig"; sourceTree = "<group>"; };
+		2C5142213A45946B19147E1D /* libPods-BithumbTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BithumbTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		36C938EE4F8027F0ECBF9810 /* Pods-BithumbTestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BithumbTestTests.debug.xcconfig"; path = "Target Support Files/Pods-BithumbTestTests/Pods-BithumbTestTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6307D2D827952533005EC2EF /* BithumbTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BithumbTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6307D2DB27952533005EC2EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6307D2DD27952533005EC2EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +55,12 @@
 		6307D2FB27952534005EC2EF /* BithumbTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BithumbTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6307D2FF27952534005EC2EF /* BithumbTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BithumbTestUITests.swift; sourceTree = "<group>"; };
 		6307D30127952534005EC2EF /* BithumbTestUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BithumbTestUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		644B14142385BBC5CC55B4FA /* libPods-BithumbTestTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BithumbTestTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F9BB1F87FAD512818EF1666 /* Pods-BithumbTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BithumbTest.debug.xcconfig"; path = "Target Support Files/Pods-BithumbTest/Pods-BithumbTest.debug.xcconfig"; sourceTree = "<group>"; };
+		C2244A7EAB99D390A2264565 /* Pods-BithumbTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BithumbTest.release.xcconfig"; path = "Target Support Files/Pods-BithumbTest/Pods-BithumbTest.release.xcconfig"; sourceTree = "<group>"; };
+		E4583FD0AB33E270DDB2842B /* Pods-BithumbTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BithumbTestTests.release.xcconfig"; path = "Target Support Files/Pods-BithumbTestTests/Pods-BithumbTestTests.release.xcconfig"; sourceTree = "<group>"; };
+		E8F5E6EC22CE084306B333B5 /* Pods-BithumbTest-BithumbTestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BithumbTest-BithumbTestUITests.debug.xcconfig"; path = "Target Support Files/Pods-BithumbTest-BithumbTestUITests/Pods-BithumbTest-BithumbTestUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		F95867E0A1E95100D077F28E /* libPods-BithumbTest-BithumbTestUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BithumbTest-BithumbTestUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1CE8FEF125CC09DEECCCCF8 /* libPods-BithumbTest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB9A6A78D61473014AFE791F /* libPods-BithumbTestTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A243072741DD83C846C43AD /* libPods-BithumbTest-BithumbTestUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +98,8 @@
 				6307D2F427952534005EC2EF /* BithumbTestTests */,
 				6307D2FE27952534005EC2EF /* BithumbTestUITests */,
 				6307D2D927952533005EC2EF /* Products */,
+				A05115524AC2ADFE26C5B580 /* Pods */,
+				98783EA1B25C966B685E677B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -159,6 +176,29 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		98783EA1B25C966B685E677B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2C5142213A45946B19147E1D /* libPods-BithumbTest.a */,
+				F95867E0A1E95100D077F28E /* libPods-BithumbTest-BithumbTestUITests.a */,
+				644B14142385BBC5CC55B4FA /* libPods-BithumbTestTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A05115524AC2ADFE26C5B580 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7F9BB1F87FAD512818EF1666 /* Pods-BithumbTest.debug.xcconfig */,
+				C2244A7EAB99D390A2264565 /* Pods-BithumbTest.release.xcconfig */,
+				E8F5E6EC22CE084306B333B5 /* Pods-BithumbTest-BithumbTestUITests.debug.xcconfig */,
+				19CA9A1658C1066B85860260 /* Pods-BithumbTest-BithumbTestUITests.release.xcconfig */,
+				36C938EE4F8027F0ECBF9810 /* Pods-BithumbTestTests.debug.xcconfig */,
+				E4583FD0AB33E270DDB2842B /* Pods-BithumbTestTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -166,6 +206,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6307D30527952534005EC2EF /* Build configuration list for PBXNativeTarget "BithumbTest" */;
 			buildPhases = (
+				DA755581C9C81E6FBE504C82 /* [CP] Check Pods Manifest.lock */,
+				6395385627952818002A0416 /* SwiftLint */,
 				6307D2D427952533005EC2EF /* Sources */,
 				6307D2D527952533005EC2EF /* Frameworks */,
 				6307D2D627952533005EC2EF /* Resources */,
@@ -183,6 +225,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6307D30827952534005EC2EF /* Build configuration list for PBXNativeTarget "BithumbTestTests" */;
 			buildPhases = (
+				A6630293848BCA782D2A36CA /* [CP] Check Pods Manifest.lock */,
 				6307D2ED27952534005EC2EF /* Sources */,
 				6307D2EE27952534005EC2EF /* Frameworks */,
 				6307D2EF27952534005EC2EF /* Resources */,
@@ -201,6 +244,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6307D30B27952534005EC2EF /* Build configuration list for PBXNativeTarget "BithumbTestUITests" */;
 			buildPhases = (
+				C3BE8CCBD18CA1813A2797C2 /* [CP] Check Pods Manifest.lock */,
 				6307D2F727952534005EC2EF /* Sources */,
 				6307D2F827952534005EC2EF /* Frameworks */,
 				6307D2F927952534005EC2EF /* Resources */,
@@ -283,6 +327,93 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6395385627952818002A0416 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		A6630293848BCA782D2A36CA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BithumbTestTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C3BE8CCBD18CA1813A2797C2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BithumbTest-BithumbTestUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DA755581C9C81E6FBE504C82 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BithumbTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6307D2D427952533005EC2EF /* Sources */ = {
@@ -458,6 +589,7 @@
 		};
 		6307D30627952534005EC2EF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F9BB1F87FAD512818EF1666 /* Pods-BithumbTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -486,6 +618,7 @@
 		};
 		6307D30727952534005EC2EF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2244A7EAB99D390A2264565 /* Pods-BithumbTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -514,6 +647,7 @@
 		};
 		6307D30927952534005EC2EF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36C938EE4F8027F0ECBF9810 /* Pods-BithumbTestTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -539,6 +673,7 @@
 		};
 		6307D30A27952534005EC2EF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4583FD0AB33E270DDB2842B /* Pods-BithumbTestTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -564,6 +699,7 @@
 		};
 		6307D30C27952534005EC2EF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E8F5E6EC22CE084306B333B5 /* Pods-BithumbTest-BithumbTestUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -587,6 +723,7 @@
 		};
 		6307D30D27952534005EC2EF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19CA9A1658C1066B85860260 /* Pods-BithumbTest-BithumbTestUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
