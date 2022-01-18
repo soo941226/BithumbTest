@@ -29,7 +29,8 @@ struct HTTPTickerAllResponse: StatusRepresentable {
 
             throw DecodingError.dataCorrupted(.init(
                 codingPath: [CodingKeys.data],
-                debugDescription: "넌 또 누구냐..."
+                debugDescription: "Server Error: Response is not vaild",
+                underlyingError: APIError.unwantedResponse
             ))
         }
     }
