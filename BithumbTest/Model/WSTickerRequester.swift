@@ -1,5 +1,5 @@
 //
-//  TickerRequester.swift
+//  WSTickerRequester.swift
 //  BithumbTest
 //
 //  Created by kjs on 2022/01/17.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TickerRequester: Requestable {
+struct WSTickerRequester: Requestable {
     typealias CompletionHandler = (Result<Coin, Error>) -> Void
 
     let type = SocketMessageType.ticker
@@ -16,6 +16,7 @@ struct TickerRequester: Requestable {
 
     func excute(with completionHandler: @escaping CompletionHandler) {
         guard let message = message else { return }
+
         WebsocketManager.shared.open(with: message) { result in
             switch result {
             case .success(let message):
@@ -33,10 +34,7 @@ struct TickerRequester: Requestable {
         }
     }
 
-    func handle(
-        _ data: Data,
-        with completionHandler: @escaping (Result<Coin, Error>) -> Void
-    ) {
+    func handle(_ data: Data, with completionHandler: @escaping CompletionHandler) {
         do {
             let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
 

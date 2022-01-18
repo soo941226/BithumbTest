@@ -7,25 +7,25 @@
 
 import Foundation
 
-protocol Request: Encodable {
+protocol RequestHandleable: Encodable {
     associatedtype ResponseType
 
     func excute(with: @escaping (Result<ResponseType, Error>) -> Void)
 
-    var message: String? { get }
+    var message: Data? { get }
 }
 
-extension Request {
-    var message: String? {
+extension RequestHandleable {
+    var message: Data? {
         guard let data = try? JSONEncoder().encode(self) else {
             return nil
         }
 
-        return String(decoding: data, as: UTF8.self)
+        return data
     }
 }
 
-protocol Response {
+protocol ResponseHandleable {
     associatedtype ResponseType
 
     func handle(
@@ -39,7 +39,7 @@ protocol Response {
     )
 }
 
-extension Response {
+extension ResponseHandleable {
     func handle(
         _ string: String,
         with completionHandler: @escaping (Result<ResponseType, Error>) -> Void
@@ -52,4 +52,4 @@ extension Response {
     }
 }
 
-typealias Requestable = Request & Response
+typealias Requestable = RequestHandleable & ResponseHandleable
