@@ -1,5 +1,5 @@
 //
-//  TransactionRequester.swift
+//  WSTransactionRequester.swift
 //  BithumbTest
 //
 //  Created by kjs on 2022/01/17.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TransactionRequester: Requestable {
+struct WSTransactionRequester: Requestable {
     typealias CompletionHandler = (Result<[TransactionHistory], Error>) -> Void
 
     let type = SocketMessageType.transaction
@@ -17,9 +17,7 @@ struct TransactionRequester: Requestable {
         self.symbols = symbols
     }
     
-    func excute(
-        with completionHandler: @escaping CompletionHandler
-    ) {
+    func excute(with completionHandler: @escaping CompletionHandler) {
         guard let message = message else { return }
         
         WebsocketManager.shared.open(with: message) { result in
@@ -37,10 +35,7 @@ struct TransactionRequester: Requestable {
         }
     }
 
-    func handle(
-        _ data: Data,
-        with completionHandler: @escaping CompletionHandler
-    ) {
+    func handle(_ data: Data, with completionHandler: @escaping CompletionHandler) {
         do {
             let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
 

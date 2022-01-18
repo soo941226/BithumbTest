@@ -34,5 +34,17 @@ class RootViewController: UITabBarController {
         setViewControllers(viewControllers, animated: true)
 
         view.backgroundColor = .white
+
+        WSTransactionRequester(symbols: [
+            Symbol(orderCurrency: .BTC, paymentCurrency: .KRW),
+            Symbol(orderCurrency: .ETH, paymentCurrency: .KRW)
+        ]).excute { result in
+            switch result {
+            case .success(let s):
+                print(s)
+            case .failure(let e):
+                print(e)
+            }
+        }
     }
 }

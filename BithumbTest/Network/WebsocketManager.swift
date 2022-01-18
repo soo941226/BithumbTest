@@ -21,9 +21,8 @@ final class WebsocketManager {
         session = URLSession(configuration: .default).webSocketTask(with: url)
     }
 
-    func open(with message: String, completionHanlder: @escaping CompletionHanlder) {
-        print(message)
-        session.send(.string(message)) { error in
+    func open(with message: Data, completionHanlder: @escaping CompletionHanlder) {
+        session.send(.data(message)) { error in
             if let error = error {
                 completionHanlder(.failure(error))
             }
