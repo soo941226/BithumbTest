@@ -1,11 +1,11 @@
 //
-//  Coin.swift
+//  WSCoin.swift
 //  BithumbTest
 //
 //  Created by kjs on 2022/01/17.
 //
 
-struct Coin: Encodable {
+struct WSCoin: Encodable {
     let symbol: Symbol
     let tickType: TickType
     let date: String
@@ -40,7 +40,7 @@ struct Coin: Encodable {
     }
 }
 
-extension Coin {
+extension WSCoin {
     init?(origin: [String: Any]) {
         let dictionary: [String: String] = origin.compactMapValues { any in
             return any as? String

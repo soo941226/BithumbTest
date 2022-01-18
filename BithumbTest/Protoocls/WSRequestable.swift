@@ -1,5 +1,5 @@
 //
-//  Requestable.swift
+//  WSRequestable.swift
 //  BithumbTest
 //
 //  Created by kjs on 2022/01/17.
@@ -7,15 +7,11 @@
 
 import Foundation
 
-protocol RequestHandleable: Encodable {
-    associatedtype ResponseType
-
-    func excute(with: @escaping (Result<ResponseType, Error>) -> Void)
-
+protocol WSRequestHandleable: Excutable {
     var message: Data? { get }
 }
 
-extension RequestHandleable {
+extension WSRequestHandleable {
     var message: Data? {
         guard let data = try? JSONEncoder().encode(self) else {
             return nil
@@ -25,7 +21,7 @@ extension RequestHandleable {
     }
 }
 
-protocol ResponseHandleable {
+protocol WSResponseHandleable {
     associatedtype ResponseType
 
     func handle(
@@ -39,7 +35,7 @@ protocol ResponseHandleable {
     )
 }
 
-extension ResponseHandleable {
+extension WSResponseHandleable {
     func handle(
         _ string: String,
         with completionHandler: @escaping (Result<ResponseType, Error>) -> Void
@@ -52,4 +48,4 @@ extension ResponseHandleable {
     }
 }
 
-typealias Requestable = RequestHandleable & ResponseHandleable
+typealias WSRequestable = WSRequestHandleable & WSResponseHandleable

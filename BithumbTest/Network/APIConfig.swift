@@ -8,5 +8,6 @@
 import Foundation
 
 enum APIConfig {
-    static let websocketBaseURL = "wss://pubwss.bithumb.com/pub/ws"
+    static let WSBaseURL = "wss://pubwss.bithumb.com/pub/ws"
+    static let HTTPBaseURL = "https://api.bithumb.com/"
 }

@@ -5,7 +5,7 @@
 //  Created by kjs on 2022/01/17.
 //
 
-enum OrderCurrency {
+enum OrderCurrency: Encodable {
     case BTC
     case ETH
     case ALL

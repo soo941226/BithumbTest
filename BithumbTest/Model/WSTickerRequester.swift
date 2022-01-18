@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct WSTickerRequester: Requestable {
-    typealias CompletionHandler = (Result<Coin, Error>) -> Void
+struct WSTickerRequester: WSRequestable {
+    typealias CompletionHandler = (Result<WSCoin, Error>) -> Void
 
     let type = SocketMessageType.ticker
     let symbols: [Symbol]
@@ -41,7 +41,7 @@ struct WSTickerRequester: Requestable {
             if let type = json?["type"] as? String,
                type == SocketMessageType.ticker.rawValue {
                 guard let content = json?["content"] as? [String: Any],
-                      let coin = Coin(origin: content) else {
+                      let coin = WSCoin(origin: content) else {
                     completionHandler(.failure(APIError.invalidData))
                     return
                 }

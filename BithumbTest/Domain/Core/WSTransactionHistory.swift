@@ -1,11 +1,11 @@
 //
-//  TransactionHistory.swift
+//  WSTransactionHistory.swift
 //  BithumbTest
 //
 //  Created by kjs on 2022/01/17.
 //
 
-struct TransactionHistory {
+struct WSTransactionHistory {
     let symbol: Symbol
     let tradeType: TradeType
     let capturedPrice: Double
@@ -35,7 +35,7 @@ struct TransactionHistory {
     }
 }
 
-extension TransactionHistory {
+extension WSTransactionHistory {
     init?(origin: [String: Any]) {
         let dictionary: [String: String] = origin.compactMapValues { any in
             return any as? String

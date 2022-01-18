@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct WSTransactionRequester: Requestable {
-    typealias CompletionHandler = (Result<[TransactionHistory], Error>) -> Void
+struct WSTransactionRequester: WSRequestable {
+    typealias CompletionHandler = (Result<[WSTransactionHistory], Error>) -> Void
 
     let type = SocketMessageType.transaction
     let symbols: [Symbol]
@@ -47,7 +47,7 @@ struct WSTransactionRequester: Requestable {
                           return
                       }
                 let histories = list.compactMap { (dictionary: [String: Any]) in
-                    return TransactionHistory(origin: dictionary)
+                    return WSTransactionHistory(origin: dictionary)
                 }
                 print(histories)
             } else {

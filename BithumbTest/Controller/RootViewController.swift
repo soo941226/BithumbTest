@@ -35,15 +35,24 @@ class RootViewController: UITabBarController {
 
         view.backgroundColor = .white
 
-        WSTransactionRequester(symbols: [
-            Symbol(orderCurrency: .BTC, paymentCurrency: .KRW),
-            Symbol(orderCurrency: .ETH, paymentCurrency: .KRW)
-        ]).excute { result in
+//        WSTransactionRequester(symbols: [
+//            Symbol(orderCurrency: .BTC, paymentCurrency: .KRW),
+//            Symbol(orderCurrency: .ETH, paymentCurrency: .KRW)
+//        ]).excute { result in
+//            switch result {
+//            case .success(let s):
+//                print(s)
+//            case .failure(let e):
+//                print(e)
+//            }
+//        }
+
+        HTTPTickerAllRequester(paymentCurrency: .KRW).excute { result in
             switch result {
-            case .success(let s):
-                print(s)
-            case .failure(let e):
-                print(e)
+            case .success(let response):
+                print(response.data.keys)
+            case .failure(let error):
+                print(error)
             }
         }
     }

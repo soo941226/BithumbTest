@@ -38,7 +38,7 @@ final class WebsocketManager {
 
 private extension WebsocketManager {
     convenience init() {
-        self.init(urlString: APIConfig.websocketBaseURL)
+        self.init(urlString: APIConfig.WSBaseURL)
     }
 
     func receiveMessageContinuoussly(with completionHanlder: @escaping CompletionHanlder) {

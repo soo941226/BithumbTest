@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum PaymentCurrency: String {
+enum PaymentCurrency: String, Encodable {
     case BTC
     case KRW
 
