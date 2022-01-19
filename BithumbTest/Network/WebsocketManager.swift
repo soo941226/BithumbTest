@@ -13,8 +13,8 @@ final class WebsocketManager {
     static let shared = WebsocketManager()
 
     private let session: URLSessionWebSocketTask
-    private init(urlString: String) {
-        guard let url = URL(string: urlString) else {
+    private init() {
+        guard let url = URL(string: APIConfig.WSBaseURL) else {
             fatalError("invalid APIConfig.websocketBaseURL")
         }
 
@@ -37,18 +37,16 @@ final class WebsocketManager {
 }
 
 private extension WebsocketManager {
-    convenience init() {
-        self.init(urlString: APIConfig.WSBaseURL)
-    }
-
     func receiveMessageContinuoussly(with completionHanlder: @escaping CompletionHanlder) {
-        session.receive { [weak self] result in
-            switch result {
-            case .success(let message):
-                completionHanlder(.success(message))
-                self?.receiveMessageContinuoussly(with: completionHanlder)
-            case .failure(let error):
-                completionHanlder(.failure(error))
+        DispatchQueue.global().async { [weak self] in
+            self?.session.receive { [weak self] result in
+                switch result {
+                case .success(let message):
+                    completionHanlder(.success(message))
+                    self?.receiveMessageContinuoussly(with: completionHanlder)
+                case .failure(let error):
+                    completionHanlder(.failure(error))
+                }
             }
         }
     }

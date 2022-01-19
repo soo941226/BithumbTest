@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WSTransactionRequester: WSRequestable {
+struct WSTransactionAPI: WSRequestable {
     typealias CompletionHandler = (Result<[WSTransactionHistory], Error>) -> Void
 
     let type = SocketMessageType.transaction

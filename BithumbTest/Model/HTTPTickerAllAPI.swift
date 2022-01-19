@@ -1,5 +1,5 @@
 //
-//  HTTPTickerRequester.swift
+//  HTTPTickerAllRequester.swift
 //  BithumbTest
 //
 //  Created by kjs on 2022/01/18.
@@ -36,10 +36,14 @@ struct HTTPTickerAllResponse: StatusRepresentable {
     }
 }
 
-struct HTTPTickerAllRequester: HTTPRequestable {
+struct HTTPTickerAllAPI: HTTPRequestable {
     private(set) var urlString = APIConfig.HTTPBaseURL + "public/ticker/ALL_"
 
     let paymentCurrency: PaymentCurrency
+
+    init(paymentCurrency: PaymentCurrency) {
+        self.paymentCurrency = paymentCurrency
+    }
 
     func excute(
         with completionHandler: @escaping (Result<HTTPTickerAllResponse, Error>) -> Void

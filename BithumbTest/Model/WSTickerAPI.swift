@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WSTickerRequester: WSRequestable {
+struct WSTickerAPI: WSRequestable {
     typealias CompletionHandler = (Result<WSCoin, Error>) -> Void
 
     let type = SocketMessageType.ticker

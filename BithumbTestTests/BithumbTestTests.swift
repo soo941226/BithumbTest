@@ -11,7 +11,7 @@ import XCTest
 class BithumbTestTests: XCTestCase {
     func test_transaction의_심볼이1개일때_message를구하면_nil이_아니다() throws {
         //given
-        let transaction = WSTransactionRequester(symbols: [Symbol(orderCurrency: .ALL, paymentCurrency: .BTC)])
+        let transaction = WSTransactionAPI(symbols: [Symbol(orderCurrency: .ALL, paymentCurrency: .BTC)])
 
         //when
         let message = transaction.message
@@ -22,7 +22,7 @@ class BithumbTestTests: XCTestCase {
 
     func test_transaction의_심볼이1개초과일때_message를구하면_nil이_아니다() throws {
         //given
-        let transaction = WSTransactionRequester(symbols: [
+        let transaction = WSTransactionAPI(symbols: [
             Symbol(orderCurrency: .ALL, paymentCurrency: .BTC),
             Symbol(orderCurrency: .BTC, paymentCurrency: .KRW),
             Symbol(orderCurrency: .ETH, paymentCurrency: .KRW),
@@ -40,7 +40,7 @@ class BithumbTestTests: XCTestCase {
 
     func test_transaction의_심볼이1개일때_메시지가JSON인지확인하면_참이다() throws {
         //given
-        let transaction = WSTransactionRequester(symbols: [Symbol(orderCurrency: .ALL, paymentCurrency: .BTC)])
+        let transaction = WSTransactionAPI(symbols: [Symbol(orderCurrency: .ALL, paymentCurrency: .BTC)])
         guard let message = transaction.message else {
             XCTFail()
             return
@@ -55,7 +55,7 @@ class BithumbTestTests: XCTestCase {
 
     func test_transaction의_심볼이1개초과일때_메시지가JSON인지확인하면_참이다() throws {
         //given
-        let transaction = WSTransactionRequester(symbols: [
+        let transaction = WSTransactionAPI(symbols: [
             Symbol(orderCurrency: .ALL, paymentCurrency: .BTC),
             Symbol(orderCurrency: .BTC, paymentCurrency: .KRW),
             Symbol(orderCurrency: .ETH, paymentCurrency: .KRW),
