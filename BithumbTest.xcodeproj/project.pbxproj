@@ -19,7 +19,7 @@
 		6307D30227952534005EC2EF /* BithumbTestUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307D30127952534005EC2EF /* BithumbTestUITestsLaunchTests.swift */; };
 		63088F9F27952CB000606AAE /* WebsocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63088F9E27952CB000606AAE /* WebsocketManager.swift */; };
 		63088FA227952CDF00606AAE /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63088FA127952CDF00606AAE /* APIConfig.swift */; };
-		63088FA527953AE200606AAE /* WSTransactionRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63088FA427953AE200606AAE /* WSTransactionRequester.swift */; };
+		63088FA527953AE200606AAE /* WSTransactionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63088FA427953AE200606AAE /* WSTransactionAPI.swift */; };
 		63088FA827953AE900606AAE /* WSCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63088FA727953AE900606AAE /* WSCoin.swift */; };
 		63088FAA27953F4700606AAE /* OrderCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63088FA927953F4700606AAE /* OrderCurrency.swift */; };
 		63088FAC2795400200606AAE /* PaymentCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63088FAB2795400200606AAE /* PaymentCurrency.swift */; };
@@ -27,17 +27,19 @@
 		63088FB2279544FE00606AAE /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63088FB1279544FE00606AAE /* Symbol.swift */; };
 		63088FB4279548A500606AAE /* JSONChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63088FB3279548A500606AAE /* JSONChecker.swift */; };
 		63088FB627956EBE00606AAE /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63088FB527956EBE00606AAE /* APIError.swift */; };
-		63088FB827956F2400606AAE /* WSTransactionRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63088FB727956F2400606AAE /* WSTransactionRequester.swift */; };
+		63088FB827956F2400606AAE /* WSTransactionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63088FB727956F2400606AAE /* WSTransactionAPI.swift */; };
 		63088FBB27957E5600606AAE /* WSTransactionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63088FBA27957E5600606AAE /* WSTransactionHistory.swift */; };
 		6339E9FA2796D6CE00238233 /* HTTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6339E9F92796D6CE00238233 /* HTTPManager.swift */; };
-		63BD9B3E279596C80029CD96 /* WSTickerRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BD9B3D279596C80029CD96 /* WSTickerRequester.swift */; };
+		63A0D0812797D68C006B4EA8 /* CoinListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A0D0802797D68C006B4EA8 /* CoinListViewController.swift */; };
+		63BD9B3E279596C80029CD96 /* WSTickerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BD9B3D279596C80029CD96 /* WSTickerAPI.swift */; };
 		63BD9B412795974D0029CD96 /* WSRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BD9B402795974D0029CD96 /* WSRequestable.swift */; };
 		63BD9B452795A2250029CD96 /* TickType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BD9B442795A2250029CD96 /* TickType.swift */; };
 		63CEEC6F2796E1EC00ABB208 /* StatusRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CEEC6E2796E1EC00ABB208 /* StatusRepresentable.swift */; };
-		63CEEC732796E86600ABB208 /* HTTPTickerAllRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CEEC722796E86600ABB208 /* HTTPTickerAllRequester.swift */; };
+		63CEEC732796E86600ABB208 /* HTTPTickerAllAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CEEC722796E86600ABB208 /* HTTPTickerAllAPI.swift */; };
 		63CEEC752796E88500ABB208 /* HTTPRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CEEC742796E88500ABB208 /* HTTPRequestable.swift */; };
 		63CEEC772796E91E00ABB208 /* HTTPCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CEEC762796E91E00ABB208 /* HTTPCoin.swift */; };
 		63CEEC792796F3A400ABB208 /* Exctuable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CEEC782796F3A400ABB208 /* Exctuable.swift */; };
+		63D803F02797BAE900A3858D /* HTTPTickerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D803EF2797BAE900A3858D /* HTTPTickerAPI.swift */; };
 		C1CE8FEF125CC09DEECCCCF8 /* libPods-BithumbTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5142213A45946B19147E1D /* libPods-BithumbTest.a */; };
 		DB9A6A78D61473014AFE791F /* libPods-BithumbTestTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 644B14142385BBC5CC55B4FA /* libPods-BithumbTestTests.a */; };
 /* End PBXBuildFile section */
@@ -78,7 +80,7 @@
 		6307D30127952534005EC2EF /* BithumbTestUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BithumbTestUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		63088F9E27952CB000606AAE /* WebsocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsocketManager.swift; sourceTree = "<group>"; };
 		63088FA127952CDF00606AAE /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
-		63088FA427953AE200606AAE /* WSTransactionRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSTransactionRequester.swift; sourceTree = "<group>"; };
+		63088FA427953AE200606AAE /* WSTransactionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSTransactionAPI.swift; sourceTree = "<group>"; };
 		63088FA727953AE900606AAE /* WSCoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSCoin.swift; sourceTree = "<group>"; };
 		63088FA927953F4700606AAE /* OrderCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCurrency.swift; sourceTree = "<group>"; };
 		63088FAB2795400200606AAE /* PaymentCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCurrency.swift; sourceTree = "<group>"; };
@@ -86,17 +88,19 @@
 		63088FB1279544FE00606AAE /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
 		63088FB3279548A500606AAE /* JSONChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONChecker.swift; sourceTree = "<group>"; };
 		63088FB527956EBE00606AAE /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
-		63088FB727956F2400606AAE /* WSTransactionRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSTransactionRequester.swift; sourceTree = "<group>"; };
+		63088FB727956F2400606AAE /* WSTransactionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSTransactionAPI.swift; sourceTree = "<group>"; };
 		63088FBA27957E5600606AAE /* WSTransactionHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSTransactionHistory.swift; sourceTree = "<group>"; };
 		6339E9F92796D6CE00238233 /* HTTPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPManager.swift; sourceTree = "<group>"; };
-		63BD9B3D279596C80029CD96 /* WSTickerRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSTickerRequester.swift; sourceTree = "<group>"; };
+		63A0D0802797D68C006B4EA8 /* CoinListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewController.swift; sourceTree = "<group>"; };
+		63BD9B3D279596C80029CD96 /* WSTickerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSTickerAPI.swift; sourceTree = "<group>"; };
 		63BD9B402795974D0029CD96 /* WSRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSRequestable.swift; sourceTree = "<group>"; };
 		63BD9B442795A2250029CD96 /* TickType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickType.swift; sourceTree = "<group>"; };
 		63CEEC6E2796E1EC00ABB208 /* StatusRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusRepresentable.swift; sourceTree = "<group>"; };
-		63CEEC722796E86600ABB208 /* HTTPTickerAllRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTickerAllRequester.swift; sourceTree = "<group>"; };
+		63CEEC722796E86600ABB208 /* HTTPTickerAllAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTickerAllAPI.swift; sourceTree = "<group>"; };
 		63CEEC742796E88500ABB208 /* HTTPRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestable.swift; sourceTree = "<group>"; };
 		63CEEC762796E91E00ABB208 /* HTTPCoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPCoin.swift; sourceTree = "<group>"; };
 		63CEEC782796F3A400ABB208 /* Exctuable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exctuable.swift; sourceTree = "<group>"; };
+		63D803EF2797BAE900A3858D /* HTTPTickerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTickerAPI.swift; sourceTree = "<group>"; };
 		644B14142385BBC5CC55B4FA /* libPods-BithumbTestTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BithumbTestTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F9BB1F87FAD512818EF1666 /* Pods-BithumbTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BithumbTest.debug.xcconfig"; path = "Target Support Files/Pods-BithumbTest/Pods-BithumbTest.debug.xcconfig"; sourceTree = "<group>"; };
 		C2244A7EAB99D390A2264565 /* Pods-BithumbTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BithumbTest.release.xcconfig"; path = "Target Support Files/Pods-BithumbTest/Pods-BithumbTest.release.xcconfig"; sourceTree = "<group>"; };
@@ -211,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				6307D2DF27952533005EC2EF /* RootViewController.swift */,
+				63A0D07F2797D662006B4EA8 /* CoinListViewController */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -219,9 +224,10 @@
 			isa = PBXGroup;
 			children = (
 				6307D2E427952533005EC2EF /* BithumbTest.xcdatamodeld */,
-				63088FA427953AE200606AAE /* WSTransactionRequester.swift */,
-				63BD9B3D279596C80029CD96 /* WSTickerRequester.swift */,
-				63CEEC722796E86600ABB208 /* HTTPTickerAllRequester.swift */,
+				63088FA427953AE200606AAE /* WSTransactionAPI.swift */,
+				63BD9B3D279596C80029CD96 /* WSTickerAPI.swift */,
+				63CEEC722796E86600ABB208 /* HTTPTickerAllAPI.swift */,
+				63D803EF2797BAE900A3858D /* HTTPTickerAPI.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -253,9 +259,17 @@
 		63088FB927956F2600606AAE /* extension */ = {
 			isa = PBXGroup;
 			children = (
-				63088FB727956F2400606AAE /* WSTransactionRequester.swift */,
+				63088FB727956F2400606AAE /* WSTransactionAPI.swift */,
 			);
 			path = extension;
+			sourceTree = "<group>";
+		};
+		63A0D07F2797D662006B4EA8 /* CoinListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				63A0D0802797D68C006B4EA8 /* CoinListViewController.swift */,
+			);
+			path = CoinListViewController;
 			sourceTree = "<group>";
 		};
 		63BD9B3F2795973F0029CD96 /* Protoocls */ = {
@@ -523,23 +537,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63A0D0812797D68C006B4EA8 /* CoinListViewController.swift in Sources */,
 				63CEEC6F2796E1EC00ABB208 /* StatusRepresentable.swift in Sources */,
 				63088F9F27952CB000606AAE /* WebsocketManager.swift in Sources */,
 				63088FAC2795400200606AAE /* PaymentCurrency.swift in Sources */,
 				6307D2E027952533005EC2EF /* RootViewController.swift in Sources */,
-				63088FA527953AE200606AAE /* WSTransactionRequester.swift in Sources */,
+				63088FA527953AE200606AAE /* WSTransactionAPI.swift in Sources */,
 				63088FA227952CDF00606AAE /* APIConfig.swift in Sources */,
+				63D803F02797BAE900A3858D /* HTTPTickerAPI.swift in Sources */,
 				63CEEC772796E91E00ABB208 /* HTTPCoin.swift in Sources */,
 				63088FB2279544FE00606AAE /* Symbol.swift in Sources */,
 				63088FB0279541B600606AAE /* SocketMessageType.swift in Sources */,
 				63CEEC752796E88500ABB208 /* HTTPRequestable.swift in Sources */,
 				63BD9B452795A2250029CD96 /* TickType.swift in Sources */,
-				63BD9B3E279596C80029CD96 /* WSTickerRequester.swift in Sources */,
+				63BD9B3E279596C80029CD96 /* WSTickerAPI.swift in Sources */,
 				63088FBB27957E5600606AAE /* WSTransactionHistory.swift in Sources */,
 				63BD9B412795974D0029CD96 /* WSRequestable.swift in Sources */,
 				6307D2DC27952533005EC2EF /* AppDelegate.swift in Sources */,
 				63088FAA27953F4700606AAE /* OrderCurrency.swift in Sources */,
-				63CEEC732796E86600ABB208 /* HTTPTickerAllRequester.swift in Sources */,
+				63CEEC732796E86600ABB208 /* HTTPTickerAllAPI.swift in Sources */,
 				6339E9FA2796D6CE00238233 /* HTTPManager.swift in Sources */,
 				63CEEC792796F3A400ABB208 /* Exctuable.swift in Sources */,
 				6307D2DE27952533005EC2EF /* SceneDelegate.swift in Sources */,
@@ -554,7 +570,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6307D2F627952534005EC2EF /* BithumbTestTests.swift in Sources */,
-				63088FB827956F2400606AAE /* WSTransactionRequester.swift in Sources */,
+				63088FB827956F2400606AAE /* WSTransactionAPI.swift in Sources */,
 				63088FB4279548A500606AAE /* JSONChecker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

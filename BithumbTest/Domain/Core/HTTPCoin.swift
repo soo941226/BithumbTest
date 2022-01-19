@@ -8,7 +8,7 @@
 import Foundation
 
 struct HTTPCoin: Decodable {
-    let symbol: Symbol?
+    private(set) var symbol: Symbol?
     let openingPrice: String?
     let closingPrice: String?
     let minPrice: String?
@@ -20,7 +20,11 @@ struct HTTPCoin: Decodable {
     let accTradeValue24H: String?
     let fluctate24H: String?
     let fluctateRate24H: String?
-    let date: String?
+    var date: String?
+
+    mutating func updateSymbol(with symbol: Symbol) {
+        self.symbol = symbol
+    }
 
     enum CodingKeys: String, CodingKey {
         case symbol, date

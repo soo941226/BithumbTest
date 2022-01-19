@@ -8,7 +8,7 @@
 import Foundation
 @testable import BithumbTest
 
-extension WSTransactionRequester {
+extension WSTransactionAPI {
     var message: String? {
         guard let data = try? JSONEncoder().encode(self) else {
             return nil
