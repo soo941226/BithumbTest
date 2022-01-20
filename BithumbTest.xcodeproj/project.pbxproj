@@ -174,7 +174,7 @@
 				63088FA627953AE400606AAE /* Domain */,
 				63088F9C27952C9500606AAE /* Network */,
 				6307D311279525FE005EC2EF /* Model */,
-				6307D310279525F5005EC2EF /* Controller */,
+				6307D310279525F5005EC2EF /* Controller+View */,
 				6307D30F279525E4005EC2EF /* Resource */,
 				6307D30E279525DB005EC2EF /* App */,
 			);
@@ -219,13 +219,13 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
-		6307D310279525F5005EC2EF /* Controller */ = {
+		6307D310279525F5005EC2EF /* Controller+View */ = {
 			isa = PBXGroup;
 			children = (
 				6307D2DF27952533005EC2EF /* RootViewController.swift */,
 				63A0D07F2797D662006B4EA8 /* CoinListViewController */,
 			);
-			path = Controller;
+			path = "Controller+View";
 			sourceTree = "<group>";
 		};
 		6307D311279525FE005EC2EF /* Model */ = {
@@ -276,10 +276,8 @@
 			isa = PBXGroup;
 			children = (
 				63A0D0802797D68C006B4EA8 /* CoinListViewController.swift */,
-				6330ABB62798320200860B05 /* CoinListViewDataSource.swift */,
-				6330ABB82798351800860B05 /* CoinListViewCell.swift */,
-				6330ABBA279841A200860B05 /* CoinListViewHeader.swift */,
-				6330ABBC27984D6800860B05 /* CoinListViewDelegate.swift */,
+				63F1AADA279999810074C42E /* view */,
+				63F1AAD9279999740074C42E /* delegate */,
 			);
 			path = CoinListViewController;
 			sourceTree = "<group>";
@@ -303,6 +301,24 @@
 				63CEEC762796E91E00ABB208 /* HTTPCoin.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		63F1AAD9279999740074C42E /* delegate */ = {
+			isa = PBXGroup;
+			children = (
+				6330ABB62798320200860B05 /* CoinListViewDataSource.swift */,
+				6330ABBC27984D6800860B05 /* CoinListViewDelegate.swift */,
+			);
+			path = delegate;
+			sourceTree = "<group>";
+		};
+		63F1AADA279999810074C42E /* view */ = {
+			isa = PBXGroup;
+			children = (
+				6330ABB82798351800860B05 /* CoinListViewCell.swift */,
+				6330ABBA279841A200860B05 /* CoinListViewHeader.swift */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		98783EA1B25C966B685E677B /* Frameworks */ = {
