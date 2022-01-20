@@ -14,7 +14,7 @@ struct HTTPTickerAllResponse: StatusRepresentable {
 
     enum Some: Decodable {
         case coin(HTTPCoin)
-        case date(String)
+        case string(String)
 
         init(from decoder: Decoder) throws {
             if let coin = try? decoder.singleValueContainer().decode(HTTPCoin.self) {
@@ -23,7 +23,7 @@ struct HTTPTickerAllResponse: StatusRepresentable {
             }
 
             if let string = try? decoder.singleValueContainer().decode(String.self) {
-                self = .date(string)
+                self = .string(string)
                 return
             }
 

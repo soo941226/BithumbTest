@@ -13,13 +13,13 @@ struct HTTPCoin: Decodable {
     let closingPrice: String?
     let minPrice: String?
     let maxPrice: String?
-    let unitsTraded: String?
-    let accTradeValue: String?
+    let currentTradedVolume: String?
+    let currentTradedPrice: String?
     let prevClosingPrice: String?
-    let unitsTraded24H: String?
-    let accTradeValue24H: String?
-    let fluctate24H: String?
-    let fluctateRate24H: String?
+    let dailyTradedVolume: String?
+    let dailyTradedPrice: String?
+    let dailyChangedPrice: String?
+    let dailyChangedRate: String?
     var date: String?
 
     mutating func updateSymbol(with symbol: Symbol) {
@@ -32,12 +32,12 @@ struct HTTPCoin: Decodable {
         case closingPrice = "closing_price"
         case minPrice = "min_price"
         case maxPrice = "max_price"
-        case unitsTraded = "units_traded"
-        case accTradeValue = "acc_trade_value"
+        case currentTradedVolume = "units_traded"
+        case currentTradedPrice = "acc_trade_value"
         case prevClosingPrice = "prev_closing_price"
-        case unitsTraded24H = "units_traded_24H"
-        case accTradeValue24H = "acc_trade_value_24H"
-        case fluctate24H = "fluctate_24H"
-        case fluctateRate24H = "fluctate_rate_24H"
+        case dailyTradedVolume = "units_traded_24H"
+        case dailyTradedPrice = "acc_trade_value_24H"
+        case dailyChangedPrice = "fluctate_24H"
+        case dailyChangedRate = "fluctate_rate_24H"
     }
 }
