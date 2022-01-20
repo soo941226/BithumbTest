@@ -174,7 +174,8 @@
 				63088FA627953AE400606AAE /* Domain */,
 				63088F9C27952C9500606AAE /* Network */,
 				6307D311279525FE005EC2EF /* Model */,
-				6307D310279525F5005EC2EF /* Controller+View */,
+				6307D310279525F5005EC2EF /* Controller */,
+				63F1AADB27999F930074C42E /* View */,
 				6307D30F279525E4005EC2EF /* Resource */,
 				6307D30E279525DB005EC2EF /* App */,
 			);
@@ -219,13 +220,13 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
-		6307D310279525F5005EC2EF /* Controller+View */ = {
+		6307D310279525F5005EC2EF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				6307D2DF27952533005EC2EF /* RootViewController.swift */,
-				63A0D07F2797D662006B4EA8 /* CoinListViewController */,
+				63A0D07F2797D662006B4EA8 /* CoinListView */,
 			);
-			path = "Controller+View";
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		6307D311279525FE005EC2EF /* Model */ = {
@@ -272,14 +273,14 @@
 			path = extension;
 			sourceTree = "<group>";
 		};
-		63A0D07F2797D662006B4EA8 /* CoinListViewController */ = {
+		63A0D07F2797D662006B4EA8 /* CoinListView */ = {
 			isa = PBXGroup;
 			children = (
 				63A0D0802797D68C006B4EA8 /* CoinListViewController.swift */,
-				63F1AADA279999810074C42E /* view */,
-				63F1AAD9279999740074C42E /* delegate */,
+				6330ABB62798320200860B05 /* CoinListViewDataSource.swift */,
+				6330ABBC27984D6800860B05 /* CoinListViewDelegate.swift */,
 			);
-			path = CoinListViewController;
+			path = CoinListView;
 			sourceTree = "<group>";
 		};
 		63BD9B3F2795973F0029CD96 /* Protoocls */ = {
@@ -303,22 +304,21 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
-		63F1AAD9279999740074C42E /* delegate */ = {
+		63F1AADB27999F930074C42E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6330ABB62798320200860B05 /* CoinListViewDataSource.swift */,
-				6330ABBC27984D6800860B05 /* CoinListViewDelegate.swift */,
+				63F1AADC27999FA80074C42E /* CoinListView */,
 			);
-			path = delegate;
+			path = View;
 			sourceTree = "<group>";
 		};
-		63F1AADA279999810074C42E /* view */ = {
+		63F1AADC27999FA80074C42E /* CoinListView */ = {
 			isa = PBXGroup;
 			children = (
 				6330ABB82798351800860B05 /* CoinListViewCell.swift */,
 				6330ABBA279841A200860B05 /* CoinListViewHeader.swift */,
 			);
-			path = view;
+			path = CoinListView;
 			sourceTree = "<group>";
 		};
 		98783EA1B25C966B685E677B /* Frameworks */ = {
