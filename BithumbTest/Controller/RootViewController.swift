@@ -57,16 +57,7 @@ final class RootViewController: UITabBarController {
 
                 self?.coinListViewController.configure(items: arr)
             case .failure:
-                print("!")
-            }
-        }
-
-        HTTPTickerAPI(orderCurrency: .BTC, paymentCurrency: .KRW).excute { result in
-            switch result {
-            case .success:
-                print("??")
-            case .failure:
-                print("!!")
+                print("HTTPTickerAllAPI X")
             }
         }
     }
