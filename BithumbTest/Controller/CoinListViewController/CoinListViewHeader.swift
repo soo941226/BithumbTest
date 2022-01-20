@@ -10,45 +10,105 @@ import UIKit
 class CoinListViewHeader: UITableViewHeaderFooterView {
     static let identifier = #fileID
 
-    let stackView: UIStackView = {
-        let label1 = UILabel()
-        label1.text = "원화"
-        label1.font = .preferredFont(forTextStyle: .footnote)
-
-        let label2 = UILabel()
-        label2.text = "BTC"
-        label2.font = .preferredFont(forTextStyle: .footnote)
-
-        let label3 = UILabel()
-        label3.text = "보유"
-        label3.font = .preferredFont(forTextStyle: .footnote)
-
-        let label4 = UILabel()
-        label4.text = "관심"
-        label4.font = .preferredFont(forTextStyle: .footnote)
-
-        let stackView = UIStackView(arrangedSubviews: [label1, label2, label3, label4])
-        stackView.axis = .horizontal
-        stackView.alignment = .leading
-        stackView.distribution = .equalSpacing
-        stackView.spacing = .pi
-
-        return stackView
+    private let symbolLabel: UILabel = {
+        let label = UILabel()
+        label.text = "가상자산명"
+        return label
+    }()
+    private let currentPriceLabel: UILabel = {
+        let label = UILabel()
+        label.text = "현재가"
+        return label
+    }()
+    private let changedRateLabel: UILabel = {
+        let label = UILabel()
+        label.text = "변동률"
+        return label
+    }()
+    private let tradedPriceLabel: UILabel = {
+        let label = UILabel()
+        label.text = "거래금액"
+        return label
     }()
 
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
-
-        contentView.addSubview(stackView)
-
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor)
-        ])
-    }
+    private let containerStackView = UIStackView()
+    private let firstStackView = UIStackView()
+    private let secondStackView = UIStackView()
 
     required init?(coder: NSCoder) {
         fatalError("Do not use init(coder:), This project avoid Interface builder")
+    }
+
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+        setUpContents()
+    }
+
+    override func layoutMarginsDidChange() {
+        layoutContents()
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        layoutContents()
+    }
+}
+
+// MARK: - private methods for layout contents
+private extension CoinListViewHeader {
+    func setUp(stackViews: UIStackView...) {
+        for stackView in stackViews {
+            stackView.axis = .horizontal
+            stackView.distribution = .fillEqually
+            stackView.alignment = .fill
+            stackView.spacing = .zero
+        }
+    }
+
+    func setUp(labels: UILabel...) {
+        for label in labels {
+            label.textColor = .black
+            label.font = .preferredFont(forTextStyle: .body)
+            label.textAlignment = .justified
+            label.adjustsFontSizeToFitWidth = true
+            label.layer.borderColor = UIColor.lightGray.cgColor
+
+            if traitCollection.preferredContentSizeCategory.isAccessibilityCategory {
+                label.layer.borderWidth = 1
+            } else {
+                label.layer.borderWidth = 0
+            }
+        }
+    }
+
+    func setUpContents() {
+        setUp(stackViews: containerStackView, firstStackView, secondStackView)
+        setUp(labels: symbolLabel, currentPriceLabel, changedRateLabel, tradedPriceLabel)
+
+        firstStackView.addArrangedSubview(symbolLabel)
+        firstStackView.addArrangedSubview(currentPriceLabel)
+
+        secondStackView.addArrangedSubview(changedRateLabel)
+        secondStackView.addArrangedSubview(tradedPriceLabel)
+
+        containerStackView.addArrangedSubview(firstStackView)
+        containerStackView.addArrangedSubview(secondStackView)
+        contentView.addSubview(containerStackView)
+
+        containerStackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            containerStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            containerStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            containerStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            containerStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+        ])
+    }
+
+    func layoutContents() {
+        if traitCollection.preferredContentSizeCategory.isAccessibilityCategory {
+            containerStackView.axis = .vertical
+        } else {
+            containerStackView.axis = .horizontal
+        }
     }
 }

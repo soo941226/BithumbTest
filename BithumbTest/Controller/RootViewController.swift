@@ -35,6 +35,7 @@ final class RootViewController: UITabBarController {
             switch result {
             case .success(let response):
                 var arr = [HTTPCoin]()
+
                 for key in response.data.keys {
                     guard let value = response.data[key] else { continue }
                     guard case .coin(var coin) = value else { continue }
@@ -42,11 +43,19 @@ final class RootViewController: UITabBarController {
                     coin.updateSymbol(with: key)
                     arr.append(coin)
                 }
+
                 arr.sort { prev, next in
-                    prev.unitsTraded24H! < next.unitsTraded24H!
+                    guard let prevValue = prev.closingPrice,
+                          let nextValue = next.closingPrice,
+                          let prevPrice = Double(prevValue),
+                          let nextPrice = Double(nextValue) else {
+                              return false
+                          }
+
+                    return prevPrice > nextPrice
                 }
-                print("???")
-                self?.coinListViewController.confugre(items: arr)
+
+                self?.coinListViewController.configure(items: arr)
             case .failure:
                 print("!")
             }

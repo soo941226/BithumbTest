@@ -21,10 +21,8 @@ final class CoinListViewDataSource: NSObject, UITableViewDataSource {
         )
         guard let cell = cell as? CoinListViewCell else { return CoinListViewCell() }
 
-        let data = items[indexPath.row]
-        let text = "\(data.symbol!): openingPrice: \(data.openingPrice!) \r\nclosingPrice: \(data.closingPrice!)"
-
-        cell.symbolLabel.text = text
+        let coin = items[indexPath.row]
+        cell.configure(with: coin)
         return cell
     }
 }

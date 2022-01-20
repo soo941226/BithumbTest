@@ -25,7 +25,7 @@ final class CoinListViewController: UIViewController {
 
 // MARK: - Outer Interface
 extension CoinListViewController {
-    func confugre(items: [HTTPCoin]) {
+    func configure(items: [HTTPCoin]) {
         DispatchQueue.main.async { [weak self] in
             self?.coinListDataSource.configure(items: items)
             self?.tableView.reloadData()
