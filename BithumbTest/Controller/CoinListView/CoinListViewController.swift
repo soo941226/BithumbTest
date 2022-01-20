@@ -33,7 +33,7 @@ extension CoinListViewController {
     }
 }
 
-// MARK: - Setting
+// MARK: - Setting TableView
 private extension CoinListViewController {
     func setUpTableView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false

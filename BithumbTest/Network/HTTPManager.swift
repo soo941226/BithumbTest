@@ -33,6 +33,7 @@ final class HTTPManager {
     }
 }
 
+//MARK: - handling each type
 private extension HTTPManager {
     func handling<Model>(
         _ response: URLResponse?,

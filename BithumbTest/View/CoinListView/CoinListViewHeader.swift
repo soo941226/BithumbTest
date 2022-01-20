@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CoinListViewHeader: UITableViewHeaderFooterView {
+final class CoinListViewHeader: UITableViewHeaderFooterView {
     static let identifier = #fileID
 
     private let symbolLabel: UILabel = {
@@ -41,7 +41,9 @@ class CoinListViewHeader: UITableViewHeaderFooterView {
 
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        setUpContents()
+        setUp(stackViews: containerStackView, firstStackView, secondStackView)
+        setUp(labels: symbolLabel, currentPriceLabel, changedRateLabel, tradedPriceLabel)
+        setUpSubviews()
     }
 
     override func layoutMarginsDidChange() {
@@ -54,7 +56,7 @@ class CoinListViewHeader: UITableViewHeaderFooterView {
     }
 }
 
-// MARK: - private methods for layout contents
+// MARK: - layout contents
 private extension CoinListViewHeader {
     func setUp(stackViews: UIStackView...) {
         for stackView in stackViews {
@@ -81,10 +83,7 @@ private extension CoinListViewHeader {
         }
     }
 
-    func setUpContents() {
-        setUp(stackViews: containerStackView, firstStackView, secondStackView)
-        setUp(labels: symbolLabel, currentPriceLabel, changedRateLabel, tradedPriceLabel)
-
+    func setUpSubviews() {
         firstStackView.addArrangedSubview(symbolLabel)
         firstStackView.addArrangedSubview(currentPriceLabel)
 

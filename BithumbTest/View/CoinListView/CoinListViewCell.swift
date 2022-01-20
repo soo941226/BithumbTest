@@ -25,7 +25,9 @@ final class CoinListViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setUpContents()
+        setUp(stackViews: containerStackView, firstStackView, secondStackView)
+        setUp(labels: symbolLabel, currentPriceLabel, changedRateLabel, tradedPriceLabel)
+        setUpSubviews()
         isAccessibilityElement = true
     }
 
@@ -67,7 +69,7 @@ extension CoinListViewCell {
     }
 }
 
-// MARK: - private methods for layout contents
+// MARK: - for layout contents
 private extension CoinListViewCell {
     func setUp(stackViews: UIStackView...) {
         for stackView in stackViews {
@@ -89,10 +91,7 @@ private extension CoinListViewCell {
         }
     }
 
-    func setUpContents() {
-        setUp(stackViews: containerStackView, firstStackView, secondStackView)
-        setUp(labels: symbolLabel, currentPriceLabel, changedRateLabel, tradedPriceLabel)
-
+    func setUpSubviews() {
         firstStackView.addArrangedSubview(symbolLabel)
         firstStackView.addArrangedSubview(currentPriceLabel)
 
