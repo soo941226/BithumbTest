@@ -12,7 +12,7 @@ final class CoinListViewSortButton: UIView {
     private let imageContainer: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.distribution = . fillEqually
+        stackView.distribution = .fillEqually
         stackView.spacing = .zero
         stackView.alignment = .center
         return stackView
@@ -36,6 +36,8 @@ final class CoinListViewSortButton: UIView {
 
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
+        setColor(with: .none)
+        setUpArrowIcons()
         setUpSubviews()
     }
 
@@ -94,14 +96,32 @@ extension CoinListViewSortButton {
 
 // MARK: - layout contents
 private extension CoinListViewSortButton {
-    func setUpSubviews() {
-        setColor(with: .none)
+    func setUpArrowIcons() {
         imageContainer.addArrangedSubview(arrows.up)
         imageContainer.addArrangedSubview(arrows.down)
 
+        arrows.up.translatesAutoresizingMaskIntoConstraints = false
+        arrows.down.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            arrows.up.widthAnchor.constraint(
+                lessThanOrEqualToConstant: IconConfiguration.maximumWidth
+            ),
+            arrows.up.heightAnchor.constraint(
+                lessThanOrEqualToConstant: IconConfiguration.maximumHeight
+            ),
+            arrows.down.widthAnchor.constraint(
+                lessThanOrEqualToConstant: IconConfiguration.maximumWidth
+            ),
+            arrows.down.heightAnchor.constraint(
+                lessThanOrEqualToConstant: IconConfiguration.maximumHeight
+            )
+        ])
+    }
+
+    func setUpSubviews() {
         let stackView = UIStackView(arrangedSubviews: [label, imageContainer])
 
-        stackView.distribution = .fill
+        stackView.distribution = .equalCentering
         stackView.spacing = .zero
         stackView.axis = .horizontal
         stackView.alignment = .center
@@ -109,7 +129,6 @@ private extension CoinListViewSortButton {
         addSubview(stackView)
 
         stackView.translatesAutoresizingMaskIntoConstraints = false
-
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
