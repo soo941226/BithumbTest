@@ -10,25 +10,25 @@ import UIKit
 final class CoinListViewHeader: UITableViewHeaderFooterView {
     static let identifier = #fileID
 
-    private let symbolLabel: UILabel = {
-        let label = UILabel()
-        label.text = "가상자산명"
-        return label
+    private let symbolSortingButton: CoinListViewSortButton = {
+        let button = CoinListViewSortButton()
+        button.text = "가상자산명"
+        return button
     }()
-    private let currentPriceLabel: UILabel = {
-        let label = UILabel()
-        label.text = "현재가"
-        return label
+    private let currentPriceSortingButton: CoinListViewSortButton = {
+        let button = CoinListViewSortButton()
+        button.text = "현재가"
+        return button
     }()
-    private let changedRateLabel: UILabel = {
-        let label = UILabel()
-        label.text = "변동률"
-        return label
+    private let changedRateSortingButton: CoinListViewSortButton = {
+        let button = CoinListViewSortButton()
+        button.text = "변동률"
+        return button
     }()
-    private let tradedPriceLabel: UILabel = {
-        let label = UILabel()
-        label.text = "거래금액"
-        return label
+    private let tradedPriceSortingButton: CoinListViewSortButton = {
+        let button = CoinListViewSortButton()
+        button.text = "거래금액"
+        return button
     }()
 
     private let containerStackView = UIStackView()
@@ -42,7 +42,12 @@ final class CoinListViewHeader: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setUp(stackViews: containerStackView, firstStackView, secondStackView)
-        setUp(labels: symbolLabel, currentPriceLabel, changedRateLabel, tradedPriceLabel)
+        setUp(
+            buttons: symbolSortingButton,
+            currentPriceSortingButton,
+            changedRateSortingButton,
+            tradedPriceSortingButton
+        )
         setUpSubviews()
     }
 
@@ -67,28 +72,36 @@ private extension CoinListViewHeader {
         }
     }
 
-    func setUp(labels: UILabel...) {
-        for label in labels {
-            label.textColor = .black
-            label.font = .preferredFont(forTextStyle: .body)
-            label.textAlignment = .justified
-            label.adjustsFontSizeToFitWidth = true
-            label.layer.borderColor = UIColor.lightGray.cgColor
+    func setUp(buttons: CoinListViewSortButton...) {
+        for button in buttons {
+            button.textColor = .black
+            button.font = .preferredFont(forTextStyle: .body)
+            button.textAlignment = .justified
+            button.adjustsFontSizeToFitWidth = true
+            button.layer.borderColor = UIColor.lightGray.cgColor
+
+            let tapG = UITapGestureRecognizer(target: self, action: #selector(excute(sender:)))
+            button.addGestureRecognizer(tapG)
 
             if traitCollection.preferredContentSizeCategory.isAccessibilityCategory {
-                label.layer.borderWidth = 1
+                button.layer.borderWidth = 1
             } else {
-                label.layer.borderWidth = 0
+                button.layer.borderWidth = 0
             }
         }
     }
 
-    func setUpSubviews() {
-        firstStackView.addArrangedSubview(symbolLabel)
-        firstStackView.addArrangedSubview(currentPriceLabel)
+    @objc func excute(sender: UITapGestureRecognizer) {
+        guard let view = sender.view as? CoinListViewSortButton else { return }
+        view.currentState.next()
+    }
 
-        secondStackView.addArrangedSubview(changedRateLabel)
-        secondStackView.addArrangedSubview(tradedPriceLabel)
+    func setUpSubviews() {
+        firstStackView.addArrangedSubview(symbolSortingButton)
+        firstStackView.addArrangedSubview(currentPriceSortingButton)
+
+        secondStackView.addArrangedSubview(changedRateSortingButton)
+        secondStackView.addArrangedSubview(tradedPriceSortingButton)
 
         containerStackView.addArrangedSubview(firstStackView)
         containerStackView.addArrangedSubview(secondStackView)
