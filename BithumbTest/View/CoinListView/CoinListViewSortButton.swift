@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 final class CoinListViewSortButton: UIView {
 
     private let label = UILabel()
