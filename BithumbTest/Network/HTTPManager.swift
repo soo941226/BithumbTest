@@ -11,6 +11,7 @@ final class HTTPManager {
     static let shared = HTTPManager()
 
     private let session = URLSession(configuration: .default)
+    private let decoder = JSONDecoder()
 
     func dataTask<Model: StatusRepresentable>(
         with request: URLRequest,
@@ -72,8 +73,6 @@ private extension HTTPManager {
         }
 
         do {
-            let decoder = JSONDecoder()
-            decoder.dataDecodingStrategy = .deferredToData
             let model = try decoder.decode(Model.self, from: data)
 
             handling(model, with: completionHandler)
