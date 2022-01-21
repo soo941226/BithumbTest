@@ -37,6 +37,8 @@
 		637053A02799C6A9008145C2 /* CoinListViewSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6370539D2799C6A9008145C2 /* CoinListViewSortButton.swift */; };
 		637053A32799C6CE008145C2 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637053A22799C6CE008145C2 /* UIColor+Extension.swift */; };
 		637053A82799D1B4008145C2 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637053A72799D1B4008145C2 /* Icon.swift */; };
+		6383E995279AD4B200679771 /* SortDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6383E994279AD4B200679771 /* SortDirection.swift */; };
+		6383E999279ADC5400679771 /* CoinSortingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6383E998279ADC5400679771 /* CoinSortingKey.swift */; };
 		63A0D0812797D68C006B4EA8 /* CoinListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A0D0802797D68C006B4EA8 /* CoinListViewController.swift */; };
 		63BD9B3E279596C80029CD96 /* WSTickerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BD9B3D279596C80029CD96 /* WSTickerAPI.swift */; };
 		63BD9B412795974D0029CD96 /* WSRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BD9B402795974D0029CD96 /* WSRequestable.swift */; };
@@ -105,6 +107,8 @@
 		6370539D2799C6A9008145C2 /* CoinListViewSortButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinListViewSortButton.swift; sourceTree = "<group>"; };
 		637053A22799C6CE008145C2 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		637053A72799D1B4008145C2 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		6383E994279AD4B200679771 /* SortDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortDirection.swift; sourceTree = "<group>"; };
+		6383E998279ADC5400679771 /* CoinSortingKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSortingKey.swift; sourceTree = "<group>"; };
 		63A0D0802797D68C006B4EA8 /* CoinListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewController.swift; sourceTree = "<group>"; };
 		63BD9B3D279596C80029CD96 /* WSTickerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSTickerAPI.swift; sourceTree = "<group>"; };
 		63BD9B402795974D0029CD96 /* WSRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSRequestable.swift; sourceTree = "<group>"; };
@@ -283,6 +287,7 @@
 		637053992799C6A9008145C2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6383E993279AD4A500679771 /* State */,
 				637053A62799D1AC008145C2 /* Style */,
 				6370539A2799C6A9008145C2 /* CoinListView */,
 			);
@@ -313,6 +318,15 @@
 				637053A72799D1B4008145C2 /* Icon.swift */,
 			);
 			path = Style;
+			sourceTree = "<group>";
+		};
+		6383E993279AD4A500679771 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				6383E994279AD4B200679771 /* SortDirection.swift */,
+				6383E998279ADC5400679771 /* CoinSortingKey.swift */,
+			);
+			path = State;
 			sourceTree = "<group>";
 		};
 		63A0D07F2797D662006B4EA8 /* CoinListView */ = {
@@ -611,9 +625,11 @@
 				63BD9B452795A2250029CD96 /* TickType.swift in Sources */,
 				63BD9B3E279596C80029CD96 /* WSTickerAPI.swift in Sources */,
 				63088FBB27957E5600606AAE /* WSTransactionHistory.swift in Sources */,
+				6383E995279AD4B200679771 /* SortDirection.swift in Sources */,
 				63BD9B412795974D0029CD96 /* WSRequestable.swift in Sources */,
 				6307D2DC27952533005EC2EF /* AppDelegate.swift in Sources */,
 				63088FAA27953F4700606AAE /* OrderCurrency.swift in Sources */,
+				6383E999279ADC5400679771 /* CoinSortingKey.swift in Sources */,
 				63CEEC732796E86600ABB208 /* HTTPTickerAllAPI.swift in Sources */,
 				6339E9FA2796D6CE00238233 /* HTTPManager.swift in Sources */,
 				63CEEC792796F3A400ABB208 /* Exctuable.swift in Sources */,
