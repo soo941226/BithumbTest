@@ -79,9 +79,9 @@ private extension CoinListViewHeader {
             button.textAlignment = .justified
             button.adjustsFontSizeToFitWidth = true
             button.layer.borderColor = UIColor.lightGray.cgColor
-
-            let tapG = UITapGestureRecognizer(target: self, action: #selector(excute(sender:)))
-            button.addGestureRecognizer(tapG)
+            button.setUp { [weak button] in
+                button?.currentState.next()
+            }
 
             if traitCollection.preferredContentSizeCategory.isAccessibilityCategory {
                 button.layer.borderWidth = 1
@@ -89,11 +89,6 @@ private extension CoinListViewHeader {
                 button.layer.borderWidth = 0
             }
         }
-    }
-
-    @objc func excute(sender: UITapGestureRecognizer) {
-        guard let view = sender.view as? CoinListViewSortButton else { return }
-        view.currentState.next()
     }
 
     func setUpSubviews() {

@@ -293,8 +293,8 @@
 			isa = PBXGroup;
 			children = (
 				6370539B2799C6A9008145C2 /* CoinListViewHeader.swift */,
-				6370539C2799C6A9008145C2 /* CoinListViewCell.swift */,
 				6370539D2799C6A9008145C2 /* CoinListViewSortButton.swift */,
+				6370539C2799C6A9008145C2 /* CoinListViewCell.swift */,
 			);
 			path = CoinListView;
 			sourceTree = "<group>";

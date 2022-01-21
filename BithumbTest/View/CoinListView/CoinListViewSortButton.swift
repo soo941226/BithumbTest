@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 final class CoinListViewSortButton: UIView {
 
     private let label = UILabel()
@@ -29,6 +30,7 @@ final class CoinListViewSortButton: UIView {
             .withTintColor(.lightGray, renderingMode: .alwaysOriginal)
     )
     private var storedState = State.none
+    private var action: (() -> Void)?
 
     required init?(coder: NSCoder) {
         fatalError("Do not use init(coder:), This project avoid Interface builder")
@@ -91,6 +93,16 @@ extension CoinListViewSortButton {
             storedState = newValue
             setColor(with: newValue)
         }
+    }
+
+    func setUp(tapAction: @escaping () -> Void) {
+        self.action = tapAction
+        let tapG = UITapGestureRecognizer(target: self, action: #selector(excute))
+        self.addGestureRecognizer(tapG)
+    }
+
+    @objc private func excute() {
+        action?()
     }
 }
 
