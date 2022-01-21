@@ -23,7 +23,7 @@ final class CoinListViewController: UIViewController {
     }
 }
 
-// MARK: - Outer Interface
+// MARK: - Facade
 extension CoinListViewController {
     func configure(items: [HTTPCoin]) {
         DispatchQueue.main.async { [weak self] in

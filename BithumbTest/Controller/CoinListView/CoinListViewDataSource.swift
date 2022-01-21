@@ -27,7 +27,7 @@ final class CoinListViewDataSource: NSObject, UITableViewDataSource {
     }
 }
 
-// MARK: - outer interface
+// MARK: - Facade
 extension CoinListViewDataSource {
     func configure(items: [HTTPCoin]) {
         self.items = items

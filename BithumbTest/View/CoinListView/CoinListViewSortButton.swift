@@ -60,7 +60,7 @@ final class CoinListViewSortButton: UIView {
     }
 }
 
-// MARK: - outer interface
+// MARK: - Facade
 extension CoinListViewSortButton {
     var font: UIFont {
         get { label.font }

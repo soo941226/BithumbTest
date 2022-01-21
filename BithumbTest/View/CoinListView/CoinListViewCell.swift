@@ -41,7 +41,7 @@ final class CoinListViewCell: UITableViewCell {
     }
 }
 
-// MARK: - Outer interface
+// MARK: - Facade
 extension CoinListViewCell {
     func configure(with coin: HTTPCoin) {
         guard let closingPrice = coin.closingPrice,
