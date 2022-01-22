@@ -8,9 +8,9 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    private let indicator = UIActivityIndicatorView(style: .medium)
 
     var window: UIWindow?
-
 
     func scene(
         _ scene: UIScene,
@@ -22,9 +22,46 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = RootViewController()
         window?.makeKeyAndVisible()
+        setUpIndicator()
+    }
+
+    func sceneWillEnterForeground(_ scene: UIScene) {
+        NotificationCenter.default.addObserver(self, selector: #selector(receiveNetworkingIsStart), name: APIConfig.startNetworking, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(receiveNetwokringIsEnd), name: APIConfig.endNetworking, object: nil)
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
+        NotificationCenter.default.removeObserver(self)
+
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+    }
+}
+
+// MARK: - about Indicator
+private extension SceneDelegate {
+    func setUpIndicator() {
+        guard let view = window?.rootViewController?.view else { return }
+        view.addSubview(indicator)
+
+        indicator.backgroundColor = .white
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            indicator.topAnchor.constraint(equalTo: view.topAnchor),
+            indicator.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            indicator.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            indicator.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+    }
+
+    @objc func receiveNetworkingIsStart() {
+        DispatchQueue.main.async { [weak self] in
+            self?.indicator.startAnimating()
+        }
+    }
+
+    @objc func receiveNetwokringIsEnd() {
+        DispatchQueue.main.async { [weak self] in
+            self?.indicator.stopAnimating()
+        }
     }
 }
