@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CoinSortingKey {
+enum CoinSortingKey: String {
     case symbol
     case currentPrice
     case changedRate

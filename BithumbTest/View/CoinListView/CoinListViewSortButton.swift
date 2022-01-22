@@ -8,7 +8,8 @@
 import UIKit
 
 final class CoinListViewSortButton: UIView {
-
+    static let identifier = #fileID
+    
     private let label = UILabel()
     private let imageContainer: UIStackView = {
         let stackView = UIStackView()
@@ -47,7 +48,7 @@ final class CoinListViewSortButton: UIView {
     }
 }
 
-// MARK: - outer interface
+// MARK: - Facade
 extension CoinListViewSortButton {
     var font: UIFont {
         get { label.font }

@@ -25,29 +25,39 @@ final class RootViewController: UITabBarController {
         setUpSubViewControllers()
         requestCoins()
     }
-}
 
-// MARK: - Facade
-extension RootViewController {
-    func sortBy(key: CoinSortingKey, arrow: SortDirection) {
-        let coins: [HTTPCoin]
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
-        if arrow == .none {
-            coins = sourceOfTruth
-        } else {
-            switch key {
-            case .symbol:
-                coins = sortBySymbol(arrow: arrow)
-            case .changedRate:
-                coins = sortByChangedRate(arrow: arrow)
-            case .tradedVolume:
-                coins = sortByCurrentTradedVolumne(arrow: arrow)
-            default:
-                coins = sortByCurrentPrice(arrow: arrow)
-            }
+        let notificationIdentifier = Notification.Name(CoinListViewSortButton.identifier)
+
+        NotificationCenter.default
+            .addObserver(
+                self,
+                selector: #selector(onObserve),
+                name: notificationIdentifier,
+                object: nil
+            )
+    }
+
+    @objc func onObserve(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let sortingKey = userInfo["key"] as? Int,
+              let directionRawValue = userInfo["direction"] as? Int,
+              let direction = SortDirection(rawValue: directionRawValue) else {
+                  return
+              }
+
+        switch sortingKey {
+        case 0:
+            sortBy(key: .symbol, arrow: direction)
+        case 1:
+            sortBy(key: .currentPrice, arrow: direction)
+        case 2:
+            sortBy(key: .changedRate, arrow: direction)
+        default:
+            sortBy(key: .tradedVolume, arrow: direction)
         }
-
-        coinListViewController.configure(items: coins)
     }
 }
 
@@ -68,8 +78,8 @@ private extension RootViewController {
                 }
 
                 self?.sourceOfTruth = coins
-                self?.sortBy(key: .tradedVolume, arrow: .descending)
-                self?.coinListViewController.configure(items: coins)
+                self?.sourceOfTruth = self?.sortByCurrentTradedVolumne(arrow: .descending) ?? coins
+                self?.sortBy(key: .tradedVolume, arrow: .none)
             case .failure:
                 print("HTTPTickerAllAPI X")
             }
@@ -93,6 +103,27 @@ private extension RootViewController {
 
 // MARK: - sorting data
 private extension RootViewController {
+    private func sortBy(key: CoinSortingKey, arrow: SortDirection) {
+        let coins: [HTTPCoin]
+
+        if arrow == .none {
+            coins = sourceOfTruth
+        } else {
+            switch key {
+            case .symbol:
+                coins = sortBySymbol(arrow: arrow)
+            case .changedRate:
+                coins = sortByChangedRate(arrow: arrow)
+            case .tradedVolume:
+                coins = sortByCurrentTradedVolumne(arrow: arrow)
+            default:
+                coins = sortByCurrentPrice(arrow: arrow)
+            }
+        }
+
+        coinListViewController.configure(items: coins)
+    }
+
     func sortBySymbol(arrow: SortDirection) -> [HTTPCoin] {
         sourceOfTruth.sorted {
             guard let prevSymbol = $0.symbol,
@@ -123,8 +154,8 @@ private extension RootViewController {
 
     func sortByCurrentTradedVolumne(arrow: SortDirection) -> [HTTPCoin] {
         sourceOfTruth.sorted {
-            guard let prevVolume = $0.currentTradedVolume.flatMap({ Double($0) }),
-                  let nextVolume = $1.currentTradedVolume.flatMap({ Double($0) }) else {
+            guard let prevVolume = $0.currentTradedPrice.flatMap({ Double($0) }),
+                  let nextVolume = $1.currentTradedPrice.flatMap({ Double($0) }) else {
                       return false
                   }
             if case .descending = arrow {

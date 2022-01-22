@@ -46,7 +46,7 @@ extension CoinListViewCell {
     func configure(with coin: HTTPCoin) {
         guard let closingPrice = coin.closingPrice,
               let dailyChangedRate = coin.dailyChangedRate,
-              let dailyTradedPriceText = coin.dailyTradedPrice,
+              let dailyTradedPriceText = coin.currentTradedPrice,
               let dailyTradedPrice = Double(dailyTradedPriceText) else {
                   symbolLabel.text = "확인 중"
                   currentPriceLabel.text = "확인 중"
@@ -64,7 +64,7 @@ extension CoinListViewCell {
         accessibilityValue = """
 현재가: \(closingPrice.description),
 변동률: \(dailyChangedRate.description),
-거래가: \(filteredDailyTradedPrice)"
+거래량: \(filteredDailyTradedPrice)"
 """
     }
 }

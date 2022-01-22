@@ -72,7 +72,8 @@ private extension CoinListViewHeader {
     }
 
     func setUpSortingButtons() {
-        for button in sortingButtons {
+        let notificatinoIdentiifer = Notification.Name(CoinListViewSortButton.identifier)
+        for (index, button) in sortingButtons.enumerated() {
             button.textColor = .black
             button.font = .preferredFont(forTextStyle: .body)
             button.textAlignment = .justified
@@ -82,6 +83,14 @@ private extension CoinListViewHeader {
                 self?.sortingButtons.forEach { eachButton in
                     if button == eachButton {
                         button?.currentState.next()
+                        NotificationCenter.default.post(
+                            name: notificatinoIdentiifer,
+                            object: nil,
+                            userInfo: [
+                                "key": index,
+                                "direction": button?.currentState.rawValue ?? .zero
+                            ]
+                        )
                     } else {
                         eachButton.currentState = .none
                     }
@@ -94,6 +103,8 @@ private extension CoinListViewHeader {
                 button.layer.borderWidth = 0
             }
         }
+
+        sortingButtons.last?.currentState.next()
     }
 
     func setUpSubviews() {
