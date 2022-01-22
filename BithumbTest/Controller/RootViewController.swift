@@ -29,35 +29,20 @@ final class RootViewController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        let notificationIdentifier = Notification.Name(CoinListViewSortButton.identifier)
+        let notificationIdentifier = Notification.Name(CoinListViewHeader.identifier)
 
         NotificationCenter.default
             .addObserver(
                 self,
-                selector: #selector(onObserve),
+                selector: #selector(onReceiveNotification),
                 name: notificationIdentifier,
                 object: nil
             )
     }
 
-    @objc func onObserve(_ notification: Notification) {
-        guard let userInfo = notification.userInfo,
-              let sortingKey = userInfo["key"] as? Int,
-              let directionRawValue = userInfo["direction"] as? Int,
-              let direction = SortDirection(rawValue: directionRawValue) else {
-                  return
-              }
-
-        switch sortingKey {
-        case 0:
-            sortBy(key: .symbol, arrow: direction)
-        case 1:
-            sortBy(key: .currentPrice, arrow: direction)
-        case 2:
-            sortBy(key: .changedRate, arrow: direction)
-        default:
-            sortBy(key: .tradedVolume, arrow: direction)
-        }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -103,6 +88,26 @@ private extension RootViewController {
 
 // MARK: - sorting data
 private extension RootViewController {
+    @objc private func onReceiveNotification(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let sortingKey = userInfo["key"] as? Int,
+              let directionRawValue = userInfo["direction"] as? Int,
+              let direction = SortDirection(rawValue: directionRawValue) else {
+                  return
+              }
+
+        switch sortingKey {
+        case 0:
+            sortBy(key: .symbol, arrow: direction)
+        case 1:
+            sortBy(key: .currentPrice, arrow: direction)
+        case 2:
+            sortBy(key: .changedRate, arrow: direction)
+        default:
+            sortBy(key: .tradedVolume, arrow: direction)
+        }
+    }
+
     private func sortBy(key: CoinSortingKey, arrow: SortDirection) {
         let coins: [HTTPCoin]
 

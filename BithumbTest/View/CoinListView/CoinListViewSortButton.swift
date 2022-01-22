@@ -8,8 +8,6 @@
 import UIKit
 
 final class CoinListViewSortButton: UIView {
-    static let identifier = #fileID
-    
     private let label = UILabel()
     private let imageContainer: UIStackView = {
         let stackView = UIStackView()

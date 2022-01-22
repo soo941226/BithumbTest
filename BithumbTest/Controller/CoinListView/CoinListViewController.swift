@@ -29,6 +29,7 @@ extension CoinListViewController {
         DispatchQueue.main.async { [weak self] in
             self?.coinListDataSource.configure(items: items)
             self?.tableView.reloadData()
+            self?.tableView.setContentOffset(.zero, animated: false)
         }
     }
 }
