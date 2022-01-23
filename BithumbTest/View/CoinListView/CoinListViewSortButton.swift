@@ -8,7 +8,6 @@
 import UIKit
 
 final class CoinListViewSortButton: UIView {
-
     private let label = UILabel()
     private let imageContainer: UIStackView = {
         let stackView = UIStackView()
@@ -29,7 +28,8 @@ final class CoinListViewSortButton: UIView {
         defaultDown : UIImage(systemName: "arrowtriangle.down.fill")?
             .withTintColor(.lightGray, renderingMode: .alwaysOriginal)
     )
-    private var storedState = State.none
+    private var storedState = SortDirection.none
+    private var actions = [() -> Void]()
 
     required init?(coder: NSCoder) {
         fatalError("Do not use init(coder:), This project avoid Interface builder")
@@ -40,26 +40,13 @@ final class CoinListViewSortButton: UIView {
         setColor(with: .none)
         setUpArrowIcons()
         setUpSubviews()
-    }
 
-    enum State: Int {
-        case none
-        case up
-        case down
-
-        mutating func next() {
-            let rawValue = self.rawValue + 1
-            guard let next = State(rawValue: rawValue) else {
-                self = .none
-                return
-            }
-
-            self = next
-        }
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(excute))
+        addGestureRecognizer(tapRecognizer)
     }
 }
 
-// MARK: - outer interface
+// MARK: - Facade
 extension CoinListViewSortButton {
     var font: UIFont {
         get { label.font }
@@ -86,12 +73,22 @@ extension CoinListViewSortButton {
         set { label.text = newValue }
     }
 
-    var currentState: State {
+    var currentState: SortDirection {
         get { storedState }
         set {
             storedState = newValue
             setColor(with: newValue)
         }
+    }
+
+    func setUp(tapAction: @escaping () -> Void) {
+        actions.append(tapAction)
+    }
+
+    @objc private func excute() {
+        actions.forEach({ clsoure in
+            clsoure()
+        })
     }
 }
 
@@ -141,15 +138,15 @@ private extension CoinListViewSortButton {
 
 // MARK: - managing status
 private extension CoinListViewSortButton {
-    func setColor(with state: State) {
+    func setColor(with state: SortDirection) {
         switch state {
         case .none:
             arrows.up.image = images.defaultUp
             arrows.down.image = images.defaultDown
-        case .up:
+        case .descending:
             arrows.up.image = images.highlightUp
             arrows.down.image = images.defaultDown
-        case .down:
+        case .ascending:
             arrows.up.image = images.defaultUp
             arrows.down.image = images.highlightDown
         }

@@ -17,6 +17,7 @@ final class HTTPManager {
         with request: URLRequest,
         completionHandler: @escaping (Result<Model, Error>) -> Void
     ) {
+        NotificationCenter.default.post(name: APIConfig.startNetworking, object: nil)
         session.dataTask(with: request) { [weak self] data, response, error in
             if let error = error {
                 completionHandler(.failure(error))
@@ -29,6 +30,7 @@ final class HTTPManager {
                 self?.handling(data, with: completionHandler)
             }
 
+            NotificationCenter.default.post(name: APIConfig.endNetworking, object: nil)
         }.resume()
     }
 }

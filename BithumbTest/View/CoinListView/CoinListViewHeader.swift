@@ -30,6 +30,10 @@ final class CoinListViewHeader: UITableViewHeaderFooterView {
         button.text = "거래금액"
         return button
     }()
+    private lazy var sortingButtons = [
+        symbolSortingButton, currentPriceSortingButton,
+        changedRateSortingButton, tradedPriceSortingButton
+    ]
 
     private let containerStackView = UIStackView()
     private let firstStackView = UIStackView()
@@ -42,12 +46,7 @@ final class CoinListViewHeader: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setUp(stackViews: containerStackView, firstStackView, secondStackView)
-        setUp(
-            buttons: symbolSortingButton,
-            currentPriceSortingButton,
-            changedRateSortingButton,
-            tradedPriceSortingButton
-        )
+        setUpSortingButtons()
         setUpSubviews()
     }
 
@@ -72,16 +71,31 @@ private extension CoinListViewHeader {
         }
     }
 
-    func setUp(buttons: CoinListViewSortButton...) {
-        for button in buttons {
+    func setUpSortingButtons() {
+        let notificatinoIdentiifer = Notification.Name(Self.identifier)
+        for (index, button) in sortingButtons.enumerated() {
             button.textColor = .black
             button.font = .preferredFont(forTextStyle: .body)
             button.textAlignment = .justified
             button.adjustsFontSizeToFitWidth = true
             button.layer.borderColor = UIColor.lightGray.cgColor
-
-            let tapG = UITapGestureRecognizer(target: self, action: #selector(excute(sender:)))
-            button.addGestureRecognizer(tapG)
+            button.setUp { [weak self, weak button] in
+                self?.sortingButtons.forEach { eachButton in
+                    if button == eachButton {
+                        button?.currentState.next()
+                        NotificationCenter.default.post(
+                            name: notificatinoIdentiifer,
+                            object: nil,
+                            userInfo: [
+                                "key": index,
+                                "direction": button?.currentState.rawValue ?? .zero
+                            ]
+                        )
+                    } else {
+                        eachButton.currentState = .none
+                    }
+                }
+            }
 
             if traitCollection.preferredContentSizeCategory.isAccessibilityCategory {
                 button.layer.borderWidth = 1
@@ -89,11 +103,8 @@ private extension CoinListViewHeader {
                 button.layer.borderWidth = 0
             }
         }
-    }
 
-    @objc func excute(sender: UITapGestureRecognizer) {
-        guard let view = sender.view as? CoinListViewSortButton else { return }
-        view.currentState.next()
+        sortingButtons.last?.currentState.next()
     }
 
     func setUpSubviews() {
