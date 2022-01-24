@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct HTTPCoin: Decodable {
+class HTTPCoin: Decodable {
     private(set) var symbol: Symbol?
     let openingPrice: String?
     let closingPrice: String?
@@ -22,7 +22,7 @@ struct HTTPCoin: Decodable {
     let dailyChangedRate: String?
     var date: String?
 
-    mutating func updateSymbol(with symbol: Symbol) {
+    func updateSymbol(with symbol: Symbol) {
         self.symbol = symbol
     }
 

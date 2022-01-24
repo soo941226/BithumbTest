@@ -5,11 +5,11 @@
 //  Created by kjs on 2022/01/17.
 //
 
-struct WSCoin: Encodable {
-    let symbol: Symbol
-    let tickType: TickType
-    let date: String
-    let hhMMss: String
+class WSCoin: Encodable {
+    let symbol: Symbol?
+    let tickType: TickType?
+    let date: String?
+    let hhMMss: String?
 
     let openPrice: Double?
     let closePrice: Double?
@@ -26,21 +26,6 @@ struct WSCoin: Encodable {
     let changedPrice: Double?
     let volumePower: Double?
 
-    enum CodingKeys: String, CodingKey, CaseIterable {
-        case symbol, tickType, date, openPrice, closePrice, prevClosePrice, volumePower
-        case hhMMss = "time"
-        case minPrice = "lowPrice"
-        case maxPrice = "highPrice"
-        case totalTradedPrice = "value"
-        case totalTradedVolume = "volume"
-        case totalSalesVolume = "sellVolume"
-        case totalPurchasedVolume = "buyVolume"
-        case changedRate = "chgRate"
-        case changedPrice = "chgAmt"
-    }
-}
-
-extension WSCoin {
     init?(origin: [String: Any]) {
         let dictionary: [String: String] = origin.compactMapValues { any in
             return any as? String
@@ -50,8 +35,6 @@ extension WSCoin {
             guard dictionary[key.rawValue] != nil else {
                 return nil
             }
-
-            continue
         }
 
         if let rawValue = dictionary[CodingKeys.tickType.rawValue],
@@ -79,5 +62,18 @@ extension WSCoin {
         changedRate = Double(dictionary[CodingKeys.changedRate.rawValue]!)
         changedPrice = Double(dictionary[CodingKeys.changedPrice.rawValue]!)
         volumePower = Double(dictionary[CodingKeys.volumePower.rawValue]!)
+    }
+
+    enum CodingKeys: String, CodingKey, CaseIterable {
+        case symbol, tickType, date, openPrice, closePrice, prevClosePrice, volumePower
+        case hhMMss = "time"
+        case minPrice = "lowPrice"
+        case maxPrice = "highPrice"
+        case totalTradedPrice = "value"
+        case totalTradedVolume = "volume"
+        case totalSalesVolume = "sellVolume"
+        case totalPurchasedVolume = "buyVolume"
+        case changedRate = "chgRate"
+        case changedPrice = "chgAmt"
     }
 }

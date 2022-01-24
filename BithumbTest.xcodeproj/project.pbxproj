@@ -271,7 +271,7 @@
 				63088FB1279544FE00606AAE /* Symbol.swift */,
 				63088FAF279541B600606AAE /* SocketMessageType.swift */,
 				63BD9B442795A2250029CD96 /* TickType.swift */,
-				63BD9B462795A2290029CD96 /* Core */,
+				63BD9B462795A2290029CD96 /* Model */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -350,14 +350,14 @@
 			path = Protoocls;
 			sourceTree = "<group>";
 		};
-		63BD9B462795A2290029CD96 /* Core */ = {
+		63BD9B462795A2290029CD96 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				63088FA727953AE900606AAE /* WSCoin.swift */,
 				63088FBA27957E5600606AAE /* WSTransactionHistory.swift */,
 				63CEEC762796E91E00ABB208 /* HTTPCoin.swift */,
 			);
-			path = Core;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		98783EA1B25C966B685E677B /* Frameworks */ = {
