@@ -41,7 +41,7 @@ struct HTTPTickerAllAPI: HTTPRequestable {
 
     let paymentCurrency: PaymentCurrency
 
-    init(paymentCurrency: PaymentCurrency) {
+    init(with paymentCurrency: PaymentCurrency) {
         self.paymentCurrency = paymentCurrency
     }
 

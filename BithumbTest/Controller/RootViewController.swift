@@ -15,8 +15,9 @@ class MyVC2: UIViewController {
 }
 
 final class RootViewController: UITabBarController {
-    let coinListViewController = CoinListViewController()
-    let vc2 = MyVC2()
+    private let coinListViewController = CoinListViewController()
+    private let vc2 = MyVC2()
+    private var paymentCurrency = PaymentCurrency.KRW
 
     private var sourceOfTruth = [HTTPCoin]()
 
@@ -49,16 +50,16 @@ final class RootViewController: UITabBarController {
 // MARK: - API
 private extension RootViewController {
     func requestCoins() {
-        HTTPTickerAllAPI(paymentCurrency: .KRW).excute { [weak self] result in
+        HTTPTickerAllAPI(with: paymentCurrency).excute { [weak self] result in
             switch result {
             case .success(let response):
                 var coins = [HTTPCoin]()
 
                 for key in response.data.keys {
                     guard let value = response.data[key] else { continue }
-                    guard case .coin(var coin) = value else { continue }
-
-                    coin.updateSymbol(with: key)
+                    guard case .coin(let coin) = value else { continue }
+                    print(key)
+                    coin.updateSymbol(with: key + "_" + (self?.paymentCurrency.value ?? key))
                     coins.append(coin)
                 }
 
