@@ -8,6 +8,8 @@
 import UIKit
 
 final class CoinListViewDelegate: NSObject, UITableViewDelegate {
+    weak var dataManager: DataManager?
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(
             withIdentifier: CoinListViewHeader.identifier
@@ -17,5 +19,18 @@ final class CoinListViewDelegate: NSObject, UITableViewDelegate {
         }
 
         return headerView
+    }
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        dataManager?.stopManaging()
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        dataManager?.restartManaging()
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        dataManager?.stopManaging()
+        dataManager?.restartManaging()
     }
 }

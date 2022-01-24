@@ -20,7 +20,6 @@ struct WSTickerAPI: WSRequestable {
         WebsocketManager.shared.open(with: message) { result in
             switch result {
             case .success(let message):
-
                 switch message {
                 case .string(let string):
                     handle(string, with: completionHandler)
@@ -54,5 +53,9 @@ struct WSTickerAPI: WSRequestable {
         } catch {
             completionHandler(.failure(error))
         }
+    }
+
+    static func cancel() {
+        WebsocketManager.shared.close()
     }
 }

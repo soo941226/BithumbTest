@@ -47,6 +47,33 @@ final class RootViewController: UITabBarController {
     }
 }
 
+extension RootViewController: DataManager {
+    func stopManaging() {
+        WSTickerAPI.cancel()
+    }
+
+    func restartManaging() {
+        DispatchQueue.main.async { [weak self] in
+            guard let `self` = self else { return }
+            guard let cells = self.coinListViewController.visibleCells else { return }
+            let symbols: [Symbol] = cells.compactMap {
+                guard let symbol = $0.symbol else { return nil }
+
+                return Symbol(orderCurrency: symbol, paymentCurrency: self.paymentCurrency)
+            }
+
+            WSTickerAPI(symbols: symbols, tickTypes: [TickType.oneHour]).excute { result in
+                switch result {
+                case .success(let coin):
+                    print(coin)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+    }
+}
+
 // MARK: - API
 private extension RootViewController {
     func requestCoins() {
@@ -58,8 +85,8 @@ private extension RootViewController {
                 for key in response.data.keys {
                     guard let value = response.data[key] else { continue }
                     guard case .coin(let coin) = value else { continue }
-                    print(key)
-                    coin.updateSymbol(with: key + "_" + (self?.paymentCurrency.value ?? key))
+
+                    coin.updateSymbol(with: key)
                     coins.append(coin)
                 }
 
@@ -81,6 +108,8 @@ private extension RootViewController {
             image: UIImage(systemName: "list.bullet"),
             selectedImage: UIImage(systemName: "list.bullet.indent")
         )
+        coinListViewController.setUpDataManagerDelegate(self)
+
         vc2.tabBarItem = .init(tabBarSystemItem: .bookmarks, tag: 1)
         viewControllers = [coinListViewController, vc2]
         setViewControllers(viewControllers, animated: true)
@@ -128,6 +157,8 @@ private extension RootViewController {
         }
 
         coinListViewController.configure(items: coins)
+        stopManaging()
+        restartManaging()
     }
 
     func sortBySymbol(arrow: SortDirection) -> [HTTPCoin] {

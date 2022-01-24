@@ -43,6 +43,10 @@ final class CoinListViewCell: UITableViewCell {
 
 // MARK: - Facade
 extension CoinListViewCell {
+    var symbol: String? {
+        return symbolLabel.text
+    }
+
     func configure(with coin: HTTPCoin) {
         guard let closingPrice = coin.closingPrice,
               let dailyChangedRate = coin.dailyChangedRate,

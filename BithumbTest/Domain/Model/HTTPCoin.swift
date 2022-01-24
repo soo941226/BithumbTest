@@ -20,14 +20,19 @@ class HTTPCoin: Decodable {
     let dailyTradedPrice: String?
     let dailyChangedPrice: String?
     let dailyChangedRate: String?
-    var date: String?
+    private(set) var date: String?
+    private(set) var isFavorite: Bool?
 
     func updateSymbol(with symbol: Symbol) {
         self.symbol = symbol
     }
 
+    func updateFavoirte(with isFavorite: Bool) {
+        self.isFavorite = isFavorite
+    }
+
     enum CodingKeys: String, CodingKey {
-        case symbol, date
+        case symbol, date, isFavorite
         case openingPrice = "opening_price"
         case closingPrice = "closing_price"
         case minPrice = "min_price"

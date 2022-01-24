@@ -32,6 +32,18 @@ extension CoinListViewController {
             self?.tableView.setContentOffset(.zero, animated: false)
         }
     }
+
+    func setUpDataManagerDelegate<Controller: DataManager>(_ delegete: Controller) {
+        self.coinListDelegate.dataManager = delegete
+    }
+
+    var visibleCells: [CoinListViewCell]? {
+        tableView.indexPathsForVisibleRows.flatMap { rows in
+            rows.compactMap { row in
+                tableView.cellForRow(at: row) as? CoinListViewCell
+            }
+        }
+    }
 }
 
 // MARK: - Setting TableView

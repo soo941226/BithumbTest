@@ -16,18 +16,16 @@ struct HTTPTickerResponse: StatusRepresentable {
 struct HTTPTickerAPI: HTTPRequestable {
     private(set) var urlString = APIConfig.HTTPBaseURL + "public/ticker/"
 
-    let orderCurrency: OrderCurrency
-    let paymentCurrency: PaymentCurrency
+    let symbol: Symbol
 
-    init(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) {
-        self.orderCurrency = orderCurrency
-        self.paymentCurrency = paymentCurrency
+    init(symbol: Symbol) {
+        self.symbol = symbol
     }
 
     func excute(
         with completionHandler: @escaping (Result<HTTPTickerResponse, Error>) -> Void
     ) {
-        let urlString = urlString + orderCurrency.value + "_" + paymentCurrency.value
+        let urlString = urlString + symbol
         guard let url = URL(string: urlString) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"

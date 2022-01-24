@@ -12,34 +12,40 @@ final class WebsocketManager {
 
     static let shared = WebsocketManager()
 
-    private let session: URLSessionWebSocketTask
+    private let session: URLSession
+    private let baseURL: URL
+    private var websocketTask: URLSessionWebSocketTask
     private init() {
         guard let url = URL(string: APIConfig.WSBaseURL) else {
             fatalError("invalid APIConfig.websocketBaseURL")
         }
 
-        session = URLSession(configuration: .default).webSocketTask(with: url)
+        session = URLSession(configuration: .default)
+        baseURL = url
+        websocketTask = session.webSocketTask(with: baseURL)
     }
 
     func open(with message: Data, completionHanlder: @escaping CompletionHanlder) {
-        session.send(.data(message)) { error in
+        websocketTask.cancel()
+        websocketTask = session.webSocketTask(with: baseURL)
+        websocketTask.resume()
+        websocketTask.send(.data(message)) { error in
             if let error = error {
                 completionHanlder(.failure(error))
             }
         }
         receiveMessageContinuoussly(with: completionHanlder)
-        session.resume()
     }
 
     func close() {
-        session.cancel(with: .normalClosure, reason: nil)
+        websocketTask.cancel()
     }
 }
 
 private extension WebsocketManager {
     func receiveMessageContinuoussly(with completionHanlder: @escaping CompletionHanlder) {
         DispatchQueue.global().async { [weak self] in
-            self?.session.receive { [weak self] result in
+            self?.websocketTask.receive { [weak self] result in
                 switch result {
                 case .success(let message):
                     completionHanlder(.success(message))
