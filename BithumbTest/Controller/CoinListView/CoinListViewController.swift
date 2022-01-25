@@ -20,6 +20,8 @@ final class CoinListViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         layoutTableView()
+        
+        coinListDelegate.dataManager?.restartManaging()
     }
 }
 
@@ -37,10 +39,24 @@ extension CoinListViewController {
         self.coinListDelegate.dataManager = delegete
     }
 
-    var visibleCells: [CoinListViewCell]? {
-        tableView.indexPathsForVisibleRows.flatMap { rows in
-            rows.compactMap { row in
-                tableView.cellForRow(at: row) as? CoinListViewCell
+    func updateRow(with symbol: Symbol?) {
+        let indexPaths: [IndexPath]? = tableView
+            .indexPathsForVisibleRows?
+            .compactMap { indexPath in
+                if coinListDataSource[indexPath].symbol == symbol {
+                    return indexPath
+                } else {
+                    return nil
+                }
+            }
+
+        tableView.reloadRows(at: indexPaths ?? [], with: .none)
+    }
+
+    var visibleData: [HTTPCoin]? {
+        tableView.indexPathsForVisibleRows.flatMap { indexPaths in
+            indexPaths.compactMap { indexPath in
+                coinListDataSource[indexPath]
             }
         }
     }

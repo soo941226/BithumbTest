@@ -9,19 +9,21 @@ import Foundation
 
 class HTTPCoin: Decodable {
     private(set) var symbol: Symbol?
-    let openingPrice: String?
-    let closingPrice: String?
-    let minPrice: String?
-    let maxPrice: String?
-    let currentTradedVolume: String?
-    let currentTradedPrice: String?
-    let prevClosingPrice: String?
-    let dailyTradedVolume: String?
-    let dailyTradedPrice: String?
-    let dailyChangedPrice: String?
-    let dailyChangedRate: String?
     private(set) var date: String?
     private(set) var isFavorite: Bool?
+
+    private(set) var openPrice: String?
+    private(set) var closePrice: String?
+    private(set) var minPrice: String?
+    private(set) var maxPrice: String?
+    private(set) var prevClosePrice: String?
+
+    private(set) var currentTradedVolume: String?
+    private(set) var currentTradedPrice: String?
+    private(set) var dailyTradedVolume: String?
+    private(set) var dailyTradedPrice: String?
+    private(set) var dailyChangedPrice: String?
+    private(set) var dailyChangedRate: String?
 
     func updateSymbol(with symbol: Symbol) {
         self.symbol = symbol
@@ -31,15 +33,21 @@ class HTTPCoin: Decodable {
         self.isFavorite = isFavorite
     }
 
+    func updateBy(_ coin: WSCoin) {
+        self.closePrice = coin.closePrice?.description
+        self.dailyChangedRate = coin.changedRate?.description
+        self.currentTradedPrice = coin.currentTradedPrice
+    }
+
     enum CodingKeys: String, CodingKey {
         case symbol, date, isFavorite
-        case openingPrice = "opening_price"
-        case closingPrice = "closing_price"
+        case openPrice = "opening_price"
+        case closePrice = "closing_price"
         case minPrice = "min_price"
         case maxPrice = "max_price"
+        case prevClosePrice = "prev_closing_price"
         case currentTradedVolume = "units_traded"
         case currentTradedPrice = "acc_trade_value"
-        case prevClosingPrice = "prev_closing_price"
         case dailyTradedVolume = "units_traded_24H"
         case dailyTradedPrice = "acc_trade_value_24H"
         case dailyChangedPrice = "fluctate_24H"

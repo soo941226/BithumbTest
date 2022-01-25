@@ -15,4 +15,10 @@ extension Symbol {
     init(orderCurrency: Symbol, paymentCurrency: PaymentCurrency) {
         self = orderCurrency + "_" + paymentCurrency.value
     }
+
+    var orderCurrency: Symbol? {
+        guard let index = self.firstIndex(of: "_") else { return nil }
+
+        return self.prefix(upTo: index).description
+    }
 }

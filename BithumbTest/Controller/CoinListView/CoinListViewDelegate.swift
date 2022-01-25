@@ -30,6 +30,7 @@ final class CoinListViewDelegate: NSObject, UITableViewDelegate {
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        NotificationCenter.default.removeObserver(self)
         dataManager?.stopManaging()
         dataManager?.restartManaging()
     }

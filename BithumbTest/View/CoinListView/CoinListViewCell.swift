@@ -10,6 +10,9 @@ import UIKit
 final class CoinListViewCell: UITableViewCell {
     static let identifier = #fileID
 
+    private var isBookmarked = false
+
+    private let bookmarkButton = UIButton()
     private let symbolLabel =  UILabel()
     private let currentPriceLabel = UILabel()
     private let changedRateLabel = UILabel()
@@ -19,25 +22,44 @@ final class CoinListViewCell: UITableViewCell {
     private let firstStackView = UIStackView()
     private let secondStackView = UIStackView()
 
+    private let star = (
+        fill: UIImage(systemName: "star.fill")?.withTintColor(UIColor.bithumbMainColor, renderingMode: .alwaysOriginal),
+        empty: UIImage(systemName: "star")?.withTintColor(UIColor.bithumbMainColor, renderingMode: .alwaysOriginal)
+    )
+
     required init?(coder: NSCoder) {
         fatalError("Do not use init(coder:), This project avoid Interface builder")
     }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        isAccessibilityElement = true
+
         setUp(stackViews: containerStackView, firstStackView, secondStackView)
         setUp(labels: symbolLabel, currentPriceLabel, changedRateLabel, tradedPriceLabel)
+        setUpBookmarkButton()
         setUpSubviews()
-        isAccessibilityElement = true
     }
 
     override func layoutMarginsDidChange() {
+        super.layoutMarginsDidChange()
         layoutContents()
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         layoutContents()
+    }
+
+    @objc private func onTap() {
+        isBookmarked.toggle()
+
+        NotificationCenter.default
+            .post(name: .init(Self.identifier), object: nil, userInfo: [
+                "isBookmarked": isBookmarked,
+                "symbol": symbol ?? ""
+            ])
     }
 }
 
@@ -48,21 +70,29 @@ extension CoinListViewCell {
     }
 
     func configure(with coin: HTTPCoin) {
-        guard let closingPrice = coin.closingPrice,
+        guard let closingPrice = coin.closePrice,
               let dailyChangedRate = coin.dailyChangedRate,
-              let dailyTradedPriceText = coin.currentTradedPrice,
-              let dailyTradedPrice = Double(dailyTradedPriceText) else {
+              let currentTradedPriceText = coin.currentTradedPrice,
+              let currentTradedPrice = Double(currentTradedPriceText) else {
                   symbolLabel.text = "확인 중"
                   currentPriceLabel.text = "확인 중"
                   changedRateLabel.text = "확인 중"
                   return
               }
 
-        let filteredDailyTradedPrice = Int(dailyTradedPrice / 1000000.0).description + "백만"
+        let filteredDailyTradedPrice = Int(currentTradedPrice / 1000000.0).description + "백만"
         symbolLabel.text = coin.symbol
         currentPriceLabel.text = closingPrice
         changedRateLabel.text = dailyChangedRate
         tradedPriceLabel.text = filteredDailyTradedPrice
+
+        if coin.isFavorite == true {
+            isBookmarked = true
+            bookmarkButton.setImage(star.fill, for: .normal)
+        } else {
+            isBookmarked = false
+            bookmarkButton.setImage(star.empty, for: .normal)
+        }
 
         accessibilityLabel = coin.symbol
         accessibilityValue = """
@@ -95,8 +125,17 @@ private extension CoinListViewCell {
         }
     }
 
+    func setUpBookmarkButton() {
+        bookmarkButton.setContentHuggingPriority(.required, for: .horizontal)
+        bookmarkButton.addTarget(self, action: #selector(onTap), for: .touchUpInside)
+    }
+
     func setUpSubviews() {
-        firstStackView.addArrangedSubview(symbolLabel)
+        let stackView = UIStackView(arrangedSubviews: [bookmarkButton, symbolLabel])
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.distribution = .fillProportionally
+        firstStackView.addArrangedSubview(stackView)
         firstStackView.addArrangedSubview(currentPriceLabel)
 
         secondStackView.addArrangedSubview(changedRateLabel)

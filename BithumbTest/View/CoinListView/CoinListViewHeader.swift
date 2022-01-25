@@ -104,7 +104,7 @@ private extension CoinListViewHeader {
             }
         }
 
-        sortingButtons.last?.currentState.next()
+        sortingButtons.last?.currentState = .descending
     }
 
     func setUpSubviews() {

@@ -143,10 +143,10 @@ private extension CoinListViewSortButton {
         case .none:
             arrows.up.image = images.defaultUp
             arrows.down.image = images.defaultDown
-        case .descending:
+        case .ascending:
             arrows.up.image = images.highlightUp
             arrows.down.image = images.defaultDown
-        case .ascending:
+        case .descending:
             arrows.up.image = images.defaultUp
             arrows.down.image = images.highlightDown
         }

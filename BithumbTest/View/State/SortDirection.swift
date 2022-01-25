@@ -7,8 +7,8 @@
 
 enum SortDirection: Int {
     case none
-    case descending
     case ascending
+    case descending
 
     mutating func next() {
         let rawValue = self.rawValue + 1

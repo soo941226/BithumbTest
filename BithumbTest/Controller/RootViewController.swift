@@ -7,16 +7,8 @@
 
 import UIKit
 
-class MyVC2: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .lightGray
-    }
-}
-
 final class RootViewController: UITabBarController {
     private let coinListViewController = CoinListViewController()
-    private let vc2 = MyVC2()
     private var paymentCurrency = PaymentCurrency.KRW
 
     private var sourceOfTruth = [HTTPCoin]()
@@ -29,24 +21,84 @@ final class RootViewController: UITabBarController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        let notificationIdentifier = Notification.Name(CoinListViewHeader.identifier)
-
-        NotificationCenter.default
-            .addObserver(
-                self,
-                selector: #selector(onReceiveNotification),
-                name: notificationIdentifier,
-                object: nil
-            )
+        startObservingToUpdateState()
+        startObservingToSortData()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
+        stopObserving()
     }
 }
 
+// MARK: - Observe notifications
+private extension RootViewController {
+    func startObservingToUpdateState() {
+        let notificationIdentifier = Notification.Name(CoinListViewCell.identifier)
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onReceiveToUpdateState),
+            name: notificationIdentifier,
+            object: nil
+        )
+    }
+
+    func startObservingToSortData() {
+        let notificationIdentifier = Notification.Name(CoinListViewHeader.identifier)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onReceiveToSort),
+            name: notificationIdentifier,
+            object: nil
+        )
+    }
+
+    func stopObserving() {
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    @objc func onReceiveToUpdateState(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let symbol = userInfo["symbol"] as? String,
+              let isBookmarked = userInfo["isBookmarked"] as? Bool else {
+                  return
+              }
+
+        sourceOfTruth
+            .filter { $0.symbol == symbol }
+            .first?
+            .updateFavoirte(with: isBookmarked)
+
+        coinListViewController.updateRow(with: symbol)
+    }
+
+    @objc func onReceiveToSort(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let sortingKey = userInfo["key"] as? Int,
+              let directionRawValue = userInfo["direction"] as? Int,
+              let direction = SortDirection(rawValue: directionRawValue) else {
+                  return
+              }
+
+        stopManaging()
+
+        switch sortingKey {
+        case 0:
+            sortBy(key: .symbol, arrow: direction)
+        case 1:
+            sortBy(key: .currentPrice, arrow: direction)
+        case 2:
+            sortBy(key: .changedRate, arrow: direction)
+        default:
+            sortBy(key: .tradedVolume, arrow: direction)
+        }
+
+        restartManaging()
+    }
+}
+
+// MARK: - Delegate
 extension RootViewController: DataManager {
     func stopManaging() {
         WSTickerAPI.cancel()
@@ -55,27 +107,39 @@ extension RootViewController: DataManager {
     func restartManaging() {
         DispatchQueue.main.async { [weak self] in
             guard let `self` = self else { return }
-            guard let cells = self.coinListViewController.visibleCells else { return }
+            guard let cells = self.coinListViewController.visibleData else { return }
             let symbols: [Symbol] = cells.compactMap {
                 guard let symbol = $0.symbol else { return nil }
 
                 return Symbol(orderCurrency: symbol, paymentCurrency: self.paymentCurrency)
             }
 
-            WSTickerAPI(symbols: symbols, tickTypes: [TickType.oneHour]).excute { result in
-                switch result {
-                case .success(let coin):
-                    print(coin)
-                case .failure(let error):
-                    print(error)
-                }
-            }
+            self.requestCoinsContinuoussly(with: symbols)
         }
     }
 }
 
 // MARK: - API
 private extension RootViewController {
+    func requestCoinsContinuoussly(with symbols: [Symbol]) {
+        WSTickerAPI(symbols: symbols, tickTypes: [TickType.MID]).excute { [weak self] result in
+            guard let `self` = self else {return }
+
+            switch result {
+            case .success(let coin):
+                DispatchQueue.main.async {
+                    self.sourceOfTruth
+                        .filter { $0.symbol == coin.symbol?.orderCurrency }
+                        .first?
+                        .updateBy(coin)
+
+                    self.coinListViewController.updateRow(with: coin.symbol?.orderCurrency)
+                }
+            case .failure: () // There is nothing to do
+            }
+        }
+    }
+
     func requestCoins() {
         HTTPTickerAllAPI(with: paymentCurrency).excute { [weak self] result in
             switch result {
@@ -103,41 +167,19 @@ private extension RootViewController {
 // MARK: - Set up layout and display
 private extension RootViewController {
     func setUpSubViewControllers() {
+        coinListViewController.setUpDataManagerDelegate(self)
         coinListViewController.tabBarItem = .init(
             title: "List",
             image: UIImage(systemName: "list.bullet"),
             selectedImage: UIImage(systemName: "list.bullet.indent")
         )
-        coinListViewController.setUpDataManagerDelegate(self)
-
-        vc2.tabBarItem = .init(tabBarSystemItem: .bookmarks, tag: 1)
-        viewControllers = [coinListViewController, vc2]
+        viewControllers = [coinListViewController]
         setViewControllers(viewControllers, animated: true)
     }
 }
 
 // MARK: - sorting data
 private extension RootViewController {
-    @objc private func onReceiveNotification(_ notification: Notification) {
-        guard let userInfo = notification.userInfo,
-              let sortingKey = userInfo["key"] as? Int,
-              let directionRawValue = userInfo["direction"] as? Int,
-              let direction = SortDirection(rawValue: directionRawValue) else {
-                  return
-              }
-
-        switch sortingKey {
-        case 0:
-            sortBy(key: .symbol, arrow: direction)
-        case 1:
-            sortBy(key: .currentPrice, arrow: direction)
-        case 2:
-            sortBy(key: .changedRate, arrow: direction)
-        default:
-            sortBy(key: .tradedVolume, arrow: direction)
-        }
-    }
-
     private func sortBy(key: CoinSortingKey, arrow: SortDirection) {
         let coins: [HTTPCoin]
 
@@ -167,10 +209,10 @@ private extension RootViewController {
                   let nextSymbol = $1.symbol else {
                       return false
                   }
-            if case .descending = arrow {
-                return prevSymbol > nextSymbol
-            } else {
+            if case .ascending = arrow {
                 return prevSymbol < nextSymbol
+            } else {
+                return prevSymbol > nextSymbol
             }
         }
     }
@@ -181,10 +223,10 @@ private extension RootViewController {
                   let nextRate = $1.dailyChangedRate.flatMap({ Double($0) }) else {
                       return false
                   }
-            if case .descending = arrow {
-                return prevRate > nextRate
-            } else {
+            if case .ascending = arrow {
                 return prevRate < nextRate
+            } else {
+                return prevRate > nextRate
             }
         }
     }
@@ -195,24 +237,24 @@ private extension RootViewController {
                   let nextVolume = $1.currentTradedPrice.flatMap({ Double($0) }) else {
                       return false
                   }
-            if case .descending = arrow {
-                return prevVolume > nextVolume
-            } else {
+            if case .ascending = arrow {
                 return prevVolume < nextVolume
+            } else {
+                return prevVolume > nextVolume
             }
         }
     }
 
     func sortByCurrentPrice(arrow: SortDirection) -> [HTTPCoin] {
         sourceOfTruth.sorted {
-            guard let prevPrice = $0.closingPrice.flatMap({ Double($0) }),
-                  let nextPrice = $1.closingPrice.flatMap({ Double($0) }) else {
+            guard let prevPrice = $0.closePrice.flatMap({ Double($0) }),
+                  let nextPrice = $1.closePrice.flatMap({ Double($0) }) else {
                       return false
                   }
-            if case .descending = arrow {
-                return prevPrice > nextPrice
-            } else {
+            if case .ascending = arrow {
                 return prevPrice < nextPrice
+            } else {
+                return prevPrice > nextPrice
             }
         }
     }

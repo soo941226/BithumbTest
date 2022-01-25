@@ -17,7 +17,7 @@ class WSCoin: Encodable {
     let maxPrice: Double?
     let prevClosePrice: Double?
 
-    let totalTradedPrice: Double?
+    let currentTradedPrice: String?
     let totalTradedVolume: Double?
     let totalSalesVolume: Double?
     let totalPurchasedVolume: Double?
@@ -54,7 +54,7 @@ class WSCoin: Encodable {
         maxPrice = Double(dictionary[CodingKeys.maxPrice.rawValue]!)
         prevClosePrice = Double(dictionary[CodingKeys.prevClosePrice.rawValue]!)
 
-        totalTradedPrice = Double(dictionary[CodingKeys.totalTradedPrice.rawValue]!)
+        currentTradedPrice = dictionary[CodingKeys.currentTradedPrice.rawValue]
         totalTradedVolume = Double(dictionary[CodingKeys.totalTradedVolume.rawValue]!)
         totalSalesVolume = Double(dictionary[CodingKeys.totalSalesVolume.rawValue]!)
         totalPurchasedVolume = Double(dictionary[CodingKeys.totalPurchasedVolume.rawValue]!)
@@ -69,7 +69,7 @@ class WSCoin: Encodable {
         case hhMMss = "time"
         case minPrice = "lowPrice"
         case maxPrice = "highPrice"
-        case totalTradedPrice = "value"
+        case currentTradedPrice = "value"
         case totalTradedVolume = "volume"
         case totalSalesVolume = "sellVolume"
         case totalPurchasedVolume = "buyVolume"
