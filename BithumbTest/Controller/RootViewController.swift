@@ -9,13 +9,15 @@ import UIKit
 
 final class RootViewController: UITabBarController {
     private let coinListViewController = CoinListViewController()
-    private var paymentCurrency = PaymentCurrency.KRW
 
     private var sourceOfTruth = [HTTPCoin]()
+    private var paymentCurrency = PaymentCurrency.KRW
+
+    weak var coordinator: MarketCoordinator?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpSubViewControllers()
+        setUpBasicSettings()
         requestCoins()
     }
 
@@ -28,6 +30,27 @@ final class RootViewController: UITabBarController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         stopObserving()
+    }
+}
+
+// MARK: - Facade
+extension RootViewController {
+    func showDetailViewController(with symbol: Symbol) {
+        coordinator?.show(with: symbol)
+    }
+}
+
+// MARK: - basic set up
+private extension RootViewController {
+    func setUpBasicSettings() {
+        coinListViewController.setUpDataManagerDelegate(self)
+        coinListViewController.tabBarItem = .init(
+            title: "List",
+            image: UIImage(systemName: "list.bullet"),
+            selectedImage: UIImage(systemName: "list.bullet.indent")
+        )
+        viewControllers = [coinListViewController]
+        setViewControllers(viewControllers, animated: true)
     }
 }
 
@@ -161,20 +184,6 @@ private extension RootViewController {
                 print("HTTPTickerAllAPI X")
             }
         }
-    }
-}
-
-// MARK: - Set up layout and display
-private extension RootViewController {
-    func setUpSubViewControllers() {
-        coinListViewController.setUpDataManagerDelegate(self)
-        coinListViewController.tabBarItem = .init(
-            title: "List",
-            image: UIImage(systemName: "list.bullet"),
-            selectedImage: UIImage(systemName: "list.bullet.indent")
-        )
-        viewControllers = [coinListViewController]
-        setViewControllers(viewControllers, animated: true)
     }
 }
 

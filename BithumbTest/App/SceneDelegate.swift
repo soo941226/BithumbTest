@@ -9,7 +9,7 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private let indicator = UIActivityIndicatorView(style: .medium)
-
+    private let rootCoordinator = RootCoordinator()
     var window: UIWindow?
 
     func scene(
@@ -19,9 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
-        window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = RootViewController()
-        window?.makeKeyAndVisible()
+        setUpWindow(with: windowScene)
+        rootCoordinator.start()
         setUpIndicator()
     }
 
@@ -34,6 +33,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         NotificationCenter.default.removeObserver(self)
 
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+    }
+}
+
+// MARK: - set up window
+private extension SceneDelegate {
+    func setUpWindow(with windowScene: UIWindowScene) {
+        window = UIWindow(windowScene: windowScene)
+        window?.rootViewController = rootCoordinator.navigationController
+        window?.makeKeyAndVisible()
     }
 }
 
