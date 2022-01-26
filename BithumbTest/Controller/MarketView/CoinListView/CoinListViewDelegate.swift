@@ -21,6 +21,10 @@ final class CoinListViewDelegate: NSObject, UITableViewDelegate {
         return headerView
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        dataManager?.showDetail(with: indexPath)
+    }
+
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         dataManager?.stopManaging()
     }
@@ -30,7 +34,6 @@ final class CoinListViewDelegate: NSObject, UITableViewDelegate {
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        NotificationCenter.default.removeObserver(self)
         dataManager?.stopManaging()
         dataManager?.restartManaging()
     }

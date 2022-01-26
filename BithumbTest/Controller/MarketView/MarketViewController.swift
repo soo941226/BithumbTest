@@ -1,5 +1,5 @@
 //
-//  RootViewController.swift
+//  MarketViewController.swift
 //  BithumbTest
 //
 //  Created by kjs on 2022/01/17.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-final class RootViewController: UITabBarController {
-    private let coinListViewController = CoinListViewController()
+final class MarketViewController: UINavigationController {
+    private let rootViewController = CoinListViewController()
 
     private var sourceOfTruth = [HTTPCoin]()
     private var paymentCurrency = PaymentCurrency.KRW
@@ -26,7 +26,7 @@ final class RootViewController: UITabBarController {
         startObservingToUpdateState()
         startObservingToSortData()
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         stopObserving()
@@ -34,28 +34,22 @@ final class RootViewController: UITabBarController {
 }
 
 // MARK: - Facade
-extension RootViewController {
+extension MarketViewController {
     func showDetailViewController(with symbol: Symbol) {
         coordinator?.show(with: symbol)
     }
 }
 
 // MARK: - basic set up
-private extension RootViewController {
+private extension MarketViewController {
     func setUpBasicSettings() {
-        coinListViewController.setUpDataManagerDelegate(self)
-        coinListViewController.tabBarItem = .init(
-            title: "List",
-            image: UIImage(systemName: "list.bullet"),
-            selectedImage: UIImage(systemName: "list.bullet.indent")
-        )
-        viewControllers = [coinListViewController]
-        setViewControllers(viewControllers, animated: true)
+        rootViewController.setUpDataManagerDelegate(self)
+        pushViewController(rootViewController, animated: false)
     }
 }
 
 // MARK: - Observe notifications
-private extension RootViewController {
+private extension MarketViewController {
     func startObservingToUpdateState() {
         let notificationIdentifier = Notification.Name(CoinListViewCell.identifier)
 
@@ -93,7 +87,7 @@ private extension RootViewController {
             .first?
             .updateFavoirte(with: isBookmarked)
 
-        coinListViewController.updateRow(with: symbol)
+        rootViewController.updateRow(with: symbol)
     }
 
     @objc func onReceiveToSort(_ notification: Notification) {
@@ -121,8 +115,13 @@ private extension RootViewController {
     }
 }
 
-// MARK: - Delegate
-extension RootViewController: DataManager {
+// MARK: - DataManager Delegate
+extension MarketViewController: DataManager {
+    func showDetail(with indexPath: IndexPath) {
+        let coin = sourceOfTruth[indexPath.row]
+        coordinator?.show(with: coin.symbol)
+    }
+
     func stopManaging() {
         WSTickerAPI.cancel()
     }
@@ -130,7 +129,7 @@ extension RootViewController: DataManager {
     func restartManaging() {
         DispatchQueue.main.async { [weak self] in
             guard let `self` = self else { return }
-            guard let cells = self.coinListViewController.visibleData else { return }
+            guard let cells = self.rootViewController.visibleData else { return }
             let symbols: [Symbol] = cells.compactMap {
                 guard let symbol = $0.symbol else { return nil }
 
@@ -143,7 +142,7 @@ extension RootViewController: DataManager {
 }
 
 // MARK: - API
-private extension RootViewController {
+private extension MarketViewController {
     func requestCoinsContinuoussly(with symbols: [Symbol]) {
         WSTickerAPI(symbols: symbols, tickTypes: [TickType.MID]).excute { [weak self] result in
             guard let `self` = self else {return }
@@ -156,7 +155,7 @@ private extension RootViewController {
                         .first?
                         .updateBy(coin)
 
-                    self.coinListViewController.updateRow(with: coin.symbol?.orderCurrency)
+                    self.rootViewController.updateRow(with: coin.symbol?.orderCurrency)
                 }
             case .failure: () // There is nothing to do
             }
@@ -188,7 +187,7 @@ private extension RootViewController {
 }
 
 // MARK: - sorting data
-private extension RootViewController {
+private extension MarketViewController {
     private func sortBy(key: CoinSortingKey, arrow: SortDirection) {
         let coins: [HTTPCoin]
 
@@ -207,7 +206,7 @@ private extension RootViewController {
             }
         }
 
-        coinListViewController.configure(items: coins)
+        rootViewController.configure(items: coins)
         stopManaging()
         restartManaging()
     }

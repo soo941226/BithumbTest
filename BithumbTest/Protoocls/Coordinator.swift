@@ -13,6 +13,6 @@ import UIKit
 
     init(navigationController: UINavigationController)
 
-    func start()
+    @objc optional func start()
     @objc optional func next()
 }

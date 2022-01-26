@@ -23,6 +23,10 @@ final class CoinListViewController: UIViewController {
         
         coinListDelegate.dataManager?.restartManaging()
     }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        coinListDelegate.dataManager?.stopManaging()
+    }
 }
 
 // MARK: - Facade

@@ -15,13 +15,21 @@ final class MarketCoordinator: Coordinator {
         self.navigationController = navigationController
     }
 
-    func start() {
-        let marketViewController = RootViewController()
-        navigationController.pushViewController(marketViewController, animated: false)
+    lazy var marketViewController: UINavigationController = {
+        let marketViewController = MarketViewController()
+        marketViewController.navigationBar.isHidden = true
         marketViewController.coordinator = self
+        return marketViewController
+    }()
+
+    func show(with symbol: Symbol?) {
+        let coinDetailViewController = CoinDetailViewController()
+        coinDetailViewController.coordinator = self
+        marketViewController.navigationBar.isHidden = false
+        marketViewController.pushViewController(coinDetailViewController, animated: true)
     }
 
-    func show(with symbol: Symbol) {
-
+    func pop() {
+        marketViewController.navigationBar.isHidden = true
     }
 }
