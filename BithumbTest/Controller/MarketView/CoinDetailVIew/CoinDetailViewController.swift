@@ -12,7 +12,6 @@ final class CoinDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .cyan
     }
 
     override func viewWillDisappear(_ animated: Bool) {

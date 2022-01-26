@@ -193,8 +193,8 @@
 				637053A12799C6CE008145C2 /* Extension */,
 				63BD9B3F2795973F0029CD96 /* Protoocls */,
 				63088FA627953AE400606AAE /* Domain */,
+				63CBCA7E27A15268008AEDAE /* CoreData */,
 				63088F9C27952C9500606AAE /* Network */,
-				6307D311279525FE005EC2EF /* Model */,
 				635474D527A03AD800A90057 /* Coordinator */,
 				6307D310279525F5005EC2EF /* Controller */,
 				637053992799C6A9008145C2 /* View */,
@@ -253,7 +253,6 @@
 		6307D311279525FE005EC2EF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6307D2E427952533005EC2EF /* BithumbTest.xcdatamodeld */,
 				63088FA427953AE200606AAE /* WSTransactionAPI.swift */,
 				63BD9B3D279596C80029CD96 /* WSTickerAPI.swift */,
 				63CEEC722796E86600ABB208 /* HTTPTickerAllAPI.swift */,
@@ -269,6 +268,7 @@
 				63088FB527956EBE00606AAE /* APIError.swift */,
 				63088F9E27952CB000606AAE /* WebsocketManager.swift */,
 				6339E9F92796D6CE00238233 /* HTTPManager.swift */,
+				6307D311279525FE005EC2EF /* Model */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -397,6 +397,14 @@
 				63CBCA7A27A11A5D008AEDAE /* CoinDetailViewController.swift */,
 			);
 			path = CoinDetailVIew;
+			sourceTree = "<group>";
+		};
+		63CBCA7E27A15268008AEDAE /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				6307D2E427952533005EC2EF /* BithumbTest.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		98783EA1B25C966B685E677B /* Frameworks */ = {
