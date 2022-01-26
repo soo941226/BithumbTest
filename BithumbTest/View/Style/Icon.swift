@@ -8,6 +8,6 @@
 import CoreGraphics
 
 enum IconConfiguration {
-    static let maximumWidth: CGFloat = 12.0
-    static let maximumHeight: CGFloat = 15.0
+    static let maximumWidth: CGFloat = 10.0
+    static let maximumHeight: CGFloat = 12.0
 }
