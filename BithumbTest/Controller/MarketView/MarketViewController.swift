@@ -35,8 +35,8 @@ final class MarketViewController: UINavigationController {
 
 // MARK: - Facade
 extension MarketViewController {
-    func showDetailViewController(with symbol: Symbol) {
-        coordinator?.show(with: symbol)
+    func showDetailViewController(with coin: HTTPCoin) {
+        coordinator?.show(with: coin)
     }
 }
 
@@ -119,7 +119,7 @@ private extension MarketViewController {
 extension MarketViewController: DataManager {
     func showDetail(with indexPath: IndexPath) {
         let coin = sourceOfTruth[indexPath.row]
-        coordinator?.show(with: coin.symbol)
+        coordinator?.show(with: coin)
     }
 
     func stopManaging() {
@@ -164,6 +164,8 @@ private extension MarketViewController {
 
     func requestCoins() {
         HTTPTickerAllAPI(with: paymentCurrency).excute { [weak self] result in
+            guard let `self` = self else { return }
+
             switch result {
             case .success(let response):
                 var coins = [HTTPCoin]()
@@ -172,13 +174,13 @@ private extension MarketViewController {
                     guard let value = response.data[key] else { continue }
                     guard case .coin(let coin) = value else { continue }
 
-                    coin.updateSymbol(with: key)
+                    coin.updateSymbol(with: Symbol(orderCurrency: key, paymentCurrency: self.paymentCurrency))
                     coins.append(coin)
                 }
 
-                self?.sourceOfTruth = coins
-                self?.sourceOfTruth = self?.sortByCurrentTradedVolumne(arrow: .descending) ?? coins
-                self?.sortBy(key: .tradedVolume, arrow: .none)
+                self.sourceOfTruth = coins
+                self.sourceOfTruth = self.sortByCurrentTradedVolumne(arrow: .descending)
+                self.sortBy(key: .tradedVolume, arrow: .none)
             case .failure:
                 print("HTTPTickerAllAPI X")
             }

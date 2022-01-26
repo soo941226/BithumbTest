@@ -8,7 +8,7 @@
 import UIKit
 
 final class CoinListViewDataSource: NSObject, UITableViewDataSource {
-    private(set) var items = [HTTPCoin]()
+    private var items = [HTTPCoin]()
 
     subscript(_ indexPath: IndexPath) -> HTTPCoin {
         return items[indexPath.row]

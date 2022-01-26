@@ -22,11 +22,12 @@ final class MarketCoordinator: Coordinator {
         return marketViewController
     }()
 
-    func show(with symbol: Symbol?) {
+    func show(with coin: HTTPCoin?) {
         let coinDetailViewController = CoinDetailViewController()
         coinDetailViewController.coordinator = self
         marketViewController.navigationBar.isHidden = false
         marketViewController.pushViewController(coinDetailViewController, animated: true)
+        coinDetailViewController.configure(with: coin)
     }
 
     func pop() {
