@@ -30,3 +30,8 @@
 * HTTPCoin와 WSCoin이 잘 매칭이 되도록 수정
 * 코인리스트에서 WS을 활용하여 셀의 내용이 갱신이 되도록 수정
 * Coordinator 패턴을 적용해보기 위해서 공부 및 테스트
+
+### Day10
+* Coordinator 관련 조정
+* Orderbook 요청을 위한 도메인 모델 추가 및 HTTP 모델 추가
+* 코인 상세페이지 관련 뷰 및 뷰컨 추가 중...
