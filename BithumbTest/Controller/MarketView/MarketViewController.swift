@@ -157,7 +157,8 @@ private extension MarketViewController {
 
                     self.rootViewController.updateRow(with: coin.symbol?.orderCurrency)
                 }
-            case .failure: () // There is nothing to do
+            case .failure:
+                return // nothing to do
             }
         }
     }
@@ -182,7 +183,8 @@ private extension MarketViewController {
                 self.sourceOfTruth = self.sortByCurrentTradedVolumne(arrow: .descending)
                 self.sortBy(key: .tradedVolume, arrow: .none)
             case .failure:
-                print("HTTPTickerAllAPI X")
+                // TODO: show alert
+                return
             }
         }
     }
