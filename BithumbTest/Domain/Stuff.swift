@@ -8,6 +8,32 @@
 import Foundation
 
 struct Stuff: Decodable {
-    let quantity: String
-    let price: String
+    let quantity: Double
+    let price: Double
+
+    init(from decoder: Decoder) throws {
+        do {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            let quantity = try container.decode(String.self, forKey: .quantity)
+            let price = try container.decode(String.self, forKey: .price)
+
+            if let quantity = Double(quantity),
+               let price = Double(price) {
+                self.quantity = quantity
+                self.price = price
+            } else {
+                throw DecodingError.valueNotFound(Stuff.self, .init(
+                    codingPath: [CodingKeys.price, CodingKeys.quantity],
+                    debugDescription: "Data is not vaild",
+                    underlyingError: APIError.invalidData)
+                )
+            }
+        } catch {
+            throw error
+        }
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case quantity, price
+    }
 }
