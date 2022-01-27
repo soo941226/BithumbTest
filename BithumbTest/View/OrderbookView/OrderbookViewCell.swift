@@ -35,8 +35,14 @@ final class OrderbookViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpLabels()
+        setUpSubviews()
     }
 
+    override func layoutMarginsDidChange() {
+        super.layoutMarginsDidChange()
+
+        layoutContents()
+    }
 }
 
 // MARK: - Facade
@@ -46,8 +52,8 @@ extension OrderbookViewCell {
     }
 
     func configure(with stuff: Stuff) {
-        priceLabel.text = stuff.price
-        quantityLabel.text = stuff.quantity
+        priceLabel.text = stuff.price.description
+        quantityLabel.text = stuff.quantity.description
     }
 }
 
@@ -68,20 +74,28 @@ private extension OrderbookViewCell {
         innerStackView.axis = .vertical
         innerStackView.distribution = .equalSpacing
         innerStackView.spacing = .zero
-        innerStackView.alignment = .center
-
-        contentView.addSubview(innerStackView)
-        contentView.addSubview(quantityLabel)
+        innerStackView.alignment = .leading
     }
 
     func layoutContents() {
-        innerStackView.constraints.forEach { constraint in
-            innerStackView.removeConstraint(constraint)
+        contentView.subviews.forEach { subview in
+            subview.removeFromSuperview()
         }
 
         if visualState == .merged {
-            NSLayoutConstraint.activate([
+            let outerStackView = UIStackView(arrangedSubviews: [innerStackView, quantityLabel])
+            outerStackView.axis = .horizontal
+            outerStackView.distribution = .equalCentering
+            outerStackView.alignment = .center
 
+            contentView.addSubview(outerStackView)
+
+            outerStackView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                outerStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+                outerStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+                outerStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+                outerStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
             ])
         }
     }
