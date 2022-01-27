@@ -39,7 +39,7 @@
 		6370539F2799C6A9008145C2 /* CoinListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6370539C2799C6A9008145C2 /* CoinListViewCell.swift */; };
 		637053A02799C6A9008145C2 /* CoinListViewSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6370539D2799C6A9008145C2 /* CoinListViewSortButton.swift */; };
 		637053A32799C6CE008145C2 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637053A22799C6CE008145C2 /* UIColor.swift */; };
-		637053A82799D1B4008145C2 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637053A72799D1B4008145C2 /* Icon.swift */; };
+		637053A82799D1B4008145C2 /* IconConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637053A72799D1B4008145C2 /* IconConfiguration.swift */; };
 		6383E995279AD4B200679771 /* SortDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6383E994279AD4B200679771 /* SortDirection.swift */; };
 		6383E999279ADC5400679771 /* CoinSortingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6383E998279ADC5400679771 /* CoinSortingKey.swift */; };
 		63A0D0812797D68C006B4EA8 /* CoinListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A0D0802797D68C006B4EA8 /* CoinListViewController.swift */; };
@@ -124,7 +124,7 @@
 		6370539C2799C6A9008145C2 /* CoinListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinListViewCell.swift; sourceTree = "<group>"; };
 		6370539D2799C6A9008145C2 /* CoinListViewSortButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinListViewSortButton.swift; sourceTree = "<group>"; };
 		637053A22799C6CE008145C2 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
-		637053A72799D1B4008145C2 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		637053A72799D1B4008145C2 /* IconConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconConfiguration.swift; sourceTree = "<group>"; };
 		6383E994279AD4B200679771 /* SortDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortDirection.swift; sourceTree = "<group>"; };
 		6383E998279ADC5400679771 /* CoinSortingKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSortingKey.swift; sourceTree = "<group>"; };
 		63A0D0802797D68C006B4EA8 /* CoinListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewController.swift; sourceTree = "<group>"; };
@@ -350,7 +350,7 @@
 			isa = PBXGroup;
 			children = (
 				637053A22799C6CE008145C2 /* UIColor.swift */,
-				637053A72799D1B4008145C2 /* Icon.swift */,
+				637053A72799D1B4008145C2 /* IconConfiguration.swift */,
 				63F0444A27A180CC0076DD0F /* TextStyle.swift */,
 				63F0445027A189CF0076DD0F /* StackViewStyle.swift */,
 			);
@@ -716,7 +716,7 @@
 				63D803F02797BAE900A3858D /* HTTPTickerAPI.swift in Sources */,
 				63CEEC772796E91E00ABB208 /* HTTPCoin.swift in Sources */,
 				63088FB2279544FE00606AAE /* Symbol.swift in Sources */,
-				637053A82799D1B4008145C2 /* Icon.swift in Sources */,
+				637053A82799D1B4008145C2 /* IconConfiguration.swift in Sources */,
 				6370539E2799C6A9008145C2 /* CoinListViewHeader.swift in Sources */,
 				63088FB0279541B600606AAE /* SocketMessageType.swift in Sources */,
 				63CEEC752796E88500ABB208 /* HTTPRequestable.swift in Sources */,
