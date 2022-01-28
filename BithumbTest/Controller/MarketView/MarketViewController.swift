@@ -133,7 +133,7 @@ extension MarketViewController: DataManager {
             let symbols: [Symbol] = cells.compactMap {
                 guard let symbol = $0.symbol else { return nil }
 
-                return Symbol(orderCurrency: symbol, paymentCurrency: self.paymentCurrency)
+                return symbol
             }
 
             self.requestCoinsContinuoussly(with: symbols)
@@ -151,11 +151,11 @@ private extension MarketViewController {
             case .success(let coin):
                 DispatchQueue.main.async {
                     self.sourceOfTruth
-                        .filter { $0.symbol == coin.symbol?.orderCurrency }
+                        .filter { $0.symbol == coin.symbol }
                         .first?
                         .updateBy(coin)
 
-                    self.rootViewController.updateRow(with: coin.symbol?.orderCurrency)
+                    self.rootViewController.updateRow(with: coin.symbol)
                 }
             case .failure:
                 return // nothing to do

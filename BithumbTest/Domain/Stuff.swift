@@ -11,6 +11,12 @@ struct Stuff: Decodable {
     let quantity: Double
     let price: Double
 
+    enum CodingKeys: String, CodingKey {
+        case quantity, price
+    }
+}
+
+extension Stuff {
     init(from decoder: Decoder) throws {
         do {
             let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -31,9 +37,5 @@ struct Stuff: Decodable {
         } catch {
             throw error
         }
-    }
-
-    enum CodingKeys: String, CodingKey {
-        case quantity, price
     }
 }

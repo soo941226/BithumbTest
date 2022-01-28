@@ -38,17 +38,18 @@ struct WSTickerAPI: WSRequestable {
             let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
 
             if let type = json?["type"] as? String,
-               type == SocketMessageType.ticker.rawValue {
-                guard let content = json?["content"] as? [String: Any],
-                      let coin = WSCoin(origin: content) else {
-                    completionHandler(.failure(APIError.invalidData))
-                    return
-                }
-                
-                completionHandler(.success(coin))
-            } else {
+               type != SocketMessageType.ticker.rawValue {
                 completionHandler(.failure(APIError.unwantedResponse))
+                return
             }
+            
+            guard let content = json?["content"] as? [String: Any],
+                  let coin = WSCoin(origin: content) else {
+                      completionHandler(.failure(APIError.invalidData))
+                      return
+                  }
+
+            completionHandler(.success(coin))
 
         } catch {
             completionHandler(.failure(error))

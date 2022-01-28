@@ -40,19 +40,20 @@ struct WSTransactionAPI: WSRequestable {
             let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
 
             if let type = json?["type"] as? String,
-               type == SocketMessageType.transaction.rawValue {
-                guard let content = json?["content"] as? [String: Any],
-                      let list = content["list"] as? [[String: Any]] else {
-                          completionHandler(.failure(APIError.invalidData))
-                          return
-                      }
-                let histories = list.compactMap { (dictionary: [String: Any]) in
-                    return WSTransactionHistory(origin: dictionary)
-                }
-                print(histories)
-            } else {
+               type != SocketMessageType.transaction.rawValue {
                 completionHandler(.failure(APIError.unwantedResponse))
+                return
             }
+            guard let content = json?["content"] as? [String: Any],
+                  let list = content["list"] as? [[String: Any]] else {
+                      completionHandler(.failure(APIError.invalidData))
+                      return
+                  }
+            let histories = list.compactMap { (dictionary: [String: Any]) in
+                return WSTransactionHistory(origin: dictionary)
+            }
+
+            completionHandler(.success(histories))
         } catch {
             completionHandler(.failure(error))
         }
