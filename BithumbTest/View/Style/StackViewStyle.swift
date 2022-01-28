@@ -8,7 +8,6 @@
 import CoreGraphics
 
 enum StackViewStyle {
-    static let buttonSpacing: CGFloat = 3.0
     case merged
     case leadingDecor
     case trailingDecor

@@ -36,6 +36,15 @@ final class CoinDetailHeader: UIView {
         setUpLabels()
         setUpBasicLayout()
     }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        setNeedsUpdateConstraints()
+//
+//        [changedRateLabel, changedPriceLabel, headlineLabel].forEach { label in
+//            sizeToFit()
+//        }
+    }
 }
 
 // MARK: - Facade
@@ -62,6 +71,7 @@ private extension CoinDetailHeader {
 
         for label in targetLabels {
             label.adjustsFontSizeToFitWidth = true
+            label.adjustsFontForContentSizeCategory = true
             label.textAlignment = .justified
         }
     }
@@ -71,7 +81,7 @@ private extension CoinDetailHeader {
         innerStackView.axis = .horizontal
         innerStackView.distribution = .fillProportionally
         innerStackView.alignment = .fill
-        innerStackView.spacing = TextStyle.basicSpacing
+        innerStackView.spacing = Spacing.betweenTexts
 
         let outerStackView = UIStackView(arrangedSubviews: [headlineLabel, innerStackView])
         outerStackView.axis = .vertical

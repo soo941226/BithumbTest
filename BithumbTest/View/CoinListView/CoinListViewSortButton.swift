@@ -102,16 +102,16 @@ private extension CoinListViewSortButton {
         arrows.down.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             arrows.up.widthAnchor.constraint(
-                lessThanOrEqualToConstant: IconConfiguration.maximumWidth
+                lessThanOrEqualToConstant: Width.iconMaximumWidth
             ),
             arrows.up.heightAnchor.constraint(
-                lessThanOrEqualToConstant: IconConfiguration.maximumHeight
+                lessThanOrEqualToConstant: Height.iconMaximumHeight
             ),
             arrows.down.widthAnchor.constraint(
-                lessThanOrEqualToConstant: IconConfiguration.maximumWidth
+                lessThanOrEqualToConstant: Width.iconMaximumWidth
             ),
             arrows.down.heightAnchor.constraint(
-                lessThanOrEqualToConstant: IconConfiguration.maximumHeight
+                lessThanOrEqualToConstant: Height.iconMaximumHeight
             )
         ])
     }

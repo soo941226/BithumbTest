@@ -16,11 +16,18 @@ final class OrderbookViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
+        setUpDataSource()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         request()
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        setUpDataSource()
     }
 }
 
@@ -50,6 +57,14 @@ private extension OrderbookViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
+
+    func setUpDataSource(){
+        if traitCollection.preferredContentSizeCategory.isAccessibilityCategory {
+            dataSource.setTitles()
+        } else {
+            dataSource.desetTitles()
+        }
+    }
 }
 
 // MARK: - API
@@ -65,13 +80,16 @@ private extension OrderbookViewController {
             switch result {
             case .success(let response):
                 guard let data = response.data else { return }
-                self.dataSource.configure(with: [data.bids, data.asks])
+                let asks = data.asks.sorted { $0.price > $1.price }
+                let bids = data.bids.sorted { $0.price > $1.price }
+                self.dataSource.configure(with: [asks, bids])
 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-            case . failure(let error):
-                print(error)
+            case .failure:
+                // TODO: Show alert
+                return
             }
         }
     }

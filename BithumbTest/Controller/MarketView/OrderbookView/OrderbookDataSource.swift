@@ -9,9 +9,14 @@ import UIKit
 
 final class OrderbookDataSource: NSObject, UITableViewDataSource {
     private var items = [[Stuff]]()
+    private var titles: [String]?
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return items.count
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return titles?[section] ?? nil
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -33,6 +38,14 @@ final class OrderbookDataSource: NSObject, UITableViewDataSource {
 
 // MARK: - Facade
 extension OrderbookDataSource {
+    func setTitles() {
+        titles = ["매도", "매수"]
+    }
+
+    func desetTitles() {
+        titles = nil
+    }
+
     func configure(with items: [[Stuff]]) {
         self.items = items
     }

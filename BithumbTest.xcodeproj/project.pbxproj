@@ -39,13 +39,15 @@
 		6370539F2799C6A9008145C2 /* CoinListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6370539C2799C6A9008145C2 /* CoinListViewCell.swift */; };
 		637053A02799C6A9008145C2 /* CoinListViewSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6370539D2799C6A9008145C2 /* CoinListViewSortButton.swift */; };
 		637053A32799C6CE008145C2 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637053A22799C6CE008145C2 /* UIColor.swift */; };
-		637053A82799D1B4008145C2 /* IconConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637053A72799D1B4008145C2 /* IconConfiguration.swift */; };
 		6383E995279AD4B200679771 /* SortDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6383E994279AD4B200679771 /* SortDirection.swift */; };
 		6383E999279ADC5400679771 /* CoinSortingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6383E998279ADC5400679771 /* CoinSortingKey.swift */; };
 		63A0D0812797D68C006B4EA8 /* CoinListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A0D0802797D68C006B4EA8 /* CoinListViewController.swift */; };
 		63BD9B3E279596C80029CD96 /* WSTickerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BD9B3D279596C80029CD96 /* WSTickerAPI.swift */; };
 		63BD9B412795974D0029CD96 /* WSRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BD9B402795974D0029CD96 /* WSRequestable.swift */; };
 		63BD9B452795A2250029CD96 /* TickType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BD9B442795A2250029CD96 /* TickType.swift */; };
+		63C8E26127A3B43300103713 /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C8E26027A3B43300103713 /* Spacing.swift */; };
+		63C8E26327A3B4E000103713 /* Width.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C8E26227A3B4E000103713 /* Width.swift */; };
+		63C8E26527A3B52C00103713 /* Height.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C8E26427A3B52C00103713 /* Height.swift */; };
 		63CBCA7B27A11A5D008AEDAE /* CoinDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCA7A27A11A5D008AEDAE /* CoinDetailViewController.swift */; };
 		63CEEC6F2796E1EC00ABB208 /* StatusRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CEEC6E2796E1EC00ABB208 /* StatusRepresentable.swift */; };
 		63CEEC732796E86600ABB208 /* HTTPTickerAllAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CEEC722796E86600ABB208 /* HTTPTickerAllAPI.swift */; };
@@ -60,7 +62,6 @@
 		63F0444527A175DB0076DD0F /* HTTPOrderbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F0444427A175DB0076DD0F /* HTTPOrderbook.swift */; };
 		63F0444727A176A80076DD0F /* Stuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F0444627A176A80076DD0F /* Stuff.swift */; };
 		63F0444927A17D4A0076DD0F /* HTTPOrderbookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F0444827A17D4A0076DD0F /* HTTPOrderbookAPI.swift */; };
-		63F0444B27A180CC0076DD0F /* TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F0444A27A180CC0076DD0F /* TextStyle.swift */; };
 		63F0444E27A1882D0076DD0F /* OrderbookViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F0444D27A1882D0076DD0F /* OrderbookViewCell.swift */; };
 		63F0445127A189CF0076DD0F /* StackViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F0445027A189CF0076DD0F /* StackViewStyle.swift */; };
 		63FF3FA227A04E060070EE31 /* MarketCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FF3FA127A04E060070EE31 /* MarketCoordinator.swift */; };
@@ -124,13 +125,15 @@
 		6370539C2799C6A9008145C2 /* CoinListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinListViewCell.swift; sourceTree = "<group>"; };
 		6370539D2799C6A9008145C2 /* CoinListViewSortButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinListViewSortButton.swift; sourceTree = "<group>"; };
 		637053A22799C6CE008145C2 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
-		637053A72799D1B4008145C2 /* IconConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconConfiguration.swift; sourceTree = "<group>"; };
 		6383E994279AD4B200679771 /* SortDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortDirection.swift; sourceTree = "<group>"; };
 		6383E998279ADC5400679771 /* CoinSortingKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSortingKey.swift; sourceTree = "<group>"; };
 		63A0D0802797D68C006B4EA8 /* CoinListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewController.swift; sourceTree = "<group>"; };
 		63BD9B3D279596C80029CD96 /* WSTickerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSTickerAPI.swift; sourceTree = "<group>"; };
 		63BD9B402795974D0029CD96 /* WSRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSRequestable.swift; sourceTree = "<group>"; };
 		63BD9B442795A2250029CD96 /* TickType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickType.swift; sourceTree = "<group>"; };
+		63C8E26027A3B43300103713 /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
+		63C8E26227A3B4E000103713 /* Width.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Width.swift; sourceTree = "<group>"; };
+		63C8E26427A3B52C00103713 /* Height.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Height.swift; sourceTree = "<group>"; };
 		63CBCA7A27A11A5D008AEDAE /* CoinDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailViewController.swift; sourceTree = "<group>"; };
 		63CEEC6E2796E1EC00ABB208 /* StatusRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusRepresentable.swift; sourceTree = "<group>"; };
 		63CEEC722796E86600ABB208 /* HTTPTickerAllAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTickerAllAPI.swift; sourceTree = "<group>"; };
@@ -145,7 +148,6 @@
 		63F0444427A175DB0076DD0F /* HTTPOrderbook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPOrderbook.swift; sourceTree = "<group>"; };
 		63F0444627A176A80076DD0F /* Stuff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stuff.swift; sourceTree = "<group>"; };
 		63F0444827A17D4A0076DD0F /* HTTPOrderbookAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPOrderbookAPI.swift; sourceTree = "<group>"; };
-		63F0444A27A180CC0076DD0F /* TextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyle.swift; sourceTree = "<group>"; };
 		63F0444D27A1882D0076DD0F /* OrderbookViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderbookViewCell.swift; sourceTree = "<group>"; };
 		63F0445027A189CF0076DD0F /* StackViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewStyle.swift; sourceTree = "<group>"; };
 		63FF3FA127A04E060070EE31 /* MarketCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketCoordinator.swift; sourceTree = "<group>"; };
@@ -350,9 +352,10 @@
 			isa = PBXGroup;
 			children = (
 				637053A22799C6CE008145C2 /* UIColor.swift */,
-				637053A72799D1B4008145C2 /* IconConfiguration.swift */,
-				63F0444A27A180CC0076DD0F /* TextStyle.swift */,
 				63F0445027A189CF0076DD0F /* StackViewStyle.swift */,
+				63C8E26027A3B43300103713 /* Spacing.swift */,
+				63C8E26227A3B4E000103713 /* Width.swift */,
+				63C8E26427A3B52C00103713 /* Height.swift */,
 			);
 			path = Style;
 			sourceTree = "<group>";
@@ -705,6 +708,7 @@
 				63CBCA7B27A11A5D008AEDAE /* CoinDetailViewController.swift in Sources */,
 				63F0444E27A1882D0076DD0F /* OrderbookViewCell.swift in Sources */,
 				63088FAC2795400200606AAE /* PaymentCurrency.swift in Sources */,
+				63C8E26327A3B4E000103713 /* Width.swift in Sources */,
 				6330ABB72798320200860B05 /* CoinListViewDataSource.swift in Sources */,
 				6307D2E027952533005EC2EF /* MarketViewController.swift in Sources */,
 				63F0444727A176A80076DD0F /* Stuff.swift in Sources */,
@@ -716,19 +720,18 @@
 				63D803F02797BAE900A3858D /* HTTPTickerAPI.swift in Sources */,
 				63CEEC772796E91E00ABB208 /* HTTPCoin.swift in Sources */,
 				63088FB2279544FE00606AAE /* Symbol.swift in Sources */,
-				637053A82799D1B4008145C2 /* IconConfiguration.swift in Sources */,
 				6370539E2799C6A9008145C2 /* CoinListViewHeader.swift in Sources */,
 				63088FB0279541B600606AAE /* SocketMessageType.swift in Sources */,
 				63CEEC752796E88500ABB208 /* HTTPRequestable.swift in Sources */,
 				63BD9B452795A2250029CD96 /* TickType.swift in Sources */,
 				63BD9B3E279596C80029CD96 /* WSTickerAPI.swift in Sources */,
 				63088FBB27957E5600606AAE /* WSTransactionHistory.swift in Sources */,
-				63F0444B27A180CC0076DD0F /* TextStyle.swift in Sources */,
 				63FF3FA227A04E060070EE31 /* MarketCoordinator.swift in Sources */,
 				63F0444127A171A60076DD0F /* OrderbookDataSource.swift in Sources */,
 				6383E995279AD4B200679771 /* SortDirection.swift in Sources */,
 				63F0444327A172290076DD0F /* OrderbookDelegate.swift in Sources */,
 				63BD9B412795974D0029CD96 /* WSRequestable.swift in Sources */,
+				63C8E26527A3B52C00103713 /* Height.swift in Sources */,
 				6307D2DC27952533005EC2EF /* AppDelegate.swift in Sources */,
 				63088FAA27953F4700606AAE /* OrderCurrency.swift in Sources */,
 				6383E999279ADC5400679771 /* CoinSortingKey.swift in Sources */,
@@ -744,6 +747,7 @@
 				636198AE279EF920001E0C8E /* DataManager.swift in Sources */,
 				63088FA827953AE900606AAE /* WSCoin.swift in Sources */,
 				63F0444527A175DB0076DD0F /* HTTPOrderbook.swift in Sources */,
+				63C8E26127A3B43300103713 /* Spacing.swift in Sources */,
 				6307D2E627952533005EC2EF /* BithumbTest.xcdatamodeld in Sources */,
 				63088FB627956EBE00606AAE /* APIError.swift in Sources */,
 			);

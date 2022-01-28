@@ -36,6 +36,7 @@ final class OrderbookViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpLabels()
         setUpSubviews()
+
     }
 
     override func layoutMarginsDidChange() {
@@ -53,7 +54,7 @@ extension OrderbookViewCell {
 
     func configure(with stuff: Stuff) {
         priceLabel.text = stuff.price.description
-        quantityLabel.text = stuff.quantity.description
+        quantityLabel.text = String(format: "%.3f", stuff.quantity)
     }
 }
 
@@ -86,16 +87,31 @@ private extension OrderbookViewCell {
             let outerStackView = UIStackView(arrangedSubviews: [innerStackView, quantityLabel])
             outerStackView.axis = .horizontal
             outerStackView.distribution = .equalCentering
-            outerStackView.alignment = .center
+            outerStackView.alignment = .fill
+            outerStackView.spacing = Spacing.betweenTexts
+
+            innerStackView.setContentCompressionResistancePriority(.required, for: .horizontal)
 
             contentView.addSubview(outerStackView)
 
             outerStackView.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
-                outerStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-                outerStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-                outerStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-                outerStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+                outerStackView.topAnchor.constraint(
+                    equalTo: contentView.topAnchor,
+                    constant: Spacing.verticalInsetOfCell
+                ),
+                outerStackView.bottomAnchor.constraint(
+                    equalTo: contentView.bottomAnchor,
+                    constant: -Spacing.verticalInsetOfCell
+                ),
+                outerStackView.leadingAnchor.constraint(
+                    equalTo: contentView.leadingAnchor,
+                    constant: Spacing.horizontalInsetOfCell
+                ),
+                outerStackView.trailingAnchor.constraint(
+                    equalTo: contentView.trailingAnchor,
+                    constant: -Spacing.horizontalInsetOfCell
+                )
             ])
         }
     }

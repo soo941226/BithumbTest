@@ -41,7 +41,7 @@ final class CoinDetailViewController: UIViewController {
                 targetView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
                 targetView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
                 targetView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-                targetView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor)
+                targetView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
             ])
         }
     }
