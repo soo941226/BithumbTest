@@ -1,5 +1,5 @@
 //
-//  HTTPTickerAllRequester.swift
+//  HTTPTickerAllAPI.swift
 //  BithumbTest
 //
 //  Created by kjs on 2022/01/18.

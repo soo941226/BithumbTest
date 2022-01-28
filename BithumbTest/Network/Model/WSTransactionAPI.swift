@@ -1,5 +1,5 @@
 //
-//  WSTransactionRequester.swift
+//  WSTransactionAPI.swift
 //  BithumbTest
 //
 //  Created by kjs on 2022/01/17.
