@@ -51,6 +51,7 @@ final class CoinListViewHeader: UITableViewHeaderFooterView {
     }
 
     override func layoutMarginsDidChange() {
+        super.layoutMarginsDidChange()
         layoutContents()
     }
     

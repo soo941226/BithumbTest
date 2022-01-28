@@ -120,13 +120,14 @@ private extension CoinListViewCell {
             label.font = .preferredFont(forTextStyle: .footnote)
             label.textAlignment = .justified
             label.adjustsFontSizeToFitWidth = true
+            label.adjustsFontForContentSizeCategory = true
             label.layer.borderColor = UIColor.lightGray.cgColor
             label.isAccessibilityElement = false
         }
     }
 
     func setUpBookmarkButton() {
-        bookmarkButton.setContentHuggingPriority(.required, for: .horizontal)
+        bookmarkButton.setContentCompressionResistancePriority(.required, for: .horizontal)
         bookmarkButton.addTarget(self, action: #selector(onTap), for: .touchUpInside)
     }
 
