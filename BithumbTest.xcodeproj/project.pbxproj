@@ -48,6 +48,8 @@
 		63C8E26127A3B43300103713 /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C8E26027A3B43300103713 /* Spacing.swift */; };
 		63C8E26327A3B4E000103713 /* Width.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C8E26227A3B4E000103713 /* Width.swift */; };
 		63C8E26527A3B52C00103713 /* Height.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C8E26427A3B52C00103713 /* Height.swift */; };
+		63C8E26727A3BBCC00103713 /* WSOrderbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C8E26627A3BBCC00103713 /* WSOrderbook.swift */; };
+		63C8E26927A3BCA500103713 /* WSOrderbookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C8E26827A3BCA500103713 /* WSOrderbookAPI.swift */; };
 		63CBCA7B27A11A5D008AEDAE /* CoinDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CBCA7A27A11A5D008AEDAE /* CoinDetailViewController.swift */; };
 		63CEEC6F2796E1EC00ABB208 /* StatusRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CEEC6E2796E1EC00ABB208 /* StatusRepresentable.swift */; };
 		63CEEC732796E86600ABB208 /* HTTPTickerAllAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CEEC722796E86600ABB208 /* HTTPTickerAllAPI.swift */; };
@@ -134,6 +136,8 @@
 		63C8E26027A3B43300103713 /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		63C8E26227A3B4E000103713 /* Width.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Width.swift; sourceTree = "<group>"; };
 		63C8E26427A3B52C00103713 /* Height.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Height.swift; sourceTree = "<group>"; };
+		63C8E26627A3BBCC00103713 /* WSOrderbook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSOrderbook.swift; sourceTree = "<group>"; };
+		63C8E26827A3BCA500103713 /* WSOrderbookAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSOrderbookAPI.swift; sourceTree = "<group>"; };
 		63CBCA7A27A11A5D008AEDAE /* CoinDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailViewController.swift; sourceTree = "<group>"; };
 		63CEEC6E2796E1EC00ABB208 /* StatusRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusRepresentable.swift; sourceTree = "<group>"; };
 		63CEEC722796E86600ABB208 /* HTTPTickerAllAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTickerAllAPI.swift; sourceTree = "<group>"; };
@@ -276,6 +280,7 @@
 			children = (
 				63088FA427953AE200606AAE /* WSTransactionAPI.swift */,
 				63BD9B3D279596C80029CD96 /* WSTickerAPI.swift */,
+				63C8E26827A3BCA500103713 /* WSOrderbookAPI.swift */,
 				63CEEC722796E86600ABB208 /* HTTPTickerAllAPI.swift */,
 				63D803EF2797BAE900A3858D /* HTTPTickerAPI.swift */,
 				63F0444827A17D4A0076DD0F /* HTTPOrderbookAPI.swift */,
@@ -396,6 +401,7 @@
 			isa = PBXGroup;
 			children = (
 				63088FA727953AE900606AAE /* WSCoin.swift */,
+				63C8E26627A3BBCC00103713 /* WSOrderbook.swift */,
 				63088FBA27957E5600606AAE /* WSTransactionHistory.swift */,
 				63CEEC762796E91E00ABB208 /* HTTPCoin.swift */,
 				63F0444427A175DB0076DD0F /* HTTPOrderbook.swift */,
@@ -726,11 +732,13 @@
 				63BD9B452795A2250029CD96 /* TickType.swift in Sources */,
 				63BD9B3E279596C80029CD96 /* WSTickerAPI.swift in Sources */,
 				63088FBB27957E5600606AAE /* WSTransactionHistory.swift in Sources */,
+				63C8E26927A3BCA500103713 /* WSOrderbookAPI.swift in Sources */,
 				63FF3FA227A04E060070EE31 /* MarketCoordinator.swift in Sources */,
 				63F0444127A171A60076DD0F /* OrderbookDataSource.swift in Sources */,
 				6383E995279AD4B200679771 /* SortDirection.swift in Sources */,
 				63F0444327A172290076DD0F /* OrderbookDelegate.swift in Sources */,
 				63BD9B412795974D0029CD96 /* WSRequestable.swift in Sources */,
+				63C8E26727A3BBCC00103713 /* WSOrderbook.swift in Sources */,
 				63C8E26527A3B52C00103713 /* Height.swift in Sources */,
 				6307D2DC27952533005EC2EF /* AppDelegate.swift in Sources */,
 				63088FAA27953F4700606AAE /* OrderCurrency.swift in Sources */,

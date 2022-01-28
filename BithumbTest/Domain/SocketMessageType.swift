@@ -7,7 +7,7 @@
 
 enum SocketMessageType: String, CustomStringConvertible, Encodable {
     case ticker
-    case orderbook
+    case orderbook = "orderbookdepth"
     case transaction
 
     var description: String {
