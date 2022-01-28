@@ -11,7 +11,7 @@ final class MarketViewController: UINavigationController {
     private let rootViewController = CoinListViewController()
 
     private var sourceOfTruth = [HTTPCoin]()
-    private var paymentCurrency = PaymentCurrency.KRW
+    private var paymentCurrency = Symbol.KRW
 
     weak var coordinator: MarketCoordinator?
 

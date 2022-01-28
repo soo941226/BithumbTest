@@ -74,10 +74,7 @@ private extension OrderbookViewController {
         WSOrderbookAPI(symbols: [symbol]).excute { result in
             switch result {
             case .success(let orderBooks):
-                print(orderBooks[0].symbol, orderBooks[0].orderType, orderBooks[0].stuff)
-//                DispatchQueue.main.async {
-////                    dataSource.
-//                }
+                print(orderBooks[0])
             case .failure:
                 return
             }
