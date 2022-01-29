@@ -32,18 +32,12 @@ final class CoinDetailHeader: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
         setUpLabels()
-        setUpBasicLayout()
     }
 
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        setNeedsUpdateConstraints()
-//
-//        [changedRateLabel, changedPriceLabel, headlineLabel].forEach { label in
-//            sizeToFit()
-//        }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setUpBasicLayout()
     }
 }
 

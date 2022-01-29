@@ -8,7 +8,8 @@
 import UIKit
 
 final class OrderbookDataSource: NSObject, UITableViewDataSource {
-    private var stuffs = [Stuff]()
+    private var asks = [WSOrderbook]()
+    private var bids = [WSOrderbook]()
     private var titles: [String]?
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -21,13 +22,9 @@ final class OrderbookDataSource: NSObject, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == OrderType.ask.section {
-            return stuffs.reduce(0) { partialResult, stuff in
-                partialResult + (stuff.quantity >= 0 ? 1 : 0)
-            }
+            return asks.count
         } else {
-            return stuffs.reduce(0) { partialResult, stuff in
-                partialResult + (stuff.quantity < 0 ? 0 : 1)
-            }
+            return bids.count
         }
     }
 
@@ -38,7 +35,11 @@ final class OrderbookDataSource: NSObject, UITableViewDataSource {
             return OrderbookViewCell()
         }
 
-        cell.configure(with: stuffs[indexPath.row])
+        if indexPath.section == OrderType.ask.section {
+            cell.configure(with: asks[indexPath.row].stuff)
+        } else {
+            cell.configure(with: bids[indexPath.row].stuff)
+        }
 
         return cell
     }
@@ -54,7 +55,17 @@ extension OrderbookDataSource {
         titles = nil
     }
 
-    func configure(with items: [Stuff]) {
-        self.stuffs = items
+    func configure(with items: [WSOrderbook]) {
+        var asks = [WSOrderbook]()
+        var bids = [WSOrderbook]()
+        items.forEach {
+            if $0.orderType == .ask {
+                asks.append($0)
+            } else if $0.orderType == .bid {
+                bids.append($0)
+            }
+        }
+        self.asks = asks
+        self.bids = bids
     }
 }

@@ -17,15 +17,40 @@ final class CoinDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        view.addSubview(headerView)
+        addSubViews()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        layoutSubviews()
+    }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        coordinator?.pop()
+    }
+}
+
+// MARK: - Facade
+extension CoinDetailViewController {
+    func configure(with coin: HTTPCoin?) {
+        headerView.headline = coin?.symbol
+        headerView.changedRate = coin?.dailyChangedRate
+        headerView.changedPrice = coin?.dailyChangedPrice
+
+        orderbookViewController.configure(with: coin?.symbol)
+    }
+}
+
+// MARK: - basic set up
+private extension CoinDetailViewController {
+    func addSubViews() {
+        view.addSubview(headerView)
         addChild(orderbookViewController)
         view.addSubview(orderbookViewController.view)
-        
+    }
+
+    func layoutSubviews() {
         let safeArea = view.safeAreaLayoutGuide
         headerView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -44,21 +69,5 @@ final class CoinDetailViewController: UIViewController {
                 targetView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
             ])
         }
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        coordinator?.pop()
-    }
-}
-
-// MARK: - Facade
-extension CoinDetailViewController {
-    func configure(with coin: HTTPCoin?) {
-        headerView.headline = coin?.symbol
-        headerView.changedRate = coin?.dailyChangedRate
-        headerView.changedPrice = coin?.dailyChangedPrice
-
-        orderbookViewController.configure(with: coin?.symbol)
     }
 }

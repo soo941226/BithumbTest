@@ -12,12 +12,11 @@ final class OrderbookViewController: UIViewController {
     private let dataSource = OrderbookDataSource()
     private let delegate = OrderbookDelegate()
     private var symbol: Symbol?
-    private var stuffs = [Stuff]()
+    private var sourceOfTruth = [WSOrderbook]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
-        setUpDataSource()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -27,8 +26,6 @@ final class OrderbookViewController: UIViewController {
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-
-        setUpDataSource()
     }
 }
 
@@ -42,12 +39,12 @@ extension OrderbookViewController {
 // MARK: - basic set up
 private extension OrderbookViewController {
     func setUpTableView() {
+        tableView.register(OrderbookViewCell.self, forCellReuseIdentifier: OrderbookViewCell.identifier)
+
         tableView.delegate = delegate
         tableView.dataSource = dataSource
 
         view.addSubview(tableView)
-
-        tableView.register(OrderbookViewCell.self, forCellReuseIdentifier: OrderbookViewCell.identifier)
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -58,20 +55,13 @@ private extension OrderbookViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
-
-    func setUpDataSource() {
-        if traitCollection.preferredContentSizeCategory.isAccessibilityCategory {
-            dataSource.setTitles()
-        } else {
-            dataSource.desetTitles()
-        }
-    }
 }
 
 // MARK: - API
 private extension OrderbookViewController {
     func requestOrderbooksContinuoussly() {
         guard let symbol = symbol else { return }
+
         WSOrderbookAPI(symbols: [symbol]).excute { [weak self] result in
             guard let `self` = self else { return }
             switch result {
@@ -111,12 +101,24 @@ private extension OrderbookViewController {
             }
         }
     }
+}
 
+// MARK: - managing datas
+extension OrderbookViewController {
     func sendToDataSource(_ data: HTTPOrderbook) {
-        let asks = data.asks.sorted { $0.price > $1.price }
-        let bids = data.bids.sorted { $0.price > $1.price }
-        stuffs = asks + bids
-        dataSource.configure(with: stuffs)
+        let asks = data.asks
+            .sorted { $0.price > $1.price }
+            .map { stuff in
+                WSOrderbook(symbol: symbol, orderType: .ask, stuff: stuff, total: nil)
+            }
+        let bids = data.bids
+            .sorted { $0.price > $1.price }
+            .map { stuff in
+                WSOrderbook(symbol: symbol, orderType: .bid, stuff: stuff, total: nil)
+            }
+
+        sourceOfTruth = asks + bids
+        dataSource.configure(with: sourceOfTruth)
         tableView.reloadData()
     }
 
@@ -124,59 +126,90 @@ private extension OrderbookViewController {
         DispatchQueue.main.async { [weak self] in
             guard let `self` = self else { return }
             for orderbook in orderbooks {
-                guard let stuff = orderbook.stuff,
-                      let orderType = orderbook.orderType else {
-                          continue
-                      }
-                let target = self.stuffs
-                let index = self.findIndex(with: stuff, from: .zero, to: target.count, within: target)
-
-                if index >= 0 {
-                    self.stuffs[index].quantity += stuff.quantity
-                }
+                self.updateSourceOfTruth(with: orderbook)
             }
-            self.dataSource.configure(with: self.stuffs)
+
+            self.dataSource.configure(with: self.sourceOfTruth)
             self.tableView.reloadData()
         }
     }
 
-    func findIndex(
-        with target: Stuff,
+    func updateSourceOfTruth(with orderbook: WSOrderbook) {
+        guard let stuff = orderbook.stuff,
+              let orderType = orderbook.orderType else {
+                  return
+              }
+
+        let (index, isInterupt) = findNearestIndex(
+            with: orderbook,
+            from: .zero,
+            to: sourceOfTruth.count,
+            within: sourceOfTruth
+        )
+
+        guard index >= 0 else { return }
+
+        if isInterupt {
+            self.sourceOfTruth.insert(orderbook, at: index)
+            if case .ask = orderbook.orderType {
+                sourceOfTruth.removeFirst()
+            } else {
+                sourceOfTruth.removeLast()
+            }
+        } else {
+            sourceOfTruth[index].update(with: orderType, and: stuff)
+
+            /*
+             TODO: - 도메인 이해 부족... 사후처리를 어떻게 할 것인지...
+                case 1. 최저 매도가보다 더 높은 가격이 더 많이 매수를 시도했다면?
+                case 2. 최대 매수가보다 더 낮은 가격에 더 많이 매도를 시도했다면?
+                정말로 그 가격에 사고 팔리는 것인지...
+                아니라면 위와 같은 경우 중간에 어정쩡하게 range에 속하는 애들은 최저가부터 차근차근 사라지는 것인지...
+             */
+        }
+    }
+
+    func findNearestIndex(
+        with target: WSOrderbook,
         from startIndex: Int,
         to endIndex: Int,
-        within array: [Stuff]
-    ) -> Int {
-        guard startIndex < array.count,
-              endIndex >= .zero,
-              startIndex < endIndex else {
-            return -1
-        }
-
-        if startIndex > endIndex {
-            let prev = abs(array[startIndex].price - target.price)
-            let next = abs(array[endIndex].price - target.price)
-
-            if prev > next {
-                return startIndex
-            } else {
-                return endIndex
-            }
+        within array: [WSOrderbook]
+    ) -> (index: Int, isInterupt: Bool) {
+        guard startIndex < array.count, endIndex >= .zero else {
+            return (-1, false)
         }
 
         let midIndex = (startIndex + endIndex) / 2
-        let middle = array[midIndex]
 
-        if target.price == middle.price {
-            return midIndex
-        } else if target.price < middle.price {
-            return findIndex(
+        guard let stuff = target.stuff,
+              let compareTarget = array[midIndex].stuff else {
+                  return (-1, false)
+              }
+
+        if  startIndex > endIndex,
+            let prevStuff = array[startIndex].stuff,
+            let nextStuff = array[endIndex].stuff {
+            let prev = abs(stuff.price - prevStuff.price)
+            let next = abs(stuff.price - nextStuff.price)
+
+            if prev > next {
+                return (startIndex, true)
+            } else {
+                return (endIndex, true)
+            }
+        }
+
+        if stuff.price == compareTarget.price {
+            return (midIndex, false)
+        } else if stuff.price < compareTarget.price {
+            return findNearestIndex(
                 with: target,
                 from: midIndex + 1,
                 to: endIndex,
                 within: array
             )
         } else {
-            return findIndex(
+            return findNearestIndex(
                 with: target,
                 from: startIndex,
                 to: midIndex - 1,
@@ -184,4 +217,5 @@ private extension OrderbookViewController {
             )
         }
     }
+
 }

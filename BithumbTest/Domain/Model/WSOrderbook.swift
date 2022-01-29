@@ -9,9 +9,17 @@ import Foundation
 
 final class WSOrderbook {
     let symbol: String?
-    let orderType: OrderType?
-    let stuff: Stuff?
-    let total: String?
+    private(set) var orderType: OrderType?
+    private(set) var stuff: Stuff?
+    private(set) var total: String?
+
+    func update(with orderType: OrderType, and stuff: Stuff) {
+        if self.orderType == orderType {
+            self.stuff?.quantity -= stuff.quantity
+        } else {
+            self.stuff?.quantity += stuff.quantity
+        }
+    }
 
     init(symbol: String?, orderType: OrderType?, stuff: Stuff?, total: String?) {
         self.symbol = symbol

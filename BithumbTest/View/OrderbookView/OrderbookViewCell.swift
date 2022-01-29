@@ -52,7 +52,8 @@ extension OrderbookViewCell {
         self.visualState = visualState
     }
 
-    func configure(with stuff: Stuff) {
+    func configure(with stuff: Stuff?) {
+        guard let stuff = stuff else { return }
         priceLabel.text = stuff.price.description
         quantityLabel.text = String(format: "%.3f", stuff.quantity)
     }
