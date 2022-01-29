@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private let indicator = UIActivityIndicatorView(style: .medium)
     private let rootCoordinator = RootCoordinator()
     var window: UIWindow?

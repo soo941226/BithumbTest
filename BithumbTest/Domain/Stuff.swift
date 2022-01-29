@@ -8,11 +8,11 @@
 import Foundation
 
 struct Stuff: Decodable {
-    let quantity: Double
     let price: Double
+    var quantity: Double
 
     enum CodingKeys: String, CodingKey {
-        case quantity, price
+        case price, quantity
     }
 }
 

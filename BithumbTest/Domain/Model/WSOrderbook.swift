@@ -7,11 +7,18 @@
 
 import Foundation
 
-class WSOrderbook {
+final class WSOrderbook {
     let symbol: String?
     let orderType: OrderType?
     let stuff: Stuff?
     let total: String?
+
+    init(symbol: String?, orderType: OrderType?, stuff: Stuff?, total: String?) {
+        self.symbol = symbol
+        self.orderType = orderType
+        self.stuff = stuff
+        self.total = total
+    }
 
     init?(origin: [String: Any]) {
         let dictionary: [String: String] = origin.compactMapValues { any in
@@ -30,13 +37,8 @@ class WSOrderbook {
 
         symbol = dictionary[CodingKeys.symbol.rawValue]
         orderType = OrderType(rawValue: dictionary[CodingKeys.orderType.rawValue]!)
-        stuff = Stuff(quantity: quantity, price: price)
+        stuff = Stuff(price: price, quantity: quantity)
         total = dictionary[CodingKeys.total.rawValue]
-    }
-
-    enum OrderType: String {
-        case bid
-        case ask
     }
 
     enum CodingKeys: String, CodingKey, CaseIterable {

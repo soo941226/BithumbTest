@@ -5,7 +5,7 @@
 //  Created by kjs on 2022/01/17.
 //
 
-class WSCoin {
+final class WSCoin {
     let symbol: Symbol?
     let tickType: TickType?
     let date: String?

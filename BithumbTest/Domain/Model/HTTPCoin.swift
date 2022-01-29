@@ -7,7 +7,7 @@
 
 import Foundation
 
-class HTTPCoin: Decodable {
+final class HTTPCoin: Decodable {
     private(set) var symbol: Symbol?
     private(set) var date: String?
     private(set) var isFavorite: Bool?

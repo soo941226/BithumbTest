@@ -5,7 +5,7 @@
 //  Created by kjs on 2022/01/17.
 //
 
-class WSTransactionHistory {
+final class WSTransactionHistory {
     let symbol: Symbol?
     let tradeType: TradeType?
     let capturedPrice: Double?

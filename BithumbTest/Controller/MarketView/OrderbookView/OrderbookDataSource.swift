@@ -8,11 +8,11 @@
 import UIKit
 
 final class OrderbookDataSource: NSObject, UITableViewDataSource {
-    private var items = [[Stuff]]()
+    private var stuffs = [Stuff]()
     private var titles: [String]?
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return items.count
+        return OrderType.allCases.count
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -20,7 +20,15 @@ final class OrderbookDataSource: NSObject, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items[section].count
+        if section == OrderType.ask.section {
+            return stuffs.reduce(0) { partialResult, stuff in
+                partialResult + (stuff.quantity >= 0 ? 1 : 0)
+            }
+        } else {
+            return stuffs.reduce(0) { partialResult, stuff in
+                partialResult + (stuff.quantity < 0 ? 0 : 1)
+            }
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -30,7 +38,7 @@ final class OrderbookDataSource: NSObject, UITableViewDataSource {
             return OrderbookViewCell()
         }
 
-        cell.configure(with: items[indexPath.section][indexPath.row])
+        cell.configure(with: stuffs[indexPath.row])
 
         return cell
     }
@@ -46,7 +54,7 @@ extension OrderbookDataSource {
         titles = nil
     }
 
-    func configure(with items: [[Stuff]]) {
-        self.items = items
+    func configure(with items: [Stuff]) {
+        self.stuffs = items
     }
 }

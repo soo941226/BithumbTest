@@ -5,7 +5,6 @@
 //  Created by kjs on 2022/01/28.
 //
 
-import Foundation
 import CoreGraphics
 
 enum Height {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class HTTPOrderbook: Decodable {
+final class HTTPOrderbook: Decodable {
     let timestamp: String
     let orderCurrency: String
     let paymentCurrency: String

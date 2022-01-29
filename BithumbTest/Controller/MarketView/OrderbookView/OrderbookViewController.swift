@@ -12,6 +12,7 @@ final class OrderbookViewController: UIViewController {
     private let dataSource = OrderbookDataSource()
     private let delegate = OrderbookDelegate()
     private var symbol: Symbol?
+    private var stuffs = [Stuff]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,10 +72,11 @@ private extension OrderbookViewController {
 private extension OrderbookViewController {
     func requestOrderbooksContinuoussly() {
         guard let symbol = symbol else { return }
-        WSOrderbookAPI(symbols: [symbol]).excute { result in
+        WSOrderbookAPI(symbols: [symbol]).excute { [weak self] result in
+            guard let `self` = self else { return }
             switch result {
             case .success(let orderBooks):
-                print(orderBooks[0])
+                self.updateDataSource(with: orderBooks)
             case .failure:
                 return
             }
@@ -92,12 +94,11 @@ private extension OrderbookViewController {
             switch result {
             case .success(let response):
                 guard let data = response.data else { return }
-                let asks = data.asks.sorted { $0.price > $1.price }
-                let bids = data.bids.sorted { $0.price > $1.price }
-                self.dataSource.configure(with: [asks, bids])
+
                 self.requestOrderbooksContinuoussly()
+
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
+                    self.sendToDataSource(data)
                     self.tableView.scrollToRow(
                         at: IndexPath(row: .zero, section: 1),
                         at: .middle,
@@ -108,6 +109,79 @@ private extension OrderbookViewController {
                 // TODO: Show alert
                 return
             }
+        }
+    }
+
+    func sendToDataSource(_ data: HTTPOrderbook) {
+        let asks = data.asks.sorted { $0.price > $1.price }
+        let bids = data.bids.sorted { $0.price > $1.price }
+        stuffs = asks + bids
+        dataSource.configure(with: stuffs)
+        tableView.reloadData()
+    }
+
+    func updateDataSource(with orderbooks: [WSOrderbook]) {
+        DispatchQueue.main.async { [weak self] in
+            guard let `self` = self else { return }
+            for orderbook in orderbooks {
+                guard let stuff = orderbook.stuff,
+                      let orderType = orderbook.orderType else {
+                          continue
+                      }
+                let target = self.stuffs
+                let index = self.findIndex(with: stuff, from: .zero, to: target.count, within: target)
+
+                if index >= 0 {
+                    self.stuffs[index].quantity += stuff.quantity
+                }
+            }
+            self.dataSource.configure(with: self.stuffs)
+            self.tableView.reloadData()
+        }
+    }
+
+    func findIndex(
+        with target: Stuff,
+        from startIndex: Int,
+        to endIndex: Int,
+        within array: [Stuff]
+    ) -> Int {
+        guard startIndex < array.count,
+              endIndex >= .zero,
+              startIndex < endIndex else {
+            return -1
+        }
+
+        if startIndex > endIndex {
+            let prev = abs(array[startIndex].price - target.price)
+            let next = abs(array[endIndex].price - target.price)
+
+            if prev > next {
+                return startIndex
+            } else {
+                return endIndex
+            }
+        }
+
+        let midIndex = (startIndex + endIndex) / 2
+        let middle = array[midIndex]
+
+        if target.price == middle.price {
+            return midIndex
+        } else if target.price < middle.price {
+            return findIndex(
+                with: target,
+                from: midIndex + 1,
+                to: endIndex,
+                within: array
+            )
+        } else {
+            return findIndex(
+                with: target,
+                from: startIndex,
+                to: midIndex - 1,
+                within: array
+            )
         }
     }
 }
