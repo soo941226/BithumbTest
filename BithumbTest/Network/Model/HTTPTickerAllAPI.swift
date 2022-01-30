@@ -10,7 +10,12 @@ import Foundation
 struct HTTPTickerAllResponse: StatusRepresentable {
     var status: String?
     var message: String?
-    var data: [String: Some]
+    var dictionary: [String: Some]
+
+    enum CodingKeys: String, CodingKey {
+        case status, message
+        case dictionary = "data"
+    }
 
     enum Some: Decodable {
         case coin(HTTPCoin)
@@ -28,7 +33,7 @@ struct HTTPTickerAllResponse: StatusRepresentable {
             }
 
             throw DecodingError.dataCorrupted(.init(
-                codingPath: [CodingKeys.data],
+                codingPath: [CodingKeys.dictionary],
                 debugDescription: "Server Error: Response is not vaild",
                 underlyingError: APIError.unwantedResponse
             ))

@@ -39,6 +39,8 @@
 		6383E995279AD4B200679771 /* SortDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6383E994279AD4B200679771 /* SortDirection.swift */; };
 		6383E999279ADC5400679771 /* CoinSortingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6383E998279ADC5400679771 /* CoinSortingKey.swift */; };
 		63A0D0812797D68C006B4EA8 /* CoinListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A0D0802797D68C006B4EA8 /* CoinListViewController.swift */; };
+		63B4349227A6C0A600DE1938 /* LinearChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B4349127A6C0A600DE1938 /* LinearChartView.swift */; };
+		63B4349427A6DF2A00DE1938 /* ChartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B4349327A6DF2A00DE1938 /* ChartController.swift */; };
 		63BD9B3E279596C80029CD96 /* WSTickerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BD9B3D279596C80029CD96 /* WSTickerAPI.swift */; };
 		63BD9B412795974D0029CD96 /* WSRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BD9B402795974D0029CD96 /* WSRequestable.swift */; };
 		63BD9B452795A2250029CD96 /* TickType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BD9B442795A2250029CD96 /* TickType.swift */; };
@@ -124,6 +126,8 @@
 		6383E994279AD4B200679771 /* SortDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortDirection.swift; sourceTree = "<group>"; };
 		6383E998279ADC5400679771 /* CoinSortingKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSortingKey.swift; sourceTree = "<group>"; };
 		63A0D0802797D68C006B4EA8 /* CoinListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewController.swift; sourceTree = "<group>"; };
+		63B4349127A6C0A600DE1938 /* LinearChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearChartView.swift; sourceTree = "<group>"; };
+		63B4349327A6DF2A00DE1938 /* ChartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartController.swift; sourceTree = "<group>"; };
 		63BD9B3D279596C80029CD96 /* WSTickerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSTickerAPI.swift; sourceTree = "<group>"; };
 		63BD9B402795974D0029CD96 /* WSRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSRequestable.swift; sourceTree = "<group>"; };
 		63BD9B442795A2250029CD96 /* TickType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickType.swift; sourceTree = "<group>"; };
@@ -322,6 +326,7 @@
 				6370539A2799C6A9008145C2 /* CoinListView */,
 				63F0443A27A16BDD0076DD0F /* CoinDetailView */,
 				63F0444C27A188200076DD0F /* OrderbookView */,
+				63B4349127A6C0A600DE1938 /* LinearChartView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -376,6 +381,7 @@
 				63CEEC6E2796E1EC00ABB208 /* StatusRepresentable.swift */,
 				636198AD279EF920001E0C8E /* DataManager.swift */,
 				635474D327A03A4F00A90057 /* Coordinator.swift */,
+				63B4349327A6DF2A00DE1938 /* ChartController.swift */,
 			);
 			path = Protoocls;
 			sourceTree = "<group>";
@@ -717,6 +723,7 @@
 				63C8E26927A3BCA500103713 /* WSOrderbookAPI.swift in Sources */,
 				63FF3FA227A04E060070EE31 /* MarketCoordinator.swift in Sources */,
 				637151B327A513AB0065B26D /* OrderType.swift in Sources */,
+				63B4349227A6C0A600DE1938 /* LinearChartView.swift in Sources */,
 				63F0444127A171A60076DD0F /* OrderbookDataSource.swift in Sources */,
 				6383E995279AD4B200679771 /* SortDirection.swift in Sources */,
 				63F0444327A172290076DD0F /* OrderbookDelegate.swift in Sources */,
@@ -737,6 +744,7 @@
 				636198AE279EF920001E0C8E /* DataManager.swift in Sources */,
 				63088FA827953AE900606AAE /* WSCoin.swift in Sources */,
 				63F0444527A175DB0076DD0F /* HTTPOrderbook.swift in Sources */,
+				63B4349427A6DF2A00DE1938 /* ChartController.swift in Sources */,
 				63C8E26127A3B43300103713 /* Spacing.swift in Sources */,
 				6307D2E627952533005EC2EF /* BithumbTest.xcdatamodeld in Sources */,
 				63088FB627956EBE00606AAE /* APIError.swift in Sources */,

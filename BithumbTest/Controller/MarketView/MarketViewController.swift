@@ -171,8 +171,8 @@ private extension MarketViewController {
             case .success(let response):
                 var coins = [HTTPCoin]()
 
-                for key in response.data.keys {
-                    guard let value = response.data[key] else { continue }
+                for key in response.dictionary.keys {
+                    guard let value = response.dictionary[key] else { continue }
                     guard case .coin(let coin) = value else { continue }
 
                     coin.updateSymbol(with: Symbol(orderCurrency: key, paymentCurrency: self.paymentCurrency))

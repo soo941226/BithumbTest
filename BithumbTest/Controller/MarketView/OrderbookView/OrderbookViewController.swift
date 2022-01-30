@@ -13,6 +13,7 @@ final class OrderbookViewController: UIViewController {
     private let delegate = OrderbookDelegate()
     private var symbol: Symbol?
     private var sourceOfTruth = [WSOrderbook]()
+    weak var chartDelegate: ChartController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +89,7 @@ private extension OrderbookViewController {
                 self.requestOrderbooksContinuoussly()
 
                 DispatchQueue.main.async {
+                    self.chartDelegate?.excute(with: data.asks.map { $0.price })
                     self.sendToDataSource(data)
                     self.tableView.scrollToRow(
                         at: IndexPath(row: .zero, section: 1),

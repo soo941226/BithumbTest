@@ -11,12 +11,14 @@ final class CoinDetailViewController: UIViewController {
     weak var coordinator: MarketCoordinator?
 
     private let headerView = CoinDetailHeader()
+    private let lienarChartView = LinearChartView<Double>()
     private let transactionTableView = UITableView()
     private let orderbookViewController = OrderbookViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        orderbookViewController.chartDelegate = self
         addSubViews()
     }
 
@@ -46,6 +48,7 @@ extension CoinDetailViewController {
 private extension CoinDetailViewController {
     func addSubViews() {
         view.addSubview(headerView)
+        view.addSubview(lienarChartView)
         addChild(orderbookViewController)
         view.addSubview(orderbookViewController.view)
     }
@@ -53,10 +56,14 @@ private extension CoinDetailViewController {
     func layoutSubviews() {
         let safeArea = view.safeAreaLayoutGuide
         headerView.translatesAutoresizingMaskIntoConstraints = false
-
+        lienarChartView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            headerView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor)
+            headerView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            lienarChartView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            lienarChartView.leadingAnchor.constraint(equalTo: headerView.trailingAnchor),
+            lienarChartView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            lienarChartView.heightAnchor.constraint(equalTo: headerView.heightAnchor)
         ])
 
         if let targetView = orderbookViewController.view {
@@ -69,5 +76,12 @@ private extension CoinDetailViewController {
                 targetView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
             ])
         }
+    }
+}
+
+extension CoinDetailViewController: ChartController {
+    func excute(with asset: [Double]) {
+        lienarChartView.setUpWith(asset)
+        lienarChartView.redraw()
     }
 }
