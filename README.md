@@ -42,3 +42,8 @@
 * 빗섬앱을 벤치마킹하여 당장 할 수 있는 선에서 레이아웃을 구현
 * 차트뷰 관련 작업 중 
   
+### Dat14
+* 컨텐츠 뷰컨에서 view.addSubview가 아니라 view를 교체하도록 수정
+* Chart데이터 요청하는 모델 및 API 생성
+* LinearChartViewController 생성
+* 로컬데이터 관리를 위해 CoreData 관련 타입 구현 중
