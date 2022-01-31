@@ -36,18 +36,25 @@ final class OrderbookViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpLabels()
         setUpSubviews()
-
     }
 
-    override func layoutMarginsDidChange() {
-        super.layoutMarginsDidChange()
-
+    override func layoutSubviews() {
+        super.layoutSubviews()
         layoutContents()
     }
 }
 
 // MARK: - Facade
 extension OrderbookViewCell {
+    var fontColor: UIColor {
+        get { priceLabel.textColor }
+        set {
+            priceLabel.textColor = newValue
+            rateLabel.textColor = newValue
+            quantityLabel.textColor = newValue
+        }
+    }
+
     func setUp(visualState: StackViewStyle) {
         self.visualState = visualState
     }

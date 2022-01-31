@@ -20,11 +20,11 @@ final class CoinListViewSortButton: UIView {
     private let arrows = (up: UIImageView(), down: UIImageView())
     private let images = (
         highlightUp : UIImage(systemName: "arrowtriangle.up.fill")?
-            .withTintColor(.bithumbMainColor, renderingMode: .alwaysOriginal),
+            .withTintColor(.themeColor, renderingMode: .alwaysOriginal),
         defaultUp : UIImage(systemName: "arrowtriangle.up.fill")?
             .withTintColor(.lightGray, renderingMode: .alwaysOriginal),
         highlightDown : UIImage(systemName: "arrowtriangle.down.fill")?
-            .withTintColor(.bithumbMainColor, renderingMode: .alwaysOriginal),
+            .withTintColor(.themeColor, renderingMode: .alwaysOriginal),
         defaultDown : UIImage(systemName: "arrowtriangle.down.fill")?
             .withTintColor(.lightGray, renderingMode: .alwaysOriginal)
     )

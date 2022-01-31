@@ -23,8 +23,8 @@ final class CoinListViewCell: UITableViewCell {
     private let secondStackView = UIStackView()
 
     private let star = (
-        fill: UIImage(systemName: "star.fill")?.withTintColor(UIColor.bithumbMainColor, renderingMode: .alwaysOriginal),
-        empty: UIImage(systemName: "star")?.withTintColor(UIColor.bithumbMainColor, renderingMode: .alwaysOriginal)
+        fill: UIImage(systemName: "star.fill")?.withTintColor(UIColor.themeColor, renderingMode: .alwaysOriginal),
+        empty: UIImage(systemName: "star")?.withTintColor(UIColor.themeColor, renderingMode: .alwaysOriginal)
     )
 
     required init?(coder: NSCoder) {

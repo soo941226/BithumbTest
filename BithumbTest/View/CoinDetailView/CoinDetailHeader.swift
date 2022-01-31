@@ -10,19 +10,19 @@ import UIKit
 final class CoinDetailHeader: UIView {
     private let headlineLabel: UILabel = {
         let label = UILabel()
-        label.font = .preferredFont(forTextStyle: .title3)
+        label.font = .preferredFont(forTextStyle: .title1)
         return label
     }()
 
     private let changedPriceLabel: UILabel = {
         let label = UILabel()
-        label.font = .preferredFont(forTextStyle: .caption1)
+        label.font = .preferredFont(forTextStyle: .body)
         return label
     }()
 
     private let changedRateLabel: UILabel = {
         let label = UILabel()
-        label.font = .preferredFont(forTextStyle: .caption1)
+        label.font = .preferredFont(forTextStyle: .body)
         return label
     }()
 
@@ -56,6 +56,15 @@ extension CoinDetailHeader {
         get { changedRateLabel.text }
         set { changedRateLabel.text = newValue }
     }
+
+    var textColor: UIColor {
+        get { headlineLabel.textColor }
+        set {
+            headlineLabel.textColor = newValue
+            changedRateLabel.textColor = newValue
+            changedPriceLabel.textColor = newValue
+        }
+    }
 }
 
 // MARK: - basic set up
@@ -79,19 +88,30 @@ private extension CoinDetailHeader {
 
         let outerStackView = UIStackView(arrangedSubviews: [headlineLabel, innerStackView])
         outerStackView.axis = .vertical
-        outerStackView.distribution = .fillProportionally
+        outerStackView.distribution = .fill
         outerStackView.alignment = .fill
         outerStackView.spacing = .zero
 
         self.addSubview(outerStackView)
 
         outerStackView.translatesAutoresizingMaskIntoConstraints = false
-
         NSLayoutConstraint.activate([
-            outerStackView.topAnchor.constraint(equalTo: topAnchor),
-            outerStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            outerStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            outerStackView.trailingAnchor.constraint(equalTo: trailingAnchor)
+            outerStackView.topAnchor.constraint(
+                equalTo: topAnchor,
+                constant: Spacing.basicVerticalInset
+            ),
+            outerStackView.bottomAnchor.constraint(
+                equalTo: bottomAnchor,
+                constant: -Spacing.basicVerticalInset
+            ),
+            outerStackView.leadingAnchor.constraint(
+                equalTo: leadingAnchor,
+                constant: Spacing.basicHorizontalInset
+            ),
+            outerStackView.trailingAnchor.constraint(
+                equalTo: trailingAnchor,
+                constant: -Spacing.basicHorizontalInset
+            )
         ])
     }
 }
