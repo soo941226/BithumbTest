@@ -7,31 +7,58 @@
 
 import UIKit
 
-final class LinearChartView<Data: BinaryFloatingPoint>: UIImageView {
+final class LinearChartView<Number: BinaryFloatingPoint>: UIImageView {
     private var asset: [CGFloat] = []
-    private var min: Data = 0
-    private var max: Data = 0
+    private var min: Number = .zero
+    private var max: Number = .zero
 
-    func setUpWith(_ asset: [Data]) {
-        self.min = asset.reduce(asset[0]) { partialResult, data in
-            partialResult < data ? partialResult : data
+    private func clear() {
+        asset = []
+        min = .zero
+        max = .zero
+    }
+
+    private func getContext() -> CGContext? {
+        UIGraphicsBeginImageContext(layer.bounds.size)
+        let context = UIGraphicsGetCurrentContext()
+        context?.beginPath()
+        return context
+    }
+
+    private func drawPath(from prev: CGPoint, to next: CGPoint, with context: CGContext) {
+        context.move(to: prev)
+        context.addLine(to: next)
+        context.strokePath()
+    }
+
+    private func setImage(with context: CGContext) {
+        context.closePath()
+        self.image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+    }
+}
+
+// MARK: - Facade
+extension LinearChartView {
+    func setUp(with asset: [Number]) {
+        self.min = asset.reduce(asset[0]) { partialResult, number in
+            partialResult < number ? partialResult : number
         }
-        self.max = asset.reduce(asset[0]) { partialResult, data in
-            partialResult > data ? partialResult : data
+        self.max = asset.reduce(asset[0]) { partialResult, number in
+            partialResult > number ? partialResult : number
         }
 
         let distance = max - min
+
         self.asset = asset.map { data in
             CGFloat( (data - min ) / distance )
         }
-
-        self.asset.shuffle()
     }
 
-    func redraw() throws {
-        UIGraphicsBeginImageContext(layer.bounds.size)
+    func drawChart() throws {
+        defer { clear() }
 
-        guard let context = UIGraphicsGetCurrentContext() else {
+        guard let context = getContext() else {
             throw ChartError.canNotCreateContext
         }
 
@@ -39,31 +66,29 @@ final class LinearChartView<Data: BinaryFloatingPoint>: UIImageView {
             throw ChartError.dataIsNotSetUp
         }
 
+        let xBasis = bounds.width / CGFloat(asset.count)
         let startPoint = CGPoint(x: .zero, y: bounds.height * asset[0])
-        var prevPoint = CGPoint(x: .zero, y: bounds.height * asset[0])
 
-        context.beginPath()
-        for (index, basicY) in asset.enumerated() {
+        var prevPoint = startPoint
+
+        for (order, depth) in asset.enumerated() {
             let nextPoint = CGPoint(
-                x: bounds.width / CGFloat(asset.count) * CGFloat(index),
-                y: basicY * bounds.height
+                x: xBasis * CGFloat(order),
+                y: depth * bounds.height
             )
 
-            if nextPoint.y > startPoint.y {
-                context.setStrokeColor(UIColor.blue.cgColor)
+            if nextPoint.y < startPoint.y {
+                context.setStrokeColor(UIColor.redIncreased.cgColor)
             } else {
-                context.setStrokeColor(UIColor.red.cgColor)
+                context.setStrokeColor(UIColor.blueDecreased.cgColor)
             }
 
-            context.move(to: prevPoint)
-            context.addLine(to: nextPoint)
-            context.strokePath()
+            drawPath(from: prevPoint, to: nextPoint, with: context)
 
             prevPoint = nextPoint
         }
-        context.closePath()
-        self.image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
+        
+        setImage(with: context)
     }
 
     enum ChartError: Error {

@@ -7,8 +7,8 @@
 
 import Foundation
 
-final class ChartDatum: Decodable {
-    let timestamp: String
+struct ChartDatum: Decodable {
+    let timestamp: Int
     let marketPrice: String
     let closedPrice: String
     let maxPrice: String
@@ -16,7 +16,7 @@ final class ChartDatum: Decodable {
     let tradedVolume: String
 
     init(
-        timestamp: String,
+        timestamp: Int,
         marketPrice: String,
         closedPrice: String,
         maxPrice: String,

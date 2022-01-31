@@ -11,9 +11,9 @@ final class CoinDetailViewController: UIViewController {
     weak var coordinator: MarketCoordinator?
     
     private let headerView = CoinDetailHeader()
-    private let lienarChartView = LinearChartView<Double>()
     private let transactionTableView = UITableView()
     private let orderbookViewController = OrderbookViewController()
+    private let linearChartViewController = LinearChartViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +48,7 @@ extension CoinDetailViewController {
         }
         
         orderbookViewController.configure(with: coin?.symbol)
+        linearChartViewController.configure(with: coin?.symbol)
     }
 }
 
@@ -55,14 +56,16 @@ extension CoinDetailViewController {
 private extension CoinDetailViewController {
     func addSubViews() {
         view.addSubview(headerView)
-        view.addSubview(lienarChartView)
         
         addChild(orderbookViewController)
         view.addSubview(orderbookViewController.view)
+        addChild(linearChartViewController)
+        view.addSubview(linearChartViewController.view)
     }
     
     func layoutSubviews() {
         guard let orderBookView = orderbookViewController.view else { return }
+        guard let lienarChartView = linearChartViewController.view else { return }
         
         let safeArea = view.safeAreaLayoutGuide
         
