@@ -5,7 +5,7 @@
 //  Created by kjs on 2022/01/31.
 //
 
-enum ChartType {
+enum ChartType: String {
     case oneMinute
     case tenMinute
     case halfHour

@@ -11,7 +11,7 @@
 		6307D2DC27952533005EC2EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307D2DB27952533005EC2EF /* AppDelegate.swift */; };
 		6307D2DE27952533005EC2EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307D2DD27952533005EC2EF /* SceneDelegate.swift */; };
 		6307D2E027952533005EC2EF /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307D2DF27952533005EC2EF /* MarketViewController.swift */; };
-		6307D2E627952533005EC2EF /* BithumbTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6307D2E427952533005EC2EF /* BithumbTest.xcdatamodeld */; };
+		6307D2E627952533005EC2EF /* Main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6307D2E427952533005EC2EF /* Main.xcdatamodeld */; };
 		6307D2E827952534005EC2EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6307D2E727952534005EC2EF /* Assets.xcassets */; };
 		6307D2EB27952534005EC2EF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6307D2E927952534005EC2EF /* LaunchScreen.storyboard */; };
 		6307D2F627952534005EC2EF /* BithumbTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307D2F527952534005EC2EF /* BithumbTestTests.swift */; };
@@ -26,6 +26,7 @@
 		63088FB627956EBE00606AAE /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63088FB527956EBE00606AAE /* APIError.swift */; };
 		63088FBB27957E5600606AAE /* WSTransactionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63088FBA27957E5600606AAE /* WSTransactionHistory.swift */; };
 		632173D027A80A2B003563DD /* LinearChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632173CF27A80A2B003563DD /* LinearChartViewController.swift */; };
+		632173D227A83359003563DD /* CDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632173D127A83359003563DD /* CDManager.swift */; };
 		6330ABB72798320200860B05 /* CoinListViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6330ABB62798320200860B05 /* CoinListViewDataSource.swift */; };
 		6330ABBD27984D6800860B05 /* CoinListViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6330ABBC27984D6800860B05 /* CoinListViewDelegate.swift */; };
 		6339E9FA2796D6CE00238233 /* HTTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6339E9F92796D6CE00238233 /* HTTPManager.swift */; };
@@ -116,6 +117,7 @@
 		63088FB527956EBE00606AAE /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		63088FBA27957E5600606AAE /* WSTransactionHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSTransactionHistory.swift; sourceTree = "<group>"; };
 		632173CF27A80A2B003563DD /* LinearChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearChartViewController.swift; sourceTree = "<group>"; };
+		632173D127A83359003563DD /* CDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDManager.swift; sourceTree = "<group>"; };
 		6330ABB62798320200860B05 /* CoinListViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewDataSource.swift; sourceTree = "<group>"; };
 		6330ABBC27984D6800860B05 /* CoinListViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewDelegate.swift; sourceTree = "<group>"; };
 		6339E9F92796D6CE00238233 /* HTTPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPManager.swift; sourceTree = "<group>"; };
@@ -437,7 +439,8 @@
 		63CBCA7E27A15268008AEDAE /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				6307D2E427952533005EC2EF /* BithumbTest.xcdatamodeld */,
+				6307D2E427952533005EC2EF /* Main.xcdatamodeld */,
+				632173D127A83359003563DD /* CDManager.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -746,6 +749,7 @@
 				63B86DC827A7C00B006DA020 /* ChartType.swift in Sources */,
 				63F0444127A171A60076DD0F /* OrderbookDataSource.swift in Sources */,
 				6383E995279AD4B200679771 /* SortDirection.swift in Sources */,
+				632173D227A83359003563DD /* CDManager.swift in Sources */,
 				63F0444327A172290076DD0F /* OrderbookDelegate.swift in Sources */,
 				63BD9B412795974D0029CD96 /* WSRequestable.swift in Sources */,
 				63C8E26727A3BBCC00103713 /* WSOrderbook.swift in Sources */,
@@ -766,7 +770,7 @@
 				63088FA827953AE900606AAE /* WSCoin.swift in Sources */,
 				63F0444527A175DB0076DD0F /* HTTPOrderbook.swift in Sources */,
 				63C8E26127A3B43300103713 /* Spacing.swift in Sources */,
-				6307D2E627952533005EC2EF /* BithumbTest.xcdatamodeld in Sources */,
+				6307D2E627952533005EC2EF /* Main.xcdatamodeld in Sources */,
 				63088FB627956EBE00606AAE /* APIError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1131,13 +1135,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		6307D2E427952533005EC2EF /* BithumbTest.xcdatamodeld */ = {
+		6307D2E427952533005EC2EF /* Main.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				6307D2E527952533005EC2EF /* BithumbTest.xcdatamodel */,
 			);
 			currentVersion = 6307D2E527952533005EC2EF /* BithumbTest.xcdatamodel */;
-			path = BithumbTest.xcdatamodeld;
+			path = Main.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

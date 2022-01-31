@@ -5,8 +5,6 @@
 //  Created by kjs on 2022/01/31.
 //
 
-import Foundation
-
 struct ChartDatum: Decodable {
     let timestamp: Int
     let marketPrice: String

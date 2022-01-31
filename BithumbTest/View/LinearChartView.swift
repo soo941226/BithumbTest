@@ -50,8 +50,8 @@ extension LinearChartView {
 
         let distance = max - min
 
-        self.asset = asset.map { data in
-            CGFloat( (data - min ) / distance )
+        self.asset = asset.map { number in
+            CGFloat( (number - min) / distance )
         }
     }
 
