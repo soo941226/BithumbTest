@@ -5,8 +5,6 @@
 //  Created by kjs on 2022/01/29.
 //
 
-import Foundation
-
 enum OrderType: String, CaseIterable {
     case ask
     case bid

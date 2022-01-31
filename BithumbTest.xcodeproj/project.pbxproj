@@ -40,7 +40,9 @@
 		6383E999279ADC5400679771 /* CoinSortingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6383E998279ADC5400679771 /* CoinSortingKey.swift */; };
 		63A0D0812797D68C006B4EA8 /* CoinListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A0D0802797D68C006B4EA8 /* CoinListViewController.swift */; };
 		63B4349227A6C0A600DE1938 /* LinearChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B4349127A6C0A600DE1938 /* LinearChartView.swift */; };
-		63B4349427A6DF2A00DE1938 /* ChartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B4349327A6DF2A00DE1938 /* ChartController.swift */; };
+		63B86DC427A7BE43006DA020 /* ChartDatum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B86DC327A7BE43006DA020 /* ChartDatum.swift */; };
+		63B86DC627A7BEF7006DA020 /* HTTPChartAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B86DC527A7BEF6006DA020 /* HTTPChartAPI.swift */; };
+		63B86DC827A7C00B006DA020 /* ChartType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B86DC727A7C00B006DA020 /* ChartType.swift */; };
 		63BD9B3E279596C80029CD96 /* WSTickerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BD9B3D279596C80029CD96 /* WSTickerAPI.swift */; };
 		63BD9B412795974D0029CD96 /* WSRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BD9B402795974D0029CD96 /* WSRequestable.swift */; };
 		63BD9B452795A2250029CD96 /* TickType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BD9B442795A2250029CD96 /* TickType.swift */; };
@@ -127,7 +129,9 @@
 		6383E998279ADC5400679771 /* CoinSortingKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSortingKey.swift; sourceTree = "<group>"; };
 		63A0D0802797D68C006B4EA8 /* CoinListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewController.swift; sourceTree = "<group>"; };
 		63B4349127A6C0A600DE1938 /* LinearChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearChartView.swift; sourceTree = "<group>"; };
-		63B4349327A6DF2A00DE1938 /* ChartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartController.swift; sourceTree = "<group>"; };
+		63B86DC327A7BE43006DA020 /* ChartDatum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDatum.swift; sourceTree = "<group>"; };
+		63B86DC527A7BEF6006DA020 /* HTTPChartAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPChartAPI.swift; sourceTree = "<group>"; };
+		63B86DC727A7C00B006DA020 /* ChartType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartType.swift; sourceTree = "<group>"; };
 		63BD9B3D279596C80029CD96 /* WSTickerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSTickerAPI.swift; sourceTree = "<group>"; };
 		63BD9B402795974D0029CD96 /* WSRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSRequestable.swift; sourceTree = "<group>"; };
 		63BD9B442795A2250029CD96 /* TickType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickType.swift; sourceTree = "<group>"; };
@@ -280,6 +284,7 @@
 				63CEEC722796E86600ABB208 /* HTTPTickerAllAPI.swift */,
 				63D803EF2797BAE900A3858D /* HTTPTickerAPI.swift */,
 				63F0444827A17D4A0076DD0F /* HTTPOrderbookAPI.swift */,
+				63B86DC527A7BEF6006DA020 /* HTTPChartAPI.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -303,6 +308,7 @@
 				63088FAF279541B600606AAE /* SocketMessageType.swift */,
 				63BD9B442795A2250029CD96 /* TickType.swift */,
 				637151B227A513AB0065B26D /* OrderType.swift */,
+				63B86DC727A7C00B006DA020 /* ChartType.swift */,
 				63F0444627A176A80076DD0F /* Stuff.swift */,
 				63BD9B462795A2290029CD96 /* Model */,
 			);
@@ -381,7 +387,6 @@
 				63CEEC6E2796E1EC00ABB208 /* StatusRepresentable.swift */,
 				636198AD279EF920001E0C8E /* DataManager.swift */,
 				635474D327A03A4F00A90057 /* Coordinator.swift */,
-				63B4349327A6DF2A00DE1938 /* ChartController.swift */,
 			);
 			path = Protoocls;
 			sourceTree = "<group>";
@@ -394,6 +399,7 @@
 				63088FBA27957E5600606AAE /* WSTransactionHistory.swift */,
 				63CEEC762796E91E00ABB208 /* HTTPCoin.swift */,
 				63F0444427A175DB0076DD0F /* HTTPOrderbook.swift */,
+				63B86DC327A7BE43006DA020 /* ChartDatum.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -717,6 +723,7 @@
 				6370539E2799C6A9008145C2 /* CoinListViewHeader.swift in Sources */,
 				63088FB0279541B600606AAE /* SocketMessageType.swift in Sources */,
 				63CEEC752796E88500ABB208 /* HTTPRequestable.swift in Sources */,
+				63B86DC427A7BE43006DA020 /* ChartDatum.swift in Sources */,
 				63BD9B452795A2250029CD96 /* TickType.swift in Sources */,
 				63BD9B3E279596C80029CD96 /* WSTickerAPI.swift in Sources */,
 				63088FBB27957E5600606AAE /* WSTransactionHistory.swift in Sources */,
@@ -724,6 +731,7 @@
 				63FF3FA227A04E060070EE31 /* MarketCoordinator.swift in Sources */,
 				637151B327A513AB0065B26D /* OrderType.swift in Sources */,
 				63B4349227A6C0A600DE1938 /* LinearChartView.swift in Sources */,
+				63B86DC827A7C00B006DA020 /* ChartType.swift in Sources */,
 				63F0444127A171A60076DD0F /* OrderbookDataSource.swift in Sources */,
 				6383E995279AD4B200679771 /* SortDirection.swift in Sources */,
 				63F0444327A172290076DD0F /* OrderbookDelegate.swift in Sources */,
@@ -731,6 +739,7 @@
 				63C8E26727A3BBCC00103713 /* WSOrderbook.swift in Sources */,
 				63C8E26527A3B52C00103713 /* Height.swift in Sources */,
 				6307D2DC27952533005EC2EF /* AppDelegate.swift in Sources */,
+				63B86DC627A7BEF7006DA020 /* HTTPChartAPI.swift in Sources */,
 				6383E999279ADC5400679771 /* CoinSortingKey.swift in Sources */,
 				63F0444927A17D4A0076DD0F /* HTTPOrderbookAPI.swift in Sources */,
 				63CEEC732796E86600ABB208 /* HTTPTickerAllAPI.swift in Sources */,
@@ -744,7 +753,6 @@
 				636198AE279EF920001E0C8E /* DataManager.swift in Sources */,
 				63088FA827953AE900606AAE /* WSCoin.swift in Sources */,
 				63F0444527A175DB0076DD0F /* HTTPOrderbook.swift in Sources */,
-				63B4349427A6DF2A00DE1938 /* ChartController.swift in Sources */,
 				63C8E26127A3B43300103713 /* Spacing.swift in Sources */,
 				6307D2E627952533005EC2EF /* BithumbTest.xcdatamodeld in Sources */,
 				63088FB627956EBE00606AAE /* APIError.swift in Sources */,

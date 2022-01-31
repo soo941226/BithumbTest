@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol WSRequestHandleable: Excutable {
+protocol WSRequestHandleable: Excutable, Encodable {
     var message: Data? { get }
 }
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol Excutable: Encodable {
+protocol Excutable {
     associatedtype ResponseType
 
     func excute(with: @escaping (Result<ResponseType, Error>) -> Void)

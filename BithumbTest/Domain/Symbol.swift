@@ -8,8 +8,9 @@
 typealias Symbol = String
 
 extension Symbol {
-    static let KRW = "KRW"
-    static let BTC = "BTC"
+    static let KRW: Symbol = "KRW"
+    static let BTC: Symbol = "BTC"
+    
     init(orderCurrency: Symbol, paymentCurrency: Symbol) {
         self = orderCurrency + "_" + paymentCurrency
     }

@@ -28,17 +28,21 @@ final class LinearChartView<Data: BinaryFloatingPoint>: UIImageView {
         self.asset.shuffle()
     }
 
-    func redraw() {
+    func redraw() throws {
         UIGraphicsBeginImageContext(layer.bounds.size)
 
-        guard let context = UIGraphicsGetCurrentContext(),
-              asset.count >= 1 else {
-                  return
-              }
+        guard let context = UIGraphicsGetCurrentContext() else {
+            throw ChartError.canNotCreateContext
+        }
+
+        guard asset.count >= 1 else {
+            throw ChartError.dataIsNotSetUp
+        }
 
         let startPoint = CGPoint(x: .zero, y: bounds.height * asset[0])
         var prevPoint = CGPoint(x: .zero, y: bounds.height * asset[0])
 
+        context.beginPath()
         for (index, basicY) in asset.enumerated() {
             let nextPoint = CGPoint(
                 x: bounds.width / CGFloat(asset.count) * CGFloat(index),
@@ -51,16 +55,19 @@ final class LinearChartView<Data: BinaryFloatingPoint>: UIImageView {
                 context.setStrokeColor(UIColor.red.cgColor)
             }
 
-            context.beginPath()
             context.move(to: prevPoint)
             context.addLine(to: nextPoint)
             context.strokePath()
-            context.closePath()
 
             prevPoint = nextPoint
         }
-
+        context.closePath()
         self.image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+    }
+
+    enum ChartError: Error {
+        case canNotCreateContext
+        case dataIsNotSetUp
     }
 }
