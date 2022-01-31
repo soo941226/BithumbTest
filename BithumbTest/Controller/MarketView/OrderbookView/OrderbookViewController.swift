@@ -14,6 +14,10 @@ final class OrderbookViewController: UIViewController {
     private var symbol: Symbol?
     private var sourceOfTruth = [WSOrderbook]()
 
+    override func loadView() {
+        view = tableView
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
@@ -43,17 +47,6 @@ private extension OrderbookViewController {
 
         tableView.delegate = delegate
         tableView.dataSource = dataSource
-
-        view.addSubview(tableView)
-
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
     }
 }
 
