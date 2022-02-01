@@ -22,7 +22,7 @@ final class CoinListViewDelegate: NSObject, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        dataManager?.showDetail?(with: indexPath)
+        dataManager?.showDetail(with: indexPath)
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

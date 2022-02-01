@@ -7,8 +7,8 @@
 
 import Foundation
 
-@objc protocol DataManager: AnyObject {
+protocol DataManager: AnyObject {
     func stopManaging()
     func restartManaging()
-    @objc optional func showDetail(with: IndexPath)
+    func showDetail(with: IndexPath)
 }
