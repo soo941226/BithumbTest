@@ -23,7 +23,8 @@ extension Symbol {
 
     var paymentCurrency: Symbol? {
         guard let index = self.firstIndex(of: "_") else { return nil }
-
-        return self.suffix(from: index).description
+        var result = self.suffix(from: index)
+        _ = result.popFirst()
+        return result.description
     }
 }
