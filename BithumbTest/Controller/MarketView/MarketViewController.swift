@@ -78,15 +78,15 @@ private extension MarketViewController {
     @objc func onReceiveToUpdateState(_ notification: Notification) {
         guard let userInfo = notification.userInfo,
               let symbol = userInfo["symbol"] as? String,
-              let isBookmarked = userInfo["isBookmarked"] as? Bool else {
+              let isFavorite = userInfo["isFavorite"] as? Bool else {
                   return
               }
 
         sourceOfTruth
             .filter { $0.symbol == symbol }
             .first?
-            .updateFavoirte(with: isBookmarked)
-        CDCoin.updateFavoriteCoin(symbol: symbol, isBookmarked: isBookmarked)
+            .updateFavoirte(with: isFavorite)
+        CDCoin.updateFavoriteCoin(symbol: symbol, isFavorite: isFavorite)
         rootViewController.updateRow(with: symbol)
     }
 

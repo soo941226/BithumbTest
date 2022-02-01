@@ -7,6 +7,8 @@
         <attribute name="marketPrice" optional="YES" attributeType="String"/>
         <attribute name="maxPrice" optional="YES" attributeType="String"/>
         <attribute name="minPrice" optional="YES" attributeType="String"/>
+        <attribute name="symbol" optional="YES" attributeType="String"/>
+        <attribute name="timestamp" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="tradedVolume" optional="YES" attributeType="String"/>
     </entity>
     <entity name="CDCoin" representedClassName="CDCoin" syncable="YES" codeGenerationType="class">
@@ -14,7 +16,7 @@
         <attribute name="symbol" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="CDChartDatum" positionX="-63" positionY="0" width="128" height="134"/>
+        <element name="CDChartDatum" positionX="-63" positionY="0" width="128" height="164"/>
         <element name="CDCoin" positionX="-63" positionY="-18" width="128" height="59"/>
     </elements>
 </model>

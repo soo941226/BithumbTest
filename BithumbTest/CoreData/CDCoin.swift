@@ -8,13 +8,13 @@
 import CoreData
 
 extension CDCoin {
-    static func updateFavoriteCoin(symbol: Symbol?, isBookmarked: Bool) {
+    static func updateFavoriteCoin(symbol: Symbol?, isFavorite: Bool) {
         guard let symbol = symbol else { return }
         
-        if isBookmarked {
+        if isFavorite {
             CDManager.shared.insert(model: CDCoin.self) { coin in
                 coin.setValue(symbol, forKey: "symbol")
-                coin.setValue(true, forKey: "isBookmarked")
+                coin.setValue(true, forKey: "isFavorite")
             }
         } else {
             CDManager.shared.deleteAll(

@@ -10,7 +10,7 @@ import UIKit
 final class CoinListViewCell: UITableViewCell {
     static let identifier = #fileID
 
-    private var isBookmarked = false
+    private var isFavorite = false
 
     private let bookmarkButton = UIButton()
     private let symbolLabel =  UILabel()
@@ -53,11 +53,11 @@ final class CoinListViewCell: UITableViewCell {
     }
 
     @objc private func onTap() {
-        isBookmarked.toggle()
+        isFavorite.toggle()
 
         NotificationCenter.default
             .post(name: .init(Self.identifier), object: nil, userInfo: [
-                "isBookmarked": isBookmarked,
+                "isFavorite": isFavorite,
                 "symbol": symbol ?? ""
             ])
     }
@@ -87,10 +87,10 @@ extension CoinListViewCell {
         tradedPriceLabel.text = filteredDailyTradedPrice
 
         if coin.isFavorite == true {
-            isBookmarked = true
+            isFavorite = true
             bookmarkButton.setImage(star.fill, for: .normal)
         } else {
-            isBookmarked = false
+            isFavorite = false
             bookmarkButton.setImage(star.empty, for: .normal)
         }
 
