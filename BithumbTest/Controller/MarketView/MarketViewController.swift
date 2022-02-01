@@ -190,7 +190,7 @@ private extension MarketViewController {
 
 // MARK: - sorting data
 private extension MarketViewController {
-    private func sortBy(key: CoinSortingKey, arrow: SortDirection) {
+    func sortBy(key: CoinSortingKey, arrow: SortDirection) {
         let coins: [HTTPCoin]
 
         if arrow == .none {
@@ -267,5 +267,12 @@ private extension MarketViewController {
                 return prevPrice > nextPrice
             }
         }
+    }
+
+    enum CoinSortingKey: String {
+        case symbol
+        case currentPrice
+        case changedRate
+        case tradedVolume
     }
 }
