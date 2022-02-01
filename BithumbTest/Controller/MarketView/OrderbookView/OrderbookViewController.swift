@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class OrderbookViewController: UIViewController {
+final class OrderbookViewController: UIViewController, AlertRepresentable {
     private let tableView = UITableView()
     private let dataSource = OrderbookDataSource()
     private let delegate = OrderbookDelegate()
@@ -93,9 +93,8 @@ private extension OrderbookViewController {
                         animated: false
                     )
                 }
-            case .failure:
-                // TODO: Show alert
-                return
+            case .failure(let error):
+                self.showAlert(with: error)
             }
         }
     }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MarketViewController: UINavigationController {
+final class MarketViewController: UINavigationController, AlertRepresentable {
     private let rootViewController = CoinListViewController()
 
     private var sourceOfTruth = [HTTPCoin]()
@@ -86,7 +86,7 @@ private extension MarketViewController {
             .filter { $0.symbol == symbol }
             .first?
             .updateFavoirte(with: isFavorite)
-        
+
         CDCoin.updateFavoriteCoin(symbol: symbol, isFavorite: isFavorite)
         rootViewController.updateRow(with: symbol)
     }
@@ -171,9 +171,8 @@ private extension MarketViewController {
                 self.sourceOfTruth = coins
                 self.sourceOfTruth = self.sortByCurrentTradedVolumne(arrow: .descending)
                 self.sortBy(key: .tradedVolume, arrow: .none)
-            case .failure:
-                // TODO: show alert
-                return
+            case .failure(let error):
+                self.showAlert(with: error)
             }
         }
     }
