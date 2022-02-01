@@ -31,8 +31,6 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneDidEnterBackground(_ scene: UIScene) {
         NotificationCenter.default.removeObserver(self)
-
-        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
 }
 
