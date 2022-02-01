@@ -9,6 +9,8 @@ import UIKit
 
 final class CoinListViewHeader: UITableViewHeaderFooterView {
     static let identifier = #fileID
+    static let key = "key"
+    static let direction = "direction"
 
     private let symbolSortingButton: CoinListViewSortButton = {
         let button = CoinListViewSortButton()
@@ -76,11 +78,14 @@ private extension CoinListViewHeader {
         let notificatinoIdentiifer = Notification.Name(CoinListViewHeader.identifier)
 
         for (index, button) in sortingButtons.enumerated() {
-            button.textColor = .black
+
             button.font = .preferredFont(forTextStyle: .body)
+            button.textColor = .black
             button.textAlignment = .justified
             button.adjustsFontSizeToFitWidth = true
+
             button.layer.borderColor = UIColor.lightGray.cgColor
+
             button.setUp { [weak self, weak button] in
                 self?.sortingButtons.forEach { eachButton in
                     if button == eachButton {
@@ -89,20 +94,14 @@ private extension CoinListViewHeader {
                             name: notificatinoIdentiifer,
                             object: nil,
                             userInfo: [
-                                "key": index,
-                                "direction": button?.currentState.rawValue ?? .zero
+                                CoinListViewHeader.key: index,
+                                CoinListViewHeader.direction: button?.currentState.rawValue ?? .zero
                             ]
                         )
                     } else {
                         eachButton.currentState = .none
                     }
                 }
-            }
-
-            if traitCollection.preferredContentSizeCategory.isAccessibilityCategory {
-                button.layer.borderWidth = 1
-            } else {
-                button.layer.borderWidth = 0
             }
         }
 
@@ -132,8 +131,14 @@ private extension CoinListViewHeader {
     func layoutContents() {
         if traitCollection.preferredContentSizeCategory.isAccessibilityCategory {
             containerStackView.axis = .vertical
+            sortingButtons.forEach { button in
+                button.layer.borderWidth = 1
+            }
         } else {
             containerStackView.axis = .horizontal
+            sortingButtons.forEach { button in
+                button.layer.borderWidth = 0
+            }
         }
     }
 }

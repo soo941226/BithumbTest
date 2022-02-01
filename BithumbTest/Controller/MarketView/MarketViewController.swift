@@ -92,9 +92,9 @@ private extension MarketViewController {
 
     @objc func onReceiveToSort(_ notification: Notification) {
         guard let userInfo = notification.userInfo,
-              let key = userInfo["key"] as? Int,
+              let key = userInfo[CoinListViewHeader.key] as? Int,
               let sortingKey = CoinSortingKey(rawValue: key),
-              let directionRawValue = userInfo["direction"] as? Int,
+              let directionRawValue = userInfo[CoinListViewHeader.direction] as? Int,
               let direction = SortDirection(rawValue: directionRawValue) else {
                   return
               }
