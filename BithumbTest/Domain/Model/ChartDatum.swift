@@ -28,4 +28,14 @@ struct ChartDatum: Decodable {
         self.minPrice = minPrice
         self.tradedVolume = tradedVolume
     }
+
+    init(with cdDatum: CDChartDatum) {
+        let placeHolder = ""
+        self.timestamp = Int(cdDatum.timestamp)
+        self.marketPrice = cdDatum.marketPrice ?? placeHolder
+        self.closedPrice = cdDatum.closedPrice ?? placeHolder
+        self.maxPrice = cdDatum.maxPrice ?? placeHolder
+        self.minPrice = cdDatum.minPrice ?? placeHolder
+        self.tradedVolume = cdDatum.tradedVolume ?? placeHolder
+    }
 }

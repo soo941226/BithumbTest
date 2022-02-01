@@ -44,8 +44,8 @@ private extension LinearChartViewController {
         ).excute { [weak self] result in
             guard let `self` = self else { return }
             switch result {
-            case .success(let response):
-                let asset = response.chartData?
+            case .success(let chartData):
+                let chartData = chartData?
                     .sorted(by: { prev, next in
                         prev.timestamp < next.timestamp
                     })
@@ -53,7 +53,7 @@ private extension LinearChartViewController {
                         Double(chartDatum.marketPrice)
                     })
 
-                self.drawChart(with: asset ?? [])
+                self.drawChart(with: chartData ?? [])
             case .failure(let error):
                 print(error)
             }

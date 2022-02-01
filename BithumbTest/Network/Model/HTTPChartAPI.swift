@@ -12,6 +12,12 @@ struct HTTPChartResponse: StatusRepresentable {
     var message: String?
     var chartData: [ChartDatum]?
 
+    init(status: String? = nil, message: String? = nil, chartData: [ChartDatum]? = nil) {
+        self.status = status
+        self.message = message
+        self.chartData = chartData
+    }
+
     init(from decoder: Decoder) throws {
         do {
             let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -79,6 +85,8 @@ struct HTTPChartResponse: StatusRepresentable {
 }
 
 struct HTTPChartAPI: HTTPRequestable {
+    typealias ResultType = Result<HTTPChartResponse, Error>
+
     private(set) var urlString = APIConfig.HTTPBaseURL + "public/candlestick/"
 
     let orderCurrency: Symbol
@@ -91,16 +99,43 @@ struct HTTPChartAPI: HTTPRequestable {
         self.type = type
     }
 
+    private var now: String {
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yy-MM-dd hh:mm"
+
+        return dateFormatter.string(from: date)
+    }
+
     func excute(
-        with completionHandler: @escaping (Result<HTTPChartResponse, Error>) -> Void
+        with completionHandler: @escaping (Result<[ChartDatum]?, Error>) -> Void
     ) {
-        let urlString = urlString
-        + Symbol(orderCurrency: orderCurrency, paymentCurrency: paymentCurreny)
-        + type.path
+        let symbol = Symbol(orderCurrency: orderCurrency, paymentCurrency: paymentCurreny)
+        let now = now
 
-        guard let url = URL(string: urlString) else { return }
+        if let cdChartData = CDChartDatum.retrieveWith(date: now, symbol: symbol, chartType: type),
+           cdChartData.isEmpty == false {
+            completionHandler(.success(cdChartData.map {
+                ChartDatum(with: $0)
+            }))
+        } else {
+            let urlString = urlString + symbol + type.path
 
-        let request = URLRequest(url: url)
-        HTTPManager.shared.dataTask(with: request, completionHandler: completionHandler)
+            guard let url = URL(string: urlString) else { return }
+
+            CDChartDatum.deleteWith(symbol: symbol, chartType: type)
+
+            let request = URLRequest(url: url)
+            HTTPManager.shared.dataTask(with: request) { (result: ResultType) in
+                switch result {
+                case .success(let response):
+                    CDChartDatum.saveChartData(response.chartData, withDate: now, symbol: symbol, andChartType: type)
+
+                    completionHandler(.success(response.chartData))
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                }
+            }
+        }
     }
 }
