@@ -26,8 +26,6 @@ final class OrderbookViewCell: UITableViewCell {
         return label
     }()
 
-    private var visualState = StackViewStyle.merged
-
     required init?(coder: NSCoder) {
         fatalError("Do not use init(coder:), This project avoid Interface builder")
     }
@@ -55,10 +53,6 @@ extension OrderbookViewCell {
         }
     }
 
-    func setUp(visualState: StackViewStyle) {
-        self.visualState = visualState
-    }
-
     func configure(with stuff: Stuff?) {
         guard let stuff = stuff else { return }
         priceLabel.text = stuff.price.description
@@ -80,6 +74,7 @@ private extension OrderbookViewCell {
     func setUpSubviews() {
         innerStackView.addArrangedSubview(priceLabel)
         innerStackView.addArrangedSubview(rateLabel)
+        
         innerStackView.axis = .vertical
         innerStackView.distribution = .equalSpacing
         innerStackView.spacing = .zero
@@ -91,36 +86,34 @@ private extension OrderbookViewCell {
             subview.removeFromSuperview()
         }
 
-        if visualState == .merged {
-            let outerStackView = UIStackView(arrangedSubviews: [innerStackView, quantityLabel])
-            outerStackView.axis = .horizontal
-            outerStackView.distribution = .equalCentering
-            outerStackView.alignment = .fill
-            outerStackView.spacing = Spacing.betweenTexts
+        let outerStackView = UIStackView(arrangedSubviews: [innerStackView, quantityLabel])
+        outerStackView.axis = .horizontal
+        outerStackView.distribution = .equalCentering
+        outerStackView.alignment = .fill
+        outerStackView.spacing = Spacing.betweenTexts
 
-            innerStackView.setContentCompressionResistancePriority(.required, for: .horizontal)
+        innerStackView.setContentCompressionResistancePriority(.required, for: .horizontal)
 
-            contentView.addSubview(outerStackView)
+        contentView.addSubview(outerStackView)
 
-            outerStackView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                outerStackView.topAnchor.constraint(
-                    equalTo: contentView.topAnchor,
-                    constant: Spacing.verticalInsetOfCell
-                ),
-                outerStackView.bottomAnchor.constraint(
-                    equalTo: contentView.bottomAnchor,
-                    constant: -Spacing.verticalInsetOfCell
-                ),
-                outerStackView.leadingAnchor.constraint(
-                    equalTo: contentView.leadingAnchor,
-                    constant: Spacing.horizontalInsetOfCell
-                ),
-                outerStackView.trailingAnchor.constraint(
-                    equalTo: contentView.trailingAnchor,
-                    constant: -Spacing.horizontalInsetOfCell
-                )
-            ])
-        }
+        outerStackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            outerStackView.topAnchor.constraint(
+                equalTo: contentView.topAnchor,
+                constant: Spacing.verticalInsetOfCell
+            ),
+            outerStackView.bottomAnchor.constraint(
+                equalTo: contentView.bottomAnchor,
+                constant: -Spacing.verticalInsetOfCell
+            ),
+            outerStackView.leadingAnchor.constraint(
+                equalTo: contentView.leadingAnchor,
+                constant: Spacing.horizontalInsetOfCell
+            ),
+            outerStackView.trailingAnchor.constraint(
+                equalTo: contentView.trailingAnchor,
+                constant: -Spacing.horizontalInsetOfCell
+            )
+        ])
     }
 }

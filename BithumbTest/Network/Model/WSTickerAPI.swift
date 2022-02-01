@@ -1,5 +1,5 @@
 //
-//  WSTickerRequester.swift
+//  WSTickerAPI.swift
 //  BithumbTest
 //
 //  Created by kjs on 2022/01/17.

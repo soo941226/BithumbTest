@@ -61,7 +61,6 @@
 		63CEEC752796E88500ABB208 /* HTTPRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CEEC742796E88500ABB208 /* HTTPRequestable.swift */; };
 		63CEEC772796E91E00ABB208 /* HTTPCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CEEC762796E91E00ABB208 /* HTTPCoin.swift */; };
 		63CEEC792796F3A400ABB208 /* Exctuable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CEEC782796F3A400ABB208 /* Exctuable.swift */; };
-		63D803F02797BAE900A3858D /* HTTPTickerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D803EF2797BAE900A3858D /* HTTPTickerAPI.swift */; };
 		63F0443C27A16BFA0076DD0F /* CoinDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F0443B27A16BFA0076DD0F /* CoinDetailHeader.swift */; };
 		63F0443F27A1715E0076DD0F /* OrderbookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F0443E27A1715E0076DD0F /* OrderbookViewController.swift */; };
 		63F0444127A171A60076DD0F /* OrderbookDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F0444027A171A60076DD0F /* OrderbookDataSource.swift */; };
@@ -70,7 +69,6 @@
 		63F0444727A176A80076DD0F /* Stuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F0444627A176A80076DD0F /* Stuff.swift */; };
 		63F0444927A17D4A0076DD0F /* HTTPOrderbookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F0444827A17D4A0076DD0F /* HTTPOrderbookAPI.swift */; };
 		63F0444E27A1882D0076DD0F /* OrderbookViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F0444D27A1882D0076DD0F /* OrderbookViewCell.swift */; };
-		63F0445127A189CF0076DD0F /* StackViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F0445027A189CF0076DD0F /* StackViewStyle.swift */; };
 		63FF3FA227A04E060070EE31 /* MarketCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FF3FA127A04E060070EE31 /* MarketCoordinator.swift */; };
 		C1CE8FEF125CC09DEECCCCF8 /* libPods-BithumbTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5142213A45946B19147E1D /* libPods-BithumbTest.a */; };
 		DB9A6A78D61473014AFE791F /* libPods-BithumbTestTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 644B14142385BBC5CC55B4FA /* libPods-BithumbTestTests.a */; };
@@ -154,7 +152,6 @@
 		63CEEC742796E88500ABB208 /* HTTPRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestable.swift; sourceTree = "<group>"; };
 		63CEEC762796E91E00ABB208 /* HTTPCoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPCoin.swift; sourceTree = "<group>"; };
 		63CEEC782796F3A400ABB208 /* Exctuable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exctuable.swift; sourceTree = "<group>"; };
-		63D803EF2797BAE900A3858D /* HTTPTickerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTickerAPI.swift; sourceTree = "<group>"; };
 		63F0443B27A16BFA0076DD0F /* CoinDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailHeader.swift; sourceTree = "<group>"; };
 		63F0443E27A1715E0076DD0F /* OrderbookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderbookViewController.swift; sourceTree = "<group>"; };
 		63F0444027A171A60076DD0F /* OrderbookDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderbookDataSource.swift; sourceTree = "<group>"; };
@@ -163,7 +160,6 @@
 		63F0444627A176A80076DD0F /* Stuff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stuff.swift; sourceTree = "<group>"; };
 		63F0444827A17D4A0076DD0F /* HTTPOrderbookAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPOrderbookAPI.swift; sourceTree = "<group>"; };
 		63F0444D27A1882D0076DD0F /* OrderbookViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderbookViewCell.swift; sourceTree = "<group>"; };
-		63F0445027A189CF0076DD0F /* StackViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewStyle.swift; sourceTree = "<group>"; };
 		63FF3FA127A04E060070EE31 /* MarketCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketCoordinator.swift; sourceTree = "<group>"; };
 		644B14142385BBC5CC55B4FA /* libPods-BithumbTestTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BithumbTestTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F9BB1F87FAD512818EF1666 /* Pods-BithumbTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BithumbTest.debug.xcconfig"; path = "Target Support Files/Pods-BithumbTest/Pods-BithumbTest.debug.xcconfig"; sourceTree = "<group>"; };
@@ -290,7 +286,6 @@
 				63BD9B3D279596C80029CD96 /* WSTickerAPI.swift */,
 				63C8E26827A3BCA500103713 /* WSOrderbookAPI.swift */,
 				63CEEC722796E86600ABB208 /* HTTPTickerAllAPI.swift */,
-				63D803EF2797BAE900A3858D /* HTTPTickerAPI.swift */,
 				63F0444827A17D4A0076DD0F /* HTTPOrderbookAPI.swift */,
 				63B86DC527A7BEF6006DA020 /* HTTPChartAPI.swift */,
 			);
@@ -367,7 +362,6 @@
 			isa = PBXGroup;
 			children = (
 				637053A22799C6CE008145C2 /* UIColor.swift */,
-				63F0445027A189CF0076DD0F /* StackViewStyle.swift */,
 				63C8E26027A3B43300103713 /* Spacing.swift */,
 				63C8E26227A3B4E000103713 /* Width.swift */,
 				63C8E26427A3B52C00103713 /* Height.swift */,
@@ -722,7 +716,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				63A0D0812797D68C006B4EA8 /* CoinListViewController.swift in Sources */,
-				63F0445127A189CF0076DD0F /* StackViewStyle.swift in Sources */,
 				63CEEC6F2796E1EC00ABB208 /* StatusRepresentable.swift in Sources */,
 				6330ABBD27984D6800860B05 /* CoinListViewDelegate.swift in Sources */,
 				63088F9F27952CB000606AAE /* WebsocketManager.swift in Sources */,
@@ -738,7 +731,6 @@
 				632173D027A80A2B003563DD /* LinearChartViewController.swift in Sources */,
 				63088FA227952CDF00606AAE /* APIConfig.swift in Sources */,
 				637053A02799C6A9008145C2 /* CoinListViewSortButton.swift in Sources */,
-				63D803F02797BAE900A3858D /* HTTPTickerAPI.swift in Sources */,
 				63CEEC772796E91E00ABB208 /* HTTPCoin.swift in Sources */,
 				63088FB2279544FE00606AAE /* Symbol.swift in Sources */,
 				6370539E2799C6A9008145C2 /* CoinListViewHeader.swift in Sources */,
