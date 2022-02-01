@@ -47,14 +47,6 @@ final class OrderbookDataSource: NSObject, UITableViewDataSource {
 
 // MARK: - Facade
 extension OrderbookDataSource {
-    func setTitles() {
-        titles = ["매도", "매수"]
-    }
-
-    func desetTitles() {
-        titles = nil
-    }
-
     func configure(with items: [WSOrderbook]) {
         var asks = [WSOrderbook]()
         var bids = [WSOrderbook]()
