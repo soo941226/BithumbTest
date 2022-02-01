@@ -118,11 +118,9 @@ private extension CoinListViewSortButton {
 
     func setUpSubviews() {
         let stackView = UIStackView(arrangedSubviews: [label, imageContainer])
-
-        stackView.distribution = .equalCentering
-        stackView.spacing = .zero
         stackView.axis = .horizontal
-        stackView.alignment = .center
+        stackView.alignment = .fill
+        stackView.distribution = .equalCentering
 
         addSubview(stackView)
 
@@ -130,8 +128,14 @@ private extension CoinListViewSortButton {
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor)
+            stackView.leadingAnchor.constraint(
+                equalTo: leadingAnchor,
+                constant: Spacing.basicHorizontalInset
+            ),
+            stackView.trailingAnchor.constraint(
+                equalTo: trailingAnchor,
+                constant: -Spacing.basicHorizontalInset
+            )
         ])
     }
 }

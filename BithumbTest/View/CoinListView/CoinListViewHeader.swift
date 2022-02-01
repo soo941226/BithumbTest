@@ -121,8 +121,14 @@ private extension CoinListViewHeader {
 
         containerStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            containerStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            containerStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            containerStackView.topAnchor.constraint(
+                equalTo: contentView.topAnchor,
+                constant: Spacing.basicVerticalInset
+            ),
+            containerStackView.bottomAnchor.constraint(
+                equalTo: contentView.bottomAnchor,
+                constant: -Spacing.basicVerticalInset
+            ),
             containerStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             containerStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
