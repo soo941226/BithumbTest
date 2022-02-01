@@ -92,25 +92,15 @@ private extension MarketViewController {
 
     @objc func onReceiveToSort(_ notification: Notification) {
         guard let userInfo = notification.userInfo,
-              let sortingKey = userInfo["key"] as? Int,
+              let key = userInfo["key"] as? Int,
+              let sortingKey = CoinSortingKey(rawValue: key),
               let directionRawValue = userInfo["direction"] as? Int,
               let direction = SortDirection(rawValue: directionRawValue) else {
                   return
               }
 
         stopManaging()
-
-        switch sortingKey {
-        case 0:
-            sortBy(key: .symbol, arrow: direction)
-        case 1:
-            sortBy(key: .currentPrice, arrow: direction)
-        case 2:
-            sortBy(key: .changedRate, arrow: direction)
-        default:
-            sortBy(key: .tradedVolume, arrow: direction)
-        }
-
+        sortBy(key: sortingKey, arrow: direction)
         restartManaging()
     }
 }
@@ -269,7 +259,7 @@ private extension MarketViewController {
         }
     }
 
-    enum CoinSortingKey: String {
+    enum CoinSortingKey: Int {
         case symbol
         case currentPrice
         case changedRate

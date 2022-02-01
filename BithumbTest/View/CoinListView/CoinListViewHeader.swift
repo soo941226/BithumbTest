@@ -74,6 +74,7 @@ private extension CoinListViewHeader {
 
     func setUpSortingButtons() {
         let notificatinoIdentiifer = Notification.Name(CoinListViewHeader.identifier)
+
         for (index, button) in sortingButtons.enumerated() {
             button.textColor = .black
             button.font = .preferredFont(forTextStyle: .body)
