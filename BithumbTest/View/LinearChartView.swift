@@ -25,6 +25,23 @@ final class LinearChartView<Number: BinaryFloatingPoint>: UIImageView {
         return context
     }
 
+    private func isExist(
+        _ point: CGPoint,
+        between prevPoint: CGPoint,
+        and nextPoint: CGPoint
+    ) -> CGPoint? {
+        let prevY = prevPoint.y < nextPoint.y ? prevPoint.y : nextPoint.y
+        let nextY = prevPoint.y > nextPoint.y ? prevPoint.y : nextPoint.y
+
+        if prevY...nextY ~= point.y {
+            let slope = (nextPoint.y - prevPoint.y) / (nextPoint.x - prevPoint.x)
+            let intercept = prevPoint.y - (slope * prevPoint.x)
+            return CGPoint(x: (point.y - intercept) / slope, y: point.y)
+        } else {
+            return nil
+        }
+    }
+
     private func drawPath(from prev: CGPoint, to next: CGPoint, with context: CGContext) {
         context.move(to: prev)
         context.addLine(to: next)
@@ -69,6 +86,12 @@ extension LinearChartView {
         let xBasis = bounds.width / CGFloat(asset.count)
         let startPoint = CGPoint(x: .zero, y: bounds.height * asset[0])
 
+        if asset[0] <= asset[1] {
+            context.setStrokeColor(UIColor.redIncreased.cgColor)
+        } else {
+            context.setStrokeColor(UIColor.blueDecreased.cgColor)
+        }
+
         var prevPoint = startPoint
 
         for (order, depth) in asset.enumerated() {
@@ -77,13 +100,19 @@ extension LinearChartView {
                 y: depth * bounds.height
             )
 
-            if nextPoint.y < startPoint.y {
-                context.setStrokeColor(UIColor.redIncreased.cgColor)
-            } else {
-                context.setStrokeColor(UIColor.blueDecreased.cgColor)
-            }
+            if let point = isExist(startPoint, between: prevPoint, and: nextPoint) {
+                drawPath(from: prevPoint, to: point, with: context)
 
-            drawPath(from: prevPoint, to: nextPoint, with: context)
+                if prevPoint.y < nextPoint.y {
+                    context.setStrokeColor(UIColor.blueDecreased.cgColor)
+                } else {
+                    context.setStrokeColor(UIColor.redIncreased.cgColor)
+                }
+
+                drawPath(from: point, to: nextPoint, with: context)
+            } else {
+                drawPath(from: prevPoint, to: nextPoint, with: context)
+            }
 
             prevPoint = nextPoint
         }
