@@ -11,7 +11,6 @@
 		6307D2DC27952533005EC2EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307D2DB27952533005EC2EF /* AppDelegate.swift */; };
 		6307D2DE27952533005EC2EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307D2DD27952533005EC2EF /* SceneDelegate.swift */; };
 		6307D2E027952533005EC2EF /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307D2DF27952533005EC2EF /* MarketViewController.swift */; };
-		6307D2E627952533005EC2EF /* Main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6307D2E427952533005EC2EF /* Main.xcdatamodeld */; };
 		6307D2E827952534005EC2EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6307D2E727952534005EC2EF /* Assets.xcassets */; };
 		6307D2EB27952534005EC2EF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6307D2E927952534005EC2EF /* LaunchScreen.storyboard */; };
 		6307D2F627952534005EC2EF /* BithumbTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307D2F527952534005EC2EF /* BithumbTestTests.swift */; };
@@ -38,6 +37,8 @@
 		637053A02799C6A9008145C2 /* CoinListViewSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6370539D2799C6A9008145C2 /* CoinListViewSortButton.swift */; };
 		637053A32799C6CE008145C2 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637053A22799C6CE008145C2 /* UIColor.swift */; };
 		637151B327A513AB0065B26D /* OrderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637151B227A513AB0065B26D /* OrderType.swift */; };
+		637E359427A9429200BEEB6A /* Main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 637E359227A9429200BEEB6A /* Main.xcdatamodeld */; };
+		637E359827A94FB200BEEB6A /* CDCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E359727A94FB200BEEB6A /* CDCoin.swift */; };
 		6383E995279AD4B200679771 /* SortDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6383E994279AD4B200679771 /* SortDirection.swift */; };
 		6383E999279ADC5400679771 /* CoinSortingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6383E998279ADC5400679771 /* CoinSortingKey.swift */; };
 		63A0D0812797D68C006B4EA8 /* CoinListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A0D0802797D68C006B4EA8 /* CoinListViewController.swift */; };
@@ -99,7 +100,6 @@
 		6307D2DB27952533005EC2EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6307D2DD27952533005EC2EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		6307D2DF27952533005EC2EF /* MarketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewController.swift; sourceTree = "<group>"; };
-		6307D2E527952533005EC2EF /* BithumbTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BithumbTest.xcdatamodel; sourceTree = "<group>"; };
 		6307D2E727952534005EC2EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6307D2EA27952534005EC2EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6307D2EC27952534005EC2EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -129,6 +129,8 @@
 		6370539D2799C6A9008145C2 /* CoinListViewSortButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinListViewSortButton.swift; sourceTree = "<group>"; };
 		637053A22799C6CE008145C2 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		637151B227A513AB0065B26D /* OrderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderType.swift; sourceTree = "<group>"; };
+		637E359327A9429200BEEB6A /* BithumbTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BithumbTest.xcdatamodel; sourceTree = "<group>"; };
+		637E359727A94FB200BEEB6A /* CDCoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDCoin.swift; sourceTree = "<group>"; };
 		6383E994279AD4B200679771 /* SortDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortDirection.swift; sourceTree = "<group>"; };
 		6383E998279ADC5400679771 /* CoinSortingKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSortingKey.swift; sourceTree = "<group>"; };
 		63A0D0802797D68C006B4EA8 /* CoinListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewController.swift; sourceTree = "<group>"; };
@@ -439,8 +441,9 @@
 		63CBCA7E27A15268008AEDAE /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				6307D2E427952533005EC2EF /* Main.xcdatamodeld */,
+				637E359227A9429200BEEB6A /* Main.xcdatamodeld */,
 				632173D127A83359003563DD /* CDManager.swift */,
+				637E359727A94FB200BEEB6A /* CDCoin.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -750,6 +753,7 @@
 				63F0444127A171A60076DD0F /* OrderbookDataSource.swift in Sources */,
 				6383E995279AD4B200679771 /* SortDirection.swift in Sources */,
 				632173D227A83359003563DD /* CDManager.swift in Sources */,
+				637E359827A94FB200BEEB6A /* CDCoin.swift in Sources */,
 				63F0444327A172290076DD0F /* OrderbookDelegate.swift in Sources */,
 				63BD9B412795974D0029CD96 /* WSRequestable.swift in Sources */,
 				63C8E26727A3BBCC00103713 /* WSOrderbook.swift in Sources */,
@@ -763,6 +767,7 @@
 				63F0443F27A1715E0076DD0F /* OrderbookViewController.swift in Sources */,
 				6339E9FA2796D6CE00238233 /* HTTPManager.swift in Sources */,
 				635474DB27A0499600A90057 /* RootCoordinator.swift in Sources */,
+				637E359427A9429200BEEB6A /* Main.xcdatamodeld in Sources */,
 				63CEEC792796F3A400ABB208 /* Exctuable.swift in Sources */,
 				6307D2DE27952533005EC2EF /* SceneDelegate.swift in Sources */,
 				6370539F2799C6A9008145C2 /* CoinListViewCell.swift in Sources */,
@@ -770,7 +775,6 @@
 				63088FA827953AE900606AAE /* WSCoin.swift in Sources */,
 				63F0444527A175DB0076DD0F /* HTTPOrderbook.swift in Sources */,
 				63C8E26127A3B43300103713 /* Spacing.swift in Sources */,
-				6307D2E627952533005EC2EF /* Main.xcdatamodeld in Sources */,
 				63088FB627956EBE00606AAE /* APIError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1135,12 +1139,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		6307D2E427952533005EC2EF /* Main.xcdatamodeld */ = {
+		637E359227A9429200BEEB6A /* Main.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				6307D2E527952533005EC2EF /* BithumbTest.xcdatamodel */,
+				637E359327A9429200BEEB6A /* BithumbTest.xcdatamodel */,
 			);
-			currentVersion = 6307D2E527952533005EC2EF /* BithumbTest.xcdatamodel */;
+			currentVersion = 637E359327A9429200BEEB6A /* BithumbTest.xcdatamodel */;
 			path = Main.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -42,6 +42,7 @@ struct HTTPTickerAllResponse: StatusRepresentable {
 }
 
 struct HTTPTickerAllAPI: HTTPRequestable {
+    typealias ResultType = Result<HTTPTickerAllResponse, Error>
     private(set) var urlString = APIConfig.HTTPBaseURL + "public/ticker/ALL_"
 
     let paymentCurrency: Symbol
@@ -51,12 +52,35 @@ struct HTTPTickerAllAPI: HTTPRequestable {
     }
 
     func excute(
-        with completionHandler: @escaping (Result<HTTPTickerAllResponse, Error>) -> Void
+        with completionHandler: @escaping (ResultType) -> Void
     ) {
         guard let url = URL(string: urlString + paymentCurrency) else { return }
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
+        let request = URLRequest(url: url)
 
-        HTTPManager.shared.dataTask(with: request, completionHandler: completionHandler)
+        HTTPManager.shared.dataTask(with: request) { (result: ResultType) in
+            switch result {
+            case .success(let response):
+                let cdCoins: [CDCoin]? = CDManager.shared.retrieve()
+                var response = response
+
+                for key in response.dictionary.keys {
+                    guard let value = response.dictionary[key] else { continue }
+                    guard case .coin(let coin) = value else { continue }
+
+                    let symbol = Symbol(orderCurrency: key, paymentCurrency: paymentCurrency)
+                    coin.updateSymbol(with: symbol)
+
+                    if let cdCoin = cdCoins?.filter({ $0.symbol == symbol }).first {
+                        coin.updateFavoirte(with: cdCoin.isFavorite)
+                    }
+
+                    response.dictionary[key] = .coin(coin)
+                }
+
+                completionHandler(.success(response))
+            case .failure(let error):
+                completionHandler(.failure(error))
+            }
+        }
     }
 }

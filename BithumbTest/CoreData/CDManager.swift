@@ -10,8 +10,64 @@ import CoreData
 final class CDManager {
     static let errorNotification = Notification.Name("CDManagerError")
     static let shared = CDManager()
-    let container = NSPersistentContainer(name: "Main")
-    let context: NSManagedObjectContext
+
+    private let container = NSPersistentContainer(name: "Main")
+    private let context: NSManagedObjectContext
+
+    func retrieve<Model: NSManagedObject>(with filter: NSPredicate? = nil) -> [Model]? {
+        let request = Model.fetchRequest()
+
+        if let filter = filter {
+            request.predicate = filter
+        }
+
+        do {
+            return try context.fetch(request) as? [Model]
+        } catch {
+            sendNotification(with: error)
+            return nil
+        }
+    }
+
+    func insert<Model: NSManagedObject>(
+        model: Model.Type,
+        with setter: (NSManagedObject) -> Void
+    ) {
+        let coin = NSManagedObject(entity: Model.entity(), insertInto: context)
+        setter(coin)
+        tryToSaveContext()
+    }
+
+    func deleteAll<Model: NSManagedObject>(
+        model: Model.Type,
+        filter: NSPredicate? = nil
+    ) {
+        if let models: [Model] = retrieve(with: filter) {
+            models.forEach { model in
+                context.delete(model)
+            }
+
+            tryToSaveContext()
+        }
+    }
+
+    private func tryToSaveContext() {
+        do {
+            if context.hasChanges {
+                try context.save()
+            }
+        } catch {
+            sendNotification(with: error)
+        }
+    }
+
+    private func sendNotification(with error: Error) {
+        NotificationCenter.default.post(
+            name: CDManager.errorNotification,
+            object: nil,
+            userInfo: ["error": error]
+        )
+    }
 
     private init() {
         container.loadPersistentStores { _, error in
@@ -24,28 +80,5 @@ final class CDManager {
             }
         }
         context = container.newBackgroundContext()
-    }
-
-    func retrieve<Model: NSManagedObject>() -> [Model]? {
-        let request = Model.fetchRequest()
-
-        do {
-            return try context.fetch(request) as? [Model]
-        } catch {
-            sendNotification(with: error)
-            return nil
-        }
-    }
-
-}
-
-// MARK: - Error handling
-private extension CDManager {
-    func sendNotification(with error: Error) {
-        NotificationCenter.default.post(
-            name: CDManager.errorNotification,
-            object: nil,
-            userInfo: ["error": error]
-        )
     }
 }

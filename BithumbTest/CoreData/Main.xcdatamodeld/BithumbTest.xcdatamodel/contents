@@ -9,12 +9,12 @@
         <attribute name="minPrice" optional="YES" attributeType="String"/>
         <attribute name="tradedVolume" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="CDSymbol" representedClassName="CDSymbol" syncable="YES" codeGenerationType="class">
+    <entity name="CDCoin" representedClassName="CDCoin" syncable="YES" codeGenerationType="class">
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="symbol" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="CDSymbol" positionX="-63" positionY="-18" width="128" height="59"/>
         <element name="CDChartDatum" positionX="-63" positionY="0" width="128" height="134"/>
+        <element name="CDCoin" positionX="-63" positionY="-18" width="128" height="59"/>
     </elements>
 </model>

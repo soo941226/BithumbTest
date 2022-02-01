@@ -86,7 +86,7 @@ private extension MarketViewController {
             .filter { $0.symbol == symbol }
             .first?
             .updateFavoirte(with: isBookmarked)
-
+        CDCoin.updateFavoriteCoin(symbol: symbol, isBookmarked: isBookmarked)
         rootViewController.updateRow(with: symbol)
     }
 
@@ -170,12 +170,10 @@ private extension MarketViewController {
             switch result {
             case .success(let response):
                 var coins = [HTTPCoin]()
-
+                
                 for key in response.dictionary.keys {
                     guard let value = response.dictionary[key] else { continue }
                     guard case .coin(let coin) = value else { continue }
-
-                    coin.updateSymbol(with: Symbol(orderCurrency: key, paymentCurrency: self.paymentCurrency))
                     coins.append(coin)
                 }
 
