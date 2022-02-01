@@ -34,6 +34,7 @@ final class OrderbookViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpLabels()
         setUpSubviews()
+        isAccessibilityElement = true
     }
 
     override func layoutSubviews() {
@@ -55,8 +56,14 @@ extension OrderbookViewCell {
 
     func configure(with stuff: Stuff?) {
         guard let stuff = stuff else { return }
+        let quantity = String(format: "%.3f", stuff.quantity)
         priceLabel.text = stuff.price.description
-        quantityLabel.text = String(format: "%.3f", stuff.quantity)
+        quantityLabel.text = quantity
+        
+        accessibilityLabel = """
+가격: \(stuff.price.description),
+재고: \(quantity)
+"""
     }
 }
 
@@ -68,6 +75,7 @@ private extension OrderbookViewCell {
         for label in targetLabel {
             label.adjustsFontSizeToFitWidth = true
             label.textAlignment = .justified
+            label.isAccessibilityElement = false
         }
     }
 

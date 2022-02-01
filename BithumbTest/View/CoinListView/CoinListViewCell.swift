@@ -56,9 +56,9 @@ final class CoinListViewCell: UITableViewCell {
         isFavorite.toggle()
 
         NotificationCenter.default
-            .post(name: .init(Self.identifier), object: nil, userInfo: [
-                "isFavorite": isFavorite,
-                "symbol": symbol ?? ""
+            .post(name: .init(CoinListViewCell.identifier), object: nil, userInfo: [
+                CDCoin.symbol: symbol ?? "",
+                CDCoin.isFavorite: isFavorite
             ])
     }
 }
