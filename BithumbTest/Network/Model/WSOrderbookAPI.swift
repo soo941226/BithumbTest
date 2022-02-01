@@ -66,5 +66,4 @@ struct WSOrderbookAPI: WSRequestable {
     static func cancel() {
         WebsocketManager.shared.close()
     }
-
 }

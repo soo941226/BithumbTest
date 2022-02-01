@@ -58,4 +58,8 @@ struct WSTransactionAPI: WSRequestable {
             completionHandler(.failure(error))
         }
     }
+    
+    static func cancel() {
+        WebsocketManager.shared.close()
+    }
 }

@@ -28,6 +28,11 @@ final class OrderbookViewController: UIViewController {
         requestOrderbooks()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        WSOrderbookAPI.cancel()
+    }
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
     }
