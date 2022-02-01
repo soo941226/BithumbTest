@@ -33,8 +33,21 @@ final class CDManager {
         model: Model.Type,
         with setter: (NSManagedObject) -> Void
     ) {
-        let coin = NSManagedObject(entity: Model.entity(), insertInto: context)
-        setter(coin)
+        let model = NSManagedObject(entity: Model.entity(), insertInto: context)
+        setter(model)
+        tryToSaveContext()
+    }
+
+    func insertModels<Model: NSManagedObject>(
+        _ model: Model.Type,
+        amount: Int,
+        with setter: ([NSManagedObject]) -> Void
+    ) {
+        var models = [NSManagedObject]()
+        for _ in 0..<amount {
+            models.append(NSManagedObject(entity: Model.entity(), insertInto: context))
+        }
+        setter(models)
         tryToSaveContext()
     }
 
