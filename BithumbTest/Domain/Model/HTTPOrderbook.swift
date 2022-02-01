@@ -5,8 +5,6 @@
 //  Created by kjs on 2022/01/26.
 //
 
-import Foundation
-
 final class HTTPOrderbook: Decodable {
     let timestamp: String
     let orderCurrency: String

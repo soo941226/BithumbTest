@@ -44,9 +44,9 @@ final class WSCoin {
             return nil
         }
 
-        symbol = dictionary[CodingKeys.symbol.rawValue]!
-        date = dictionary[CodingKeys.date.rawValue]!
-        hhMMss = dictionary[CodingKeys.hhMMss.rawValue]!
+        symbol = dictionary[CodingKeys.symbol.rawValue]
+        date = dictionary[CodingKeys.date.rawValue]
+        hhMMss = dictionary[CodingKeys.hhMMss.rawValue]
 
         openPrice = Double(dictionary[CodingKeys.openPrice.rawValue]!)
         closePrice = Double(dictionary[CodingKeys.closePrice.rawValue]!)

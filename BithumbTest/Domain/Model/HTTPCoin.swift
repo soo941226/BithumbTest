@@ -5,8 +5,6 @@
 //  Created by kjs on 2022/01/18.
 //
 
-import Foundation
-
 final class HTTPCoin: Decodable {
     private(set) var symbol: Symbol?
     private(set) var date: String?
