@@ -26,6 +26,14 @@
 
 <br>
 
+![Simulator Screen Recording - iPod touch (7th generation) - 2022-02-02 at 14 17 00](https://user-images.githubusercontent.com/83933153/152097226-03ad0d99-3879-4682-aa2e-bc49bc11c4b0.gif)
+
+1. 다이나믹타입을 이용하여 시스템 폰트 크기에 따라 화면이 바뀌도록 수정하였습니다
+2. 테이블뷰에 Voice-over를 잘 사용할 수 있도록 하여, 셀 단위로 컨텐츠를 읽도록 하였습니다
+
+
+<br>
+
 ---
 
 <br>
@@ -47,14 +55,23 @@
 
 ### 4. 트러블슈팅
 
-<img width="769" alt="스크린샷 2022-02-02 오후 2 09 26" src="https://user-images.githubusercontent.com/83933153/152096526-4cfa276e-384e-4aa3-aeec-66d84d8ce80a.png">
+<details>
+  <summary>1. API 관련</summary>  
+  
+  <img width="769" alt="스크린샷 2022-02-02 오후 2 09 26" src="https://user-images.githubusercontent.com/83933153/152096526-4cfa276e-384e-4aa3-aeec-66d84d8ce80a.png">
 
-1. API의 response들이 Swift를 위한 것은 아니라는 생각이 먼저 들었습니다. 특히 Public Ticker의 주문 통화가 ALL일 경우에는 data에 Coin과 date가 같은 레벨에 존재했고 이러한 부분이 나이브한 딕셔너리로 처리하기에는 어려움이 있었습니다. 예를 들면 [String: Coin]과 같이 처리할 수가 없었는데, Coin과 Date를 enum으로 묶어서 각각의 경우에 따라 파싱을 할 수 있도록 처리를 하였습니다.
+  1. API의 response들이 Swift를 위한 것은 아니라는 생각이 먼저 들었습니다. 특히 Public Ticker의 주문 통화가 ALL일 경우에는 data에 Coin과 date가 같은 레벨에 존재했고 이러한 부분이 나이브한 딕셔너리로 처리하기에는 어려움이 있었습니다. 예를 들면 [String: Coin]과 같이 처리할 수가 없었는데, Coin과 Date를 enum으로 묶어서 각각의 경우에 따라 파싱을 할 수 있도록 처리를 하였습니다.
 
-<br>
+  <br>
 
-<img width="712" alt="스크린샷 2022-02-02 오후 2 06 32" src="https://user-images.githubusercontent.com/83933153/152096325-a48b3ec2-9714-442e-8333-407d3d88d4e6.png">
+  <img width="712" alt="스크린샷 2022-02-02 오후 2 06 32" src="https://user-images.githubusercontent.com/83933153/152096325-a48b3ec2-9714-442e-8333-407d3d88d4e6.png">
 
-2. 또 fluctate_rate_24H가 주문통화가 KRW일 때에는 stirng으로 오는 반면 BTC일 때에는 number로 오는 경우가 있어 어려움이 있었습니다. 해당 내용도 각각의 경우를 enum으로 묶어서 처리하도록 구현하였습니다
+  2. 또 fluctate_rate_24H가 주문통화가 KRW일 때에는 stirng으로 오는 반면 BTC일 때에는 number로 오는 경우가 있어 어려움이 있었습니다. 해당 내용도 각각의 경우를 enum으로 묶어서 처리하도록 구현하였습니다
 
-<br>
+</details>
+
+<details>
+  <summary>2. Indicator, Alert 관련</summary>
+  1. 처음 생각했던 방향은 모두 window의 rootViewController를 통해 보여주려고 생각했습니다. 특히 네트워크 통신 관련 로딩이 발생할 경우 Indicator를 뿌려줄 때에는, 각각의 뷰컨이 이러한 기능을 갖기보다는 윈도우에서 처리하는 게 더 바람직할 것 같아 Notification을 활용하여 구현하였습니다
+  2. 에러도 마찬가지의 방향을 생각했으나, 곰곰히 생각해보니 에러의 경우에는 화면의 내용에 따라 액션이 달라질 수가 있다고 생각됐습니다. 예를 들면 Ticker를 가져오는 것에 대한 에러는 다시 요청을 한다거나 고객센터에 문의를 남겨달라는 메시지 정도로 퉁칠 수 있겠지만, 실제로 코인을 매수하거나 매도하는 경우에는 에러가 발생할 경우는 다를 것 같다고 생각했습니다. 특히 입력값에 확인이 필요할 경우에는, Alert을 띄운 뒤 이것을 닫고 재입력을 시키는 것보다는 Alert에서 재입력을 하도록 할 수도 있을 것 같다는 생각이 들었고, 이러한 방향에 따라 기본적인 내용은 POP로 가져가고 필요에 따라 재정의를 할 수 있도록 구현을 하였습니다.
+</details>
