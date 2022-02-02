@@ -25,7 +25,7 @@
 
 ### 2. 구현내용
 
-<img width="350" alt="구현1" src="https://user-images.githubusercontent.com/83933153/152095141-740f9c0b-9375-4003-bcd6-8f32eb6d44cd.gif"/>
+<img width="350" alt="구현1" src="https://user-images.githubusercontent.com/83933153/152100164-fae3d9d4-e408-481c-8e63-f3c61ec619f8.gif"/>
 
 1. HTTP 통신을 통해 처음에 Ticker들을 뿌려주도록 한 뒤, WS통신을 통해 현재 화면에 보여지는 Ticker들을 지속적으로 갱신하도록 구현하였습니다
 2. 코어데이터를 활용하여 관심코인을 저장하도록 구현하였습니다
