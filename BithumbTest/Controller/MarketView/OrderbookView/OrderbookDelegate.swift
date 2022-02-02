@@ -12,11 +12,9 @@ final class OrderbookDelegate: NSObject, UITableViewDelegate {
         guard let cell = cell as? OrderbookViewCell else { return }
 
         if indexPath.section == .zero {
-            cell.backgroundColor = .blueDecreased
-            cell.fontColor = .light
+            cell.fontColor = .blueDecreased
         } else {
-            cell.backgroundColor = .redIncreased
-            cell.fontColor = .dark
+            cell.fontColor = .redIncreased
         }
     }
 }

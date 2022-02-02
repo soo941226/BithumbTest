@@ -83,7 +83,7 @@ extension CoinListViewCell {
         let filteredDailyTradedPrice = Int(currentTradedPrice / 1000000.0).description + "백만"
         symbolLabel.text = coin.symbol
         currentPriceLabel.text = closingPrice
-        changedRateLabel.text = dailyChangedRate
+        changedRateLabel.text = dailyChangedRate.description
         tradedPriceLabel.text = filteredDailyTradedPrice
 
         if coin.isFavorite == true {

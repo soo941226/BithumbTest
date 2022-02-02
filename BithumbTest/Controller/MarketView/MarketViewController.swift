@@ -43,6 +43,7 @@ extension MarketViewController {
 // MARK: - basic set up
 private extension MarketViewController {
     func setUpBasicSettings() {
+        rootViewController.controlContainer = self
         rootViewController.setUpDataManagerDelegate(self)
         pushViewController(rootViewController, animated: false)
     }
@@ -132,6 +133,83 @@ extension MarketViewController: DataManager {
     }
 }
 
+// MARK: - ControlContainer delegate
+extension MarketViewController: ControlContainer {
+    func setUp(with views: [UIView]) {
+        guard let views = views as? [UILabel],
+              views.count == 3 else {
+                  return
+              }
+        views.forEach { $0.isUserInteractionEnabled = true }
+
+        let krwButton = views[0],
+            btcButton = views[1],
+            favoriteButton = views[2]
+
+        let krwButtonTapGesture = UITapGesture(
+            target: self,
+            action: #selector(touchUpKrwButton)
+        )
+        krwButtonTapGesture.userInfo = ["views": views]
+        krwButton.addGestureRecognizer(krwButtonTapGesture)
+
+        let btcButtonTapGesture = UITapGesture(
+            target: self,
+            action: #selector(touchUpBtcButton)
+        )
+        btcButtonTapGesture.userInfo = ["views": views]
+        btcButton.addGestureRecognizer(btcButtonTapGesture)
+
+        let favoriteButtonTapGesture = UITapGesture(
+            target: self,
+            action: #selector(touchUpFavoriteButton)
+        )
+        favoriteButtonTapGesture.userInfo = ["views": views]
+        favoriteButton.addGestureRecognizer(favoriteButtonTapGesture)
+
+        addHighlight(on: krwButton)
+    }
+
+    @objc private func touchUpBtcButton(sender: UITapGesture) {
+        touchUpButton(with: sender)
+        paymentCurrency = .BTC
+        requestCoins()
+    }
+
+    @objc private func touchUpKrwButton(sender: UITapGesture) {
+        touchUpButton(with: sender)
+        paymentCurrency = .KRW
+        requestCoins()
+    }
+
+    @objc private func touchUpFavoriteButton(sender: UITapGesture) {
+        touchUpButton(with: sender)
+    }
+
+    private func touchUpButton(with sender: UITapGesture) {
+        guard let labels = sender.userInfo["views"] as? [UILabel],
+              let view = sender.view as? UILabel else {
+                  return
+              }
+
+        deleteHighlight(on: labels)
+        addHighlight(on: view)
+    }
+
+    private func addHighlight(on label: UILabel) {
+        label.textColor = .themeColor
+        label.layer.borderWidth = 1
+        label.layer.borderColor = UIColor.themeColor.cgColor
+    }
+
+    private func deleteHighlight(on labels: [UILabel]) {
+        labels.forEach { label in
+            label.textColor = .label
+            label.layer.borderWidth = 0
+        }
+    }
+}
+
 // MARK: - API
 private extension MarketViewController {
     func requestCoinsContinuoussly(with symbols: [Symbol]) {
@@ -172,6 +250,10 @@ private extension MarketViewController {
                 self.sourceOfTruth = self.sortByCurrentTradedVolumne(arrow: .descending)
                 self.sortBy(key: .tradedVolume, arrow: .none)
             case .failure(let error):
+                guard let error = error as? APIError else {
+                    return
+                }
+
                 self.showAlert(with: error)
             }
         }
@@ -219,8 +301,8 @@ private extension MarketViewController {
 
     func sortByChangedRate(arrow: SortDirection) -> [HTTPCoin] {
         sourceOfTruth.sorted {
-            guard let prevRate = $0.dailyChangedRate.flatMap({ Double($0) }),
-                  let nextRate = $1.dailyChangedRate.flatMap({ Double($0) }) else {
+            guard let prevRate = $0.dailyChangedRate?.description.flatMap({ Double($0) }),
+                  let nextRate = $1.dailyChangedRate?.description.flatMap({ Double($0) }) else {
                       return false
                   }
             if case .ascending = arrow {

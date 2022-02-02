@@ -8,21 +8,28 @@
 import UIKit
 
 final class CoinListViewController: UIViewController {
-    private let stackView = UIStackView()
-    private let buttons = [UIButton(), UIButton(), UIButton(), UIButton()]
+    private let containerOfLabels = UIStackView()
+    private let labels = [MyLabel(), MyLabel(), MyLabel()]
     private let tableView = UITableView()
     private let coinListDataSource = CoinListViewDataSource()
     private let coinListDelegate = CoinListViewDelegate()
 
+    weak var controlContainer: ControlContainer?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        setUpButtons()
         setUpTableView()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        layoutButtons()
         layoutTableView()
-        
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
         coinListDelegate.dataManager?.restartManaging()
     }
 
@@ -72,19 +79,44 @@ extension CoinListViewController {
     }
 }
 
-// MARK: - Setting TableView
+// MARK: - basic set up
 private extension CoinListViewController {
-    func setUpTableView() {
-        buttons.forEach { button in
-            button.setTitle("HIHI", for: .normal)
-            button.setTitleColor(.black, for: .normal)
-            button.titleLabel?.font = .preferredFont(forTextStyle: .headline)
-            stackView.addArrangedSubview(button)
-        }
-        stackView.axis = .horizontal
-        stackView.alignment = .fill
-        stackView.distribution = .fillEqually
+    @objc func touchUpLabel() {
+        print("!")
+    }
 
+    func setUpButtons() {
+        labels.forEach { label in
+            label.textColor = .label
+            label.backgroundColor = .systemBackground
+            label.font = .preferredFont(forTextStyle: .body)
+            label.adjustsFontSizeToFitWidth = true
+            label.textAlignment = .center
+            label.adjustsFontForContentSizeCategory = true
+            label.accessibilityLabel = "Request button: "
+
+            containerOfLabels.addArrangedSubview(label)
+        }
+        
+        labels[0].text = "KRW"
+        labels[1].text = "BTC"
+        labels[2].text = "관심"
+        labels[0].accessibilityValue = "KRW"
+        labels[1].accessibilityValue = "BTC"
+        labels[2].accessibilityValue = "관심"
+
+        containerOfLabels.axis = .horizontal
+        containerOfLabels.alignment = .leading
+        containerOfLabels.distribution = .fillProportionally
+        containerOfLabels.spacing = Spacing.basicHorizontalInset
+        containerOfLabels.backgroundColor = .secondarySystemBackground
+
+        view.addSubview(containerOfLabels)
+
+        controlContainer?.setUp(with: labels)
+    }
+
+    func setUpTableView() {
         tableView.register(
             CoinListViewCell.self,
             forCellReuseIdentifier: CoinListViewCell.identifier
@@ -96,24 +128,30 @@ private extension CoinListViewController {
         )
         tableView.dataSource = coinListDataSource
         tableView.delegate = coinListDelegate
-        view.addSubview(stackView)
         view.addSubview(tableView)
     }
 
     func layoutTableView() {
         let safeArea = view.safeAreaLayoutGuide
 
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: stackView.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: containerOfLabels.bottomAnchor),
             tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
+        ])
+    }
+
+    func layoutButtons() {
+        let safeArea = view.safeAreaLayoutGuide
+
+        containerOfLabels.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            containerOfLabels.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            containerOfLabels.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            containerOfLabels.trailingAnchor.constraint(lessThanOrEqualTo: safeArea.trailingAnchor)
         ])
     }
 }

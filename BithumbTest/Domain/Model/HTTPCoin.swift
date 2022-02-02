@@ -21,7 +21,7 @@ final class HTTPCoin: Decodable {
     private(set) var dailyTradedVolume: String?
     private(set) var dailyTradedPrice: String?
     private(set) var dailyChangedPrice: String?
-    private(set) var dailyChangedRate: String?
+    private(set) var dailyChangedRate: Some?
 
     func updateSymbol(with symbol: Symbol) {
         self.symbol = symbol
@@ -32,8 +32,9 @@ final class HTTPCoin: Decodable {
     }
 
     func updateBy(_ coin: WSCoin) {
+        let placeholder = ""
         self.closePrice = coin.closePrice?.description
-        self.dailyChangedRate = coin.changedRate?.description
+        self.dailyChangedRate = .string(coin.changedRate?.description ?? placeholder)
         self.currentTradedPrice = coin.currentTradedPrice
     }
 
@@ -50,5 +51,37 @@ final class HTTPCoin: Decodable {
         case dailyTradedPrice = "acc_trade_value_24H"
         case dailyChangedPrice = "fluctate_24H"
         case dailyChangedRate = "fluctate_rate_24H"
+    }
+
+    enum Some: Decodable {
+        case number(Double)
+        case string(String)
+
+        var description: String? {
+            switch self {
+            case .number(let number):
+                return number.description
+            case .string(let string):
+                return string
+            }
+        }
+
+        init(from decoder: Decoder) throws {
+            if let number = try? decoder.singleValueContainer().decode(Double.self) {
+                self = .number(number)
+                return
+            }
+
+            if let string = try? decoder.singleValueContainer().decode(String.self) {
+                self = .string(string)
+                return
+            }
+
+            throw DecodingError.dataCorrupted(.init(
+                codingPath: [CodingKeys.dailyChangedRate],
+                debugDescription: "",
+                underlyingError: nil
+            ))
+        }
     }
 }

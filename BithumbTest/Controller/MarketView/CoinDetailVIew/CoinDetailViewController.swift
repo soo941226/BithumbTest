@@ -36,10 +36,10 @@ final class CoinDetailViewController: UIViewController {
 extension CoinDetailViewController {
     func configure(with coin: HTTPCoin?) {
         headerView.headline = coin?.symbol
-        headerView.changedRate = coin?.dailyChangedRate
+        headerView.changedRate = coin?.dailyChangedRate?.description
         headerView.changedPrice = coin?.dailyChangedPrice
         
-        if let rate = coin?.dailyChangedRate, let rateValue = Double(rate) {
+        if let rate = coin?.dailyChangedRate?.description, let rateValue = Double(rate) {
             if rateValue > 0 {
                 headerView.textColor = .redIncreased
             } else {
