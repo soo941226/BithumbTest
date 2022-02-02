@@ -79,7 +79,7 @@ extension CoinListViewCell {
         }
 
         guard let closingPrice = coin.closePrice,
-              let dailyChangedRate = coin.dailyChangedRate,
+              let dailyChangedRate = coin.dailyChangedRate?.description,
               let currentTradedPriceText = coin.currentTradedPrice,
               let currentTradedPrice = Double(currentTradedPriceText) else {
                   symbolLabel.text = coin.symbol
@@ -98,7 +98,7 @@ extension CoinListViewCell {
         accessibilityLabel = coin.symbol
         accessibilityValue = """
 현재가: \(closingPrice.description),
-변동률: \(dailyChangedRate.description),
+변동률: \(dailyChangedRate),
 거래량: \(filteredDailyTradedPrice)"
 """
     }
