@@ -86,10 +86,6 @@ extension CoinListViewController {
 
 // MARK: - basic set up
 private extension CoinListViewController {
-    @objc func touchUpLabel() {
-        print("!")
-    }
-
     func setUpButtons() {
         labels.forEach { label in
             label.textColor = .label
