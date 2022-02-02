@@ -1,7 +1,7 @@
 # BithumbTest
 
 ## 목차
-  * [1. 사용한 3rd-parties](#1-사용한-3rd-parties)
+  * [1. 사용한 기술스택](#1-사용한-기술스택)
   * [2. 구현내용](#2-구현내용)
   * [3. 타임라인](#3-타임라인)
   * [4. 트러블슈팅](#4-트러블슈팅)
@@ -13,9 +13,29 @@
 
 <br>
 
-### 1. 사용한 3rd-parties
-  1. SwiftLint: 일관된 컨벤션을 유지할 수 있게 많이 도와줘서 사용했습니다
-  2. CocoaPods: SwiftLint을 적용하기 위해 사용했습니다
+### 1. 사용한 기술스택
+
+채택한 아키텍처: MVC
+요구하는 iOS버전: 13.0
+
+색깔참조한 사이트: https://colorhunt.co/palette/dddddd22283130475ef05454
+
+1. 3rd-parties
+   1. SwiftLint: 일관된 컨벤션을 유지할 수 있게 많이 도와줘서 사용했습니다
+   2. CocoaPods: SwiftLint을 적용하기 위해 사용했습니다
+
+2. 1st-parties
+   1. UIKit
+   2. CoreData
+   3. URLSession
+   4. DispatchQueue
+   5. NotificationCenter
+   6. CGContext
+
+3. 사용을 하겠다는 의지를 갖고 사용한 디자인패턴
+   1. Delegation pattern
+   2. Coordinator pattern
+   3. Facade
 
 <br>
 
