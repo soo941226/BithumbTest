@@ -44,6 +44,11 @@ extension CoinListViewController {
         DispatchQueue.main.async { [weak self] in
             self?.coinListDataSource.configure(items: items)
             self?.tableView.reloadData()
+
+            if self?.tableView.visibleCells.isEmpty == true {
+                return
+            }
+
             self?.tableView.scrollToRow(
                 at: IndexPath(row: .zero, section: .zero),
                 at: .top,

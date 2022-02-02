@@ -70,13 +70,22 @@ extension CoinListViewCell {
     }
 
     func configure(with coin: HTTPCoin) {
+        if coin.isFavorite == true {
+            isFavorite = true
+            bookmarkButton.setImage(star.fill, for: .normal)
+        } else {
+            isFavorite = false
+            bookmarkButton.setImage(star.empty, for: .normal)
+        }
+
         guard let closingPrice = coin.closePrice,
               let dailyChangedRate = coin.dailyChangedRate,
               let currentTradedPriceText = coin.currentTradedPrice,
               let currentTradedPrice = Double(currentTradedPriceText) else {
-                  symbolLabel.text = "확인 중"
+                  symbolLabel.text = coin.symbol
                   currentPriceLabel.text = "확인 중"
                   changedRateLabel.text = "확인 중"
+                  tradedPriceLabel.text = "확인 중"
                   return
               }
 
@@ -85,14 +94,6 @@ extension CoinListViewCell {
         currentPriceLabel.text = closingPrice
         changedRateLabel.text = dailyChangedRate.description
         tradedPriceLabel.text = filteredDailyTradedPrice
-
-        if coin.isFavorite == true {
-            isFavorite = true
-            bookmarkButton.setImage(star.fill, for: .normal)
-        } else {
-            isFavorite = false
-            bookmarkButton.setImage(star.empty, for: .normal)
-        }
 
         accessibilityLabel = coin.symbol
         accessibilityValue = """

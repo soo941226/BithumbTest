@@ -38,6 +38,11 @@ final class HTTPCoin: Decodable {
         self.currentTradedPrice = coin.currentTradedPrice
     }
 
+    init(converFrom cdCoin: CDCoin) {
+        self.symbol = cdCoin.symbol
+        self.isFavorite = cdCoin.isFavorite
+    }
+
     enum CodingKeys: String, CodingKey {
         case symbol, date, isFavorite
         case openPrice = "opening_price"

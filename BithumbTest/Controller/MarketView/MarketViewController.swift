@@ -184,6 +184,7 @@ extension MarketViewController: ControlContainer {
 
     @objc private func touchUpFavoriteButton(sender: UITapGesture) {
         touchUpButton(with: sender)
+        retrieveFavoriteCoins()
     }
 
     private func touchUpButton(with sender: UITapGesture) {
@@ -230,6 +231,15 @@ private extension MarketViewController {
                 return // nothing to do
             }
         }
+    }
+
+    func retrieveFavoriteCoins() {
+        stopManaging()
+        let coins = CDCoin.findFavoriteCoin().map { HTTPCoin(converFrom: $0) }
+
+        self.sourceOfTruth = coins
+        rootViewController.configure(items: sourceOfTruth)
+        restartManaging()
     }
 
     func requestCoins() {

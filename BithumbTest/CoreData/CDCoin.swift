@@ -25,4 +25,10 @@ extension CDCoin {
             )
         }
     }
+
+    static func findFavoriteCoin() -> [CDCoin] {
+        return CDManager.shared.retrieve(
+            with: NSPredicate(format: "isFavorite == true")
+        ) ?? []
+    }
 }
