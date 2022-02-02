@@ -32,7 +32,7 @@
 
 <br>
 
-<img width="350" alt="구현2" src="https://user-images.githubusercontent.com/83933153/152099322-ad0e83f8-e152-4e6c-959b-b16abd5ff7b1.png"/>
+<img width="350" alt="구현2" src="https://user-images.githubusercontent.com/83933153/152106457-066a8896-4260-4c97-9cb0-093a400fb83f.png"/>
 
 1. HTTP 통신을 통해 처음에 Orderbook들을 뿌려주도록 한 뒤, WS통신을 통해 현재 화면에 보여지는 Orderbook들을 지속적으로 갱신하도록 구현하였습니다
 2. HTTP 통신을 통해 Candlestick들을 가져온 뒤, opening price를 기준으로 linear chart를 그리도록 구현하였습니다
