@@ -24,22 +24,23 @@
 <br>
 
 ### 2. 구현내용
-![Simulator Screen Recording - iPod touch (7th generation) - 2022-02-02 at 13 52 54](https://user-images.githubusercontent.com/83933153/152095141-740f9c0b-9375-4003-bcd6-8f32eb6d44cd.gif)
+
+<img width="350" alt="구현1" src="https://user-images.githubusercontent.com/83933153/152095141-740f9c0b-9375-4003-bcd6-8f32eb6d44cd.gif"/>
 
 1. HTTP 통신을 통해 처음에 Ticker들을 뿌려주도록 한 뒤, WS통신을 통해 현재 화면에 보여지는 Ticker들을 지속적으로 갱신하도록 구현하였습니다
 2. 코어데이터를 활용하여 관심코인을 저장하도록 구현하였습니다
 
 <br>
 
-![Simulator Screen Recording - iPod touch (7th generation) - 2022-02-02 at 13 50 47](https://user-images.githubusercontent.com/83933153/152095254-3b5dc444-c434-4ba5-823d-b85da5b73c33.gif)
+<img width="350" alt="구현2" src="https://user-images.githubusercontent.com/83933153/152099322-ad0e83f8-e152-4e6c-959b-b16abd5ff7b1.png"/>
 
-1. HTTP 통신을 통해 처음에 Ticker들을 뿌려주도록 한 뒤, WS통신을 통해 현재 화면에 보여지는 Ticker들을 지속적으로 갱신하도록 구현하였습니다
+1. HTTP 통신을 통해 처음에 Orderbook들을 뿌려주도록 한 뒤, WS통신을 통해 현재 화면에 보여지는 Orderbook들을 지속적으로 갱신하도록 구현하였습니다
 2. HTTP 통신을 통해 Candlestick들을 가져온 뒤, opening price를 기준으로 linear chart를 그리도록 구현하였습니다
   * 해당 내용은 코어데이터에 저장해놓은 뒤 재사용할 수 있도록 구현하였습니다.
 
 <br>
 
-![Simulator Screen Recording - iPod touch (7th generation) - 2022-02-02 at 14 17 00](https://user-images.githubusercontent.com/83933153/152097226-03ad0d99-3879-4682-aa2e-bc49bc11c4b0.gif)
+<img width="350" alt="구현3" src="https://user-images.githubusercontent.com/83933153/152097226-03ad0d99-3879-4682-aa2e-bc49bc11c4b0.gif"/>
 
 1. 다이나믹타입을 이용하여 시스템 폰트 크기에 따라 화면이 바뀌도록 수정하였습니다
 2. 테이블뷰에 Voice-over를 잘 사용할 수 있도록 하여, 셀 단위로 컨텐츠를 읽도록 하였습니다
@@ -75,13 +76,13 @@
 <details>
   <summary>1. API 관련</summary>  
   
-  <img width="769" alt="스크린샷 2022-02-02 오후 2 09 26" src="https://user-images.githubusercontent.com/83933153/152096526-4cfa276e-384e-4aa3-aeec-66d84d8ce80a.png">
+  <img width="350" alt="트러블슈팅1" src="https://user-images.githubusercontent.com/83933153/152096526-4cfa276e-384e-4aa3-aeec-66d84d8ce80a.png">
 
   1. API의 response들이 Swift를 위한 것은 아니라는 생각이 먼저 들었습니다. 특히 Public Ticker의 주문 통화가 ALL일 경우에는 data에 Coin과 date가 같은 레벨에 존재했고 이러한 부분이 나이브한 딕셔너리로 처리하기에는 어려움이 있었습니다. 예를 들면 [String: Coin]과 같이 처리할 수가 없었는데, Coin과 Date를 enum으로 묶어서 각각의 경우에 따라 파싱을 할 수 있도록 처리를 하였습니다.
 
   <br>
 
-  <img width="712" alt="스크린샷 2022-02-02 오후 2 06 32" src="https://user-images.githubusercontent.com/83933153/152096325-a48b3ec2-9714-442e-8333-407d3d88d4e6.png">
+  <img width="350" alt="트러블슈팅2" src="https://user-images.githubusercontent.com/83933153/152096325-a48b3ec2-9714-442e-8333-407d3d88d4e6.png">
 
   2. 또 fluctate_rate_24H가 주문통화가 KRW일 때에는 stirng으로 오는 반면 BTC일 때에는 number로 오는 경우가 있어 어려움이 있었습니다. 해당 내용도 각각의 경우를 enum으로 묶어서 처리하도록 구현하였습니다
 
