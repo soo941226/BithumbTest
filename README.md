@@ -1,5 +1,10 @@
 # BithumbTest
 
+### 사용한 3rd-parties
+  1. SwiftLint: 일관된 컨벤션을 유지할 수 있게 많이 도와줘서 사용했습니다
+  2. CocoaPods: SwiftLint을 적용하기 위해 사용했습니다
+
+
 <details>
  <summary> 타임라인 </summary>
  
