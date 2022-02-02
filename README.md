@@ -16,6 +16,7 @@
 ### 1. 사용한 기술스택
 
 채택한 아키텍처: MVC <br>
+요구하는 iOS버전: 13.0 <br>
 색깔참조한 사이트: https://colorhunt.co/palette/dddddd22283130475ef05454
 
 1. 3rd-parties
