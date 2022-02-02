@@ -47,3 +47,9 @@
 * Chart데이터 요청하는 모델 및 API 생성
 * LinearChartViewController 생성
 * 로컬데이터 관리를 위해 CoreData 관련 타입 구현 중
+
+### Day15~16
+* 미사용 코드 정리
+* 디코딩 관련 에러로 인해 HTTPCoin 수정
+* 거래소 화면에서 결제통화 및 관심 등을 데이터를 가져오도록 수정
+* LinearChatView 내용을 수정하여 opening_price를 기준으로 색이 변경되도록 수정
